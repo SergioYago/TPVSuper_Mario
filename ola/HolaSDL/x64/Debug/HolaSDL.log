@@ -1,0 +1,5 @@
+﻿  TileMap.cpp
+  main.cpp
+  Generando código...
+main.obj : error LNK2019: símbolo externo "public: __cdecl TileMap::TileMap(void)" (??0TileMap@@QEAA@XZ) sin resolver al que se hace referencia en la función SDL_main
+C:\Users\usuario_local\source\repos\ola\bin\HolaSDLDebug.exe : fatal error LNK1120: 1 externos sin resolver
