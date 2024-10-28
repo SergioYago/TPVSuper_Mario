@@ -1,7 +1,7 @@
 #include "TileMap.h"
 
 
-TileMap::TileMap(const string& filename)
+TileMap::TileMap(const string& filename, Game g)
 {
 	
 	vector<vector<int>> indices [Game::WINDOW_HEIGHT][40];

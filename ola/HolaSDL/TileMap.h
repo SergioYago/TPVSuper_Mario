@@ -16,7 +16,7 @@ private:
 
 public:
 
-	TileMap(const string& filename) ;
+	TileMap(const string& filename, Game g) ;
 
 	// Carga el mapa de teselas desde un archivo CSV y lo guarda en indices (atributo de TileMap) 
 
@@ -64,6 +64,15 @@ public:
 				// Usa renderFrame para pintar la tesela
 				background->renderFrame(rect, fy, fx);
 			}
+		}
+	}
+
+	// Update de la posici�n del mapa seg�n la posici�n del jugador
+	void updateMapOffset(int playerX) {
+		Game g;
+		// Si el jugador se sale de la mitad de la ventana, actualiza el mapa
+		if (playerX > g.WINDOW_WIDTH / 2 * g.TILE_SIDE) {
+			g.mapOffset = playerX - g.WINDOW_WIDTH / 2 * g.TILE_SIDE;
 		}
 	}
 };
