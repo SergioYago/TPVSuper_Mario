@@ -13,6 +13,11 @@ public:
 	static const int WINDOW_WIDTH = 18;
 	static const int WINDOW_HEIGHT = 16;
 	static constexpr uint FRAME_RATE = 50;
+	static const string TEXTURES_PATH;
+	int mapOffset;
+	// atributo de Game
+	Game();
+
 
 	enum TextureName {
 		BACKGROUND,
