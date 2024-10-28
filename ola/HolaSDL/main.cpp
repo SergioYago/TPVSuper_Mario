@@ -34,8 +34,8 @@ void firstTest()
 
 int main(int argc, char* argv[])
 {
-	TileMap hola;
-	hola.Lee();
+	TileMap hola("../assets/maps/world1.csv");
+	
 	firstTest();
 	return 0;
 }

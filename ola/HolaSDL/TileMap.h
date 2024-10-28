@@ -12,11 +12,11 @@ class TileMap
 private: 
 	vector<vector<int>> indices;  // atributo de TileMap
 	Texture* background;
-	const int TILE_MAP;
+	const int TILE_MAP=9;
 
 public:
 
-	TileMap();
+	TileMap(const string& filename) ;
 
 	// Carga el mapa de teselas desde un archivo CSV y lo guarda en indices (atributo de TileMap) 
 
