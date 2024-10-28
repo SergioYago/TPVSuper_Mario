@@ -4,7 +4,7 @@
 #include <vector>
 #include "Vector2D.h"
 
-
+using Point2D = Vector2D<int>;
 template <class T>
 class Vector2D {
 public:
@@ -91,4 +91,5 @@ public:
 	//setters
 	void setX(T x) { this->x = x; }
 	void setY(T y) { this->y = y; }
+	
 };
