@@ -80,7 +80,7 @@ public:
 	}
 
 	Vector2D<T> operator-() const {
-		return Vector2D<T>(
+		return Vector2D<T>(-x, -y);
 
 	}
 
