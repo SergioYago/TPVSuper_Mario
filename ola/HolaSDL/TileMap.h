@@ -2,11 +2,12 @@
 #include <SDL.h>
 #include "vector2D.h"
 #include "Texture.h"
-#include "Game.h"
+
 #include <fstream>
 #include <string>
 #include <sstream>
 using namespace std;
+class Game;
 class TileMap
 {
 private: 
@@ -34,7 +35,6 @@ public:
 	}
  	}
 	void renderTileMap();
-	
 
 };
 

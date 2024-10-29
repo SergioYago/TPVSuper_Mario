@@ -16,7 +16,7 @@ void TileMap ::  renderTileMap()
 
 	
 	
-	int mapOffset;  // atributo de Game
+	int mapOffset = game->getMapOffset();  // atributo de Game
 
 	// Primera columna de la matriz del mapa visible en la ventana
 	int x0 = mapOffset / TILE_MAP;

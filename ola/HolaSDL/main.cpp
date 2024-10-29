@@ -1,5 +1,5 @@
 #include "checkML.h"
-
+#include "Game.h"
 #include "SDL.h"
 #include "SDL_image.h"
 #include <iostream>
@@ -36,6 +36,8 @@ int main(int argc, char* argv[])
 {
 	//TileMap hola("../assets/maps/world1.csv");
 	
-	firstTest();
+	//firstTest();
+	Game g = Game();
+	g.run();
 	return 0;
 }

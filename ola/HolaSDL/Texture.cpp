@@ -1,5 +1,5 @@
 #include <string>
-
+#include "Game.h"
 #include <SDL_image.h>
 
 #include "Texture.h"

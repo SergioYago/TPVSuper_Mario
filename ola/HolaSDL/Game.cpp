@@ -48,7 +48,7 @@ Game::Game()
 
 	// Crea los objetos del juego
 	//perro = new Dog(this, -textures[DOG]->getFrameWidth(), 390);
-	tilemap = new TileMap(textureSpec[0].name,this);
+	tilemap = new TileMap(textureSpec[0].name, this);
 }
 
 Game::~Game()
