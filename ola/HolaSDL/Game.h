@@ -36,7 +36,10 @@ private:
 	bool seguir;
 	int mapOffset;
 
+
 	// Objetos del juego
+	
+	
 	TileMap* tilemap;
 
 public:
@@ -53,7 +56,7 @@ public:
 	static constexpr uint WIN_HEIGHT = 512;
 	static constexpr uint FRAME_RATE = 50;
 	static constexpr uint TILE_SIDE = 32;
-
+	
 	Game();
 	~Game();
 };

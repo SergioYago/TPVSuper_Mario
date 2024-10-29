@@ -34,7 +34,7 @@ void firstTest()
 
 int main(int argc, char* argv[])
 {
-	TileMap hola("../assets/maps/world1.csv");
+	//TileMap hola("../assets/maps/world1.csv");
 	
 	firstTest();
 	return 0;

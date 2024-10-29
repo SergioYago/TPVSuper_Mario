@@ -48,7 +48,7 @@ Game::Game()
 
 	// Crea los objetos del juego
 	//perro = new Dog(this, -textures[DOG]->getFrameWidth(), 390);
-	tilemap =
+	tilemap = new TileMap(textureSpec[0].name,this);
 }
 
 Game::~Game()
@@ -94,7 +94,7 @@ Game::render() const
 
 	// Pinta los objetos del juego
 	textures[BACKGROUND]->render();
-	perro->render();
+	//perro->render();
 	tilemap->renderTileMap();
 
 	SDL_RenderPresent(renderer);
