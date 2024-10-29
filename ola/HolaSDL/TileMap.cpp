@@ -2,10 +2,12 @@
 #include "Game.h"
 
 TileMap::TileMap(const string& filename, Game* g)
+	:game(g)
+	,background(g->getTexture(Game::BACKGROUND))
 {
 	game = g;
 	vector<vector<int>> indices [Game::WIN_HEIGHT][211];
-	background = g->getTexture(g->BACKGROUND);
+	//background = g->getTexture(g->BACKGROUND);
 	LoadMap(filename);
 }
 

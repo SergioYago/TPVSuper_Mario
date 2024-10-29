@@ -38,11 +38,10 @@ private:
 
 
 	// Objetos del juego
-	
-	
 	TileMap* tilemap;
 
 public:
+	int getMapOffset();
 	void run();
 
 	void update();

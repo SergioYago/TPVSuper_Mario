@@ -66,6 +66,11 @@ Game::~Game()
 	SDL_Quit();
 }
 
+int
+Game::getMapOffset() {
+	return mapOffset;
+}
+
 void
 Game::run()
 {
