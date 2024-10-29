@@ -14,6 +14,7 @@ public:
 	static const int WINDOW_HEIGHT = 16;
 	static constexpr uint FRAME_RATE = 50;
 	static const string TEXTURES_PATH;
+	
 	int mapOffset;
 	// atributo de Game
 	Game();
@@ -24,14 +25,25 @@ public:
 		TILEMAP,
 		NUM_TEXTURES,  // Truco C++: número de texturas definidas
 	};
+	static Texture* cosas[NUM_TEXTURES];
 
 private:
+	
+	
+	
+	
 	// Ventana de la SDL (se destruirá en el destructor)
 	SDL_Window* window = nullptr;
 	// Renderizador de la SDL (para dibujar)
 	SDL_Renderer* renderer = nullptr;
+	 
+	
+	
 	// Array con todas las texturas del juego
 	//std::array<Texture*, NUM_TEXTURES> ;
 
-
+	void Añadir()
+	{
+		//cosas[1]= Texture(renderer, "../assets/imgs/blocks.png", 1, 1);
+	}
 };
