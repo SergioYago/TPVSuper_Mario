@@ -4,18 +4,9 @@
 TileMap::TileMap(const string& filename, Game g)
 {
 	
-	vector<vector<int>> indices [Game::WIN_HEIGHT][632];
+	vector<vector<int>> indices [Game::WIN_HEIGHT][211];
 	background = g.getTexture(g.BACKGROUND);
-	ifstream file(filename);
-	string line;
-	for (int i = 0; i < Game::WIN_HEIGHT; ++i) {
-		for (int j = 0; j < 632; ++j) {
-			getline(file, line, ',');
-			//indices[i][j] = stoi(line);
-			cout << line<<" ";
-		}
-		cout << '\n';
-	}
+	LoadMap(filename);
 }
 
 void TileMap ::  renderTileMap()

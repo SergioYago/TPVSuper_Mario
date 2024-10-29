@@ -4,18 +4,18 @@
 
 using namespace std;
 
-// Formato de la especificación de una textura
+// Formato de la especificaciï¿½n de una textura
 struct TextureSpec
 {
 	const char* name;	// Ruta del archivo
-	uint numColumns;	// Número de frames por fila
-	uint numRows;		// Número de frames por columna
+	uint numColumns;	// Nï¿½mero de frames por fila
+	uint numRows;		// Nï¿½mero de frames por columna
 };
 
-// Directorio raíz de los archivos de textura
+// Directorio raï¿½z de los archivos de textura
 const string textureRoot = "../assets/imgs/";
 
-// Especificación de las texturas del juego
+// Especificaciï¿½n de las texturas del juego
 const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	TextureSpec{"background.png", 9, 7},
 	{"mario.png", 12, 1},
@@ -71,7 +71,7 @@ Game::run()
 {
 	// Bucle principal del juego
 	while (seguir) {
-		// Marca de tiempo del inicio de la iteración
+		// Marca de tiempo del inicio de la iteraciï¿½n
 		uint32_t inicio = SDL_GetTicks();
 
 		update();       // Actualiza el estado de los objetos del juego
@@ -81,7 +81,7 @@ Game::run()
 		// Tiempo que se ha tardado en ejecutar lo anterior
 		uint32_t elapsed = SDL_GetTicks() - inicio;
 
-		// Duerme el resto de la duración del frame
+		// Duerme el resto de la duraciï¿½n del frame
 		if (elapsed < FRAME_RATE)
 			SDL_Delay(FRAME_RATE - elapsed);
 	}

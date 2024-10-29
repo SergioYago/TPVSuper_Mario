@@ -19,7 +19,19 @@ public:
 	TileMap(const string& filename, Game g) ;
 
 	// Carga el mapa de teselas desde un archivo CSV y lo guarda en indices (atributo de TileMap) 
-
+ 	void LoadMap(const string& filename)
+ 	{
+		ifstream file(filename);
+	string line;
+	for (int i = 0; i < Game::WIN_HEIGHT; ++i) {
+		for (int j = 0; j < 632; ++j) {
+			getline(file, line, ',');
+			indices[i][j] = stoi(line);
+			cout << line<<" ";
+		}
+		cout << '\n';
+	}
+ 	}
 	void renderTileMap()
 	{
 		
