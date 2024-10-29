@@ -20,18 +20,7 @@ public:
 
 	// Carga el mapa de teselas desde un archivo CSV y lo guarda en indices (atributo de TileMap) 
 
-	void loadMap(const string& filename) {
-		ifstream file(filename);
-		string line;
-		for (int i = 0; i < Game::WINDOW_HEIGHT; ++i) {
-			for (int j = 0; j < Game::WINDOW_WIDTH; ++j) {
-				getline(file, line, ',');
-				indices[i][j] = stoi(line);
-			}
-		}
-	}
-
-	int renderTileMap()
+	void renderTileMap()
 	{
 		
 		Game g;
@@ -49,8 +38,8 @@ public:
 		rect.h = g.TILE_SIDE;
 
 		// Pintamos los WINDOW_WIDTH + 1 (aunque se salga) x WINDOW_HEIGHT recuadros del mapa
-		for (int i = 0; i < g.WINDOW_WIDTH + 1; ++i) {
-			for (int j = 0; j < g.WINDOW_HEIGHT; ++j) {
+		for (int i = 0; i < g.WIN_WIDTH + 1; ++i) {
+			for (int j = 0; j < g.WIN_HEIGHT; ++j) {
 				// �ndice en el conjunto de patrones de la matriz de �ndices
 				int indice = indices[x0 + i][j];
 
@@ -67,13 +56,5 @@ public:
 		}
 	}
 
-	// Update de la posici�n del mapa seg�n la posici�n del jugador
-	void updateMapOffset(int playerX) {
-		Game g;
-		// Si el jugador se sale de la mitad de la ventana, actualiza el mapa
-		if (playerX > g.WINDOW_WIDTH / 2 * g.TILE_SIDE) {
-			g.mapOffset = playerX - g.WINDOW_WIDTH / 2 * g.TILE_SIDE;
-		}
-	}
 };
 

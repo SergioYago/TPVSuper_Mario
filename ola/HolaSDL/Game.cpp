@@ -95,6 +95,7 @@ Game::render() const
 	// Pinta los objetos del juego
 	textures[BACKGROUND]->render();
 	perro->render();
+	tilemap->renderTileMap();
 
 	SDL_RenderPresent(renderer);
 }
