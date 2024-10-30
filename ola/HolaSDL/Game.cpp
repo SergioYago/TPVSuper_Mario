@@ -126,3 +126,7 @@ Game::handleEvents()
 		}
 	}
 }
+void Game::loose()
+{
+	seguir = false;
+}

@@ -41,13 +41,15 @@ private:
 	TileMap* tilemap;
 
 public:
+	Game();
+	~Game();
 	int getMapOffset();
 	void run();
-
+	void loose();
 	void update();
 	void render() const;
 	void handleEvents();
-
+	
 	Texture* getTexture(TextureName name) const;
 
 	// Constante globales
@@ -56,8 +58,7 @@ public:
 	static constexpr uint FRAME_RATE = 50;
 	static constexpr uint TILE_SIDE = 32;
 	
-	Game();
-	~Game();
+	
 };
 
 inline Texture*
