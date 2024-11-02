@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include "vector2D.h"
 #include "Texture.h"
-
+#include <vector>
 #include <fstream>
 #include <string>
 #include <sstream>
@@ -11,29 +11,18 @@ class Game;
 class TileMap
 {
 private: 
+	Game* game;
 	vector<vector<int>> indices;  // atributo de TileMap
 	Texture* background;
-	const int TILE_MAP=9;
-	Game* game;
+	const int TILE_MAP=211*32;
+	
 
 public:
 
 	TileMap(const string& filename, Game* g) ;
 
 	// Carga el mapa de teselas desde un archivo CSV y lo guarda en indices (atributo de TileMap) 
- 	void LoadMap(const string& filename)
- 	{
-		ifstream file(filename);
-	string line;
-	for (int i = 0; i < 16; ++i) {
-		for (int j = 0; j < 211; ++j) {
-			getline(file, line, ',');
-			indices[i][j] = stoi(line);
-			cout << line<<" ";
-		}
-		cout << '\n';
-	}
- 	}
+ 	
 	void renderTileMap();
 
 };
