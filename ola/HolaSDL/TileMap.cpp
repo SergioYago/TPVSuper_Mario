@@ -53,9 +53,9 @@ void TileMap ::  renderTileMap()
 	int mapOffset = game->getMapOffset();  // atributo de Game
 
 	// Primera columna de la matriz del mapa visible en la ventana
-	int x0 = 1700 / TILE_MAP;
+	int x0 = mapOffset / TILE_MAP;
 	// Anchura oculta de esa primera columna
-	int d0 = 1700 % TILE_MAP;
+	int d0 = mapOffset % TILE_MAP;
 
 	// Recuadro donde se pintar� la tesela en la ventana
 	SDL_Rect rect;

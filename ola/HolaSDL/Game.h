@@ -9,6 +9,7 @@
 // Nuestras clases
 #include "Texture.h"
 #include "TileMap.h"
+#include "player.h"
 
 using uint = unsigned int;
 
@@ -39,6 +40,7 @@ private:
 
 	// Objetos del juego
 	TileMap* tilemap;
+	player* mario;
 
 public:
 	static constexpr uint WIN_WIDTH = 576;

@@ -46,9 +46,40 @@ Game::Game()
 			textureSpec[i].numRows,
 			textureSpec[i].numColumns);
 
+	// Lee el archivo de entidades de juego y crea las entidades, llamando a sus constructores con los datos leidos
+	ifstream file("../assets/maps/world1.txt");
+	string line;
+
+	while (getline(file, line))
+	{
+		// Crea una entidad de juego
+		// si la primera letra de la linea es 'M', crea al player
+		// si la primera letra de la linea es 'B', crea un bloque
+		// si la primera letra de la linea es 'G', crea un goomba
+		// si la primera letra de la linea es 'K', crea un koopa
+
+		// crear un istream a partir de la linea, incluyendo todo el contenido de la linea menos el primer caracter
+		istringstream is(line.substr(1));
+		
+		if (line[0] == 'M') {
+			mario = new player(is, this);
+		}
+		else if (line[0] == 'B') {
+
+		}
+		else if (line[0] == 'G') {
+
+		}
+		else if (line[0] == 'K') {
+
+		}
+		
+		//entities.push_back(new Entity(this, line));
+	}
+
 	// Crea los objetos del juego
 	//perro = new Dog(this, -textures[DOG]->getFrameWidth(), 390);
-	tilemap = new TileMap(textureSpec[0].name, this);
+	tilemap = new TileMap("../assets/maps/world1.csv", this);
 }
 
 Game::~Game()
@@ -98,9 +129,10 @@ Game::render() const
 	SDL_RenderClear(renderer);
 
 	// Pinta los objetos del juego
-	textures[BACKGROUND]->render();
+	//textures[BACKGROUND]->render();
 	//perro->render();
 	tilemap->renderTileMap();
+	mario->render();
 
 	SDL_RenderPresent(renderer);
 }
@@ -110,6 +142,11 @@ Game::update()
 {
 	// Actualiza los objetos del juego
 	//perro->update();
+	// si mario llega a la mitad de la pantalla, incrementa el mapOffset
+	if (mario->getScreenPosition().x > WIN_WIDTH / 2)
+	{
+		mapOffset = mario->getMapPosition().x - mario->getScreenPosition().x;
+	}
 }
 
 void

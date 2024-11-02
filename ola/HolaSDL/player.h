@@ -2,8 +2,9 @@
 #include "vector2D.h"
 #include "checkML.h"
 #include "Texture.h"
+#include <SDL.h>
 
-class Game;
+/*class Game;
 class player
 {
 	Point2D position;
@@ -19,4 +20,40 @@ public:
 	void hit();
 
 };
+*/
+
+// Clase que representa al jugador. Como atributos tiene su posición actual, un puntero a su textura y un puntero al juego. Además , tiene un atributo para las vidas del jugador y para su dirección actual y su aspecto (Mario o super Mario). Tiene un método para renderizarlo, uno para actualizarlo (update), otro para restarle una vida (hit) y uno para los eventos de teclado (handleEvents).
+
+class Game;
+class player
+{
+	Point2D mapPosition;
+	// posición relativa del jugador respecto al inicio del mapa
+	Point2D screenPosition;
+
+	Texture* texture;
+	Game* game;
+	int vidas;
+	int direccion;
+	int aspecto;
+
+public:
+	player(std::istream& is, Game* g);
+	~player();
+	void render();
+	void update();
+	void hit();
+	void handleEvents(SDL_Event event);
+	//getter position
+	Point2D getMapPosition() { return mapPosition; }
+	Point2D getScreenPosition() { return screenPosition; }
+	int getVidas() { return vidas; }
+	int getDireccion() { return direccion; }
+	int getAspecto() { return aspecto; }
+
+	// cuando el jugador llega a la mitad de la pantalla e intenta avanzar, se incrementa el mapOffset porque se incrementa la posición del jugador en el mapa
+	// , pero la posición en pantalla no cambia
+
+};
+
 
