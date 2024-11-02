@@ -1,5 +1,12 @@
-﻿  TileMap.cpp
+﻿  Game.cpp
+  Texture.cpp
+  TileMap.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\crtdbg.h(307,17): warning C4005: '_malloca': macro redefinition
+  (compiling source file 'TileMap.cpp')
+      C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\malloc.h(120,17):
+      see previous definition of '_malloca'
+  
   main.cpp
-  Generando código...
-main.obj : error LNK2019: símbolo externo "public: __cdecl TileMap::TileMap(void)" (??0TileMap@@QEAA@XZ) sin resolver al que se hace referencia en la función SDL_main
-C:\Users\usuario_local\source\repos\ola\bin\HolaSDLDebug.exe : fatal error LNK1120: 1 externos sin resolver
+  player.cpp
+  Generating Code...
+  HolaSDL.vcxproj -> C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\bin\HolaSDLDebug.exe
