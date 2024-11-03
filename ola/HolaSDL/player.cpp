@@ -56,7 +56,7 @@ void player::render()
 	destRect.h = game->TILE_SIDE;
 	//SDL_RenderCopy(game->getRenderer(), texture->getTexture(), nullptr, &destRect);
 
-	texture->render(destRect, 1, 0);
+	texture->renderFrame(destRect, 0, 0);
 
 
 }
