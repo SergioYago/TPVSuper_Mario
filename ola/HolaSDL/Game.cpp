@@ -140,12 +140,13 @@ Game::render() const
 void
 Game::update()
 {
+	mario->update();
 	// Actualiza los objetos del juego
 	//perro->update();
 	// si mario llega a la mitad de la pantalla, incrementa el mapOffset
-	if (mario->getScreenPosition().x > WIN_WIDTH / 2)
+ 	if (mario->getScreenPosition().x == WIN_WIDTH / 64)
 	{
-		mapOffset = mario->getMapPosition().x - mario->getScreenPosition().x;
+		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*50;
 	}
 }
 

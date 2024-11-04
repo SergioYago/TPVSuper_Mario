@@ -34,6 +34,12 @@ void player::hit()
 }
 void player::update()
 {
+	int mapoffset = game->getMapOffset();
+	if(mapoffset<10000)
+	{
+		if (screenPosition.x < (game->WIN_WIDTH / 64)) { screenPosition.x++; }
+		mapPosition.x++;
+	}
 	//si colisiona con un enemigo, hit();
 	vidas--;
 	aspecto--;
