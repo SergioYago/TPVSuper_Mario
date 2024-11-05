@@ -25,6 +25,7 @@ const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 Game::Game()
 	: seguir(true)
 {
+	
 	// Inicializa la SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window = SDL_CreateWindow("First test with SDL",
@@ -111,6 +112,7 @@ Game::run()
 		uint32_t inicio = SDL_GetTicks();
 
 		update();       // Actualiza el estado de los objetos del juego
+		checkColision();
 		render();       // Dibuja los objetos en la venta
 		handleEvents(); // Maneja los eventos de la SDL
 
@@ -127,6 +129,7 @@ void
 Game::render() const
 {
 	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(renderer,100,100,500,100);
 
 	// Pinta los objetos del juego
 	//textures[BACKGROUND]->render();
@@ -135,6 +138,11 @@ Game::render() const
 	mario->render();
 
 	SDL_RenderPresent(renderer);
+}
+void
+Game::checkColision()
+{
+
 }
 
 void

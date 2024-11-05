@@ -24,6 +24,7 @@ player::player(std::istream& is, Game* g)
 }
 void player::hit()
 {
+	//SDL_GetRectIntersection();
 	//si por encima, destruye al otro
 	//si por debajo, vida--;
 	vidas--;
@@ -34,11 +35,13 @@ void player::hit()
 }
 void player::update()
 {
+	
 	int mapoffset = game->getMapOffset();
-	if(mapoffset<10000)
+	if(mapoffset<1)
 	{
 		if (screenPosition.x < (game->WIN_WIDTH / 64)) { screenPosition.x++; }
 		mapPosition.x++;
+		
 	}
 	//si colisiona con un enemigo, hit();
 	vidas--;
@@ -49,7 +52,7 @@ void player::update()
 	aspecto++;
 
 	// actualiza la posición del jugador en función de las teclas pulsadas, cambiando la direccion del jugador
-
+	
 
 }
 void player::render()
@@ -60,6 +63,7 @@ void player::render()
 	destRect.y = screenPosition.y* game->TILE_SIDE;
 	destRect.w = game->TILE_SIDE;
 	destRect.h = game->TILE_SIDE;
+	
 	//SDL_RenderCopy(game->getRenderer(), texture->getTexture(), nullptr, &destRect);
 
 	texture->renderFrame(destRect, 0, 0);

@@ -53,6 +53,7 @@ public:
 	void run();
 	void loose();
 	void update();
+	void checkColision();
 	void render() const;
 	void handleEvents();
 	

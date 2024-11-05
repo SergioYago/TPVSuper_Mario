@@ -23,26 +23,35 @@ TileMap::TileMap(const string& filename, Game* g)
 		rows++;
 		
 	}
-	rows--;
+	rows;
 	file.close();
 	file.open(filename);
 	indices = vector<vector<int>>(rows, vector<int>(210, 0));
+	//colisions = vector<vector<SDL_Rect>>(rows, vector<SDL_Rect>(210, 0));
 	for(int i =0;i<rows;i++)
 	{
 		for(int j=0;j<210;j++)
 		{
 			getline(file, line, ',');
 			indices[i][j] = stoi(line);
+			if (indices[i][j]==36)
+			{
+				coliitons[i][j].x = i * 32;
+				coliitons[i][j].y = j * 32;
+				coliitons[i][j].w =32;
+				coliitons[i][j].h =32;
+			}
+			else
+			{
+				coliitons[i][j].x = 0;
+				coliitons[i][j].y = 0;
+				coliitons[i][j].h = 0;
+				coliitons[i][j].w = 0;
+			}
+
 		}
 	}
-	/*vector<int> v[211];
-	stringstream stream(line);
-	int aux;
-	while (stream >> aux)
-	{
-		v->push_back(aux);
-		if (stream.peek() == ',') { stream.ignore(); }
-	}*/
+	
 }
 
 void TileMap ::  renderTileMap()
@@ -64,7 +73,7 @@ void TileMap ::  renderTileMap()
 	//SDL_Surface* background_surface = SDL_CreateRGBSurface(0, 16, 210, 0, 138, 132, 255, 255);
 	
 	// Pintamos los WINDOW_WIDTH + 1 (aunque se salga) x WINDOW_HEIGHT recuadros del mapa
-	for (int i = 0; i < 15; ++i) {
+	for (int i = 0; i < 16; ++i) {
 		for (int j = 0; j < 210; ++j) {
 			// indice en el conjunto de patrones de la matriz de indices
 			int indice = indices[x0 + i][j];

@@ -15,6 +15,8 @@ private:
 	vector<vector<int>> indices;  // atributo de TileMap
 	Texture* background;
 	const int TILE_MAP=211*32;
+	//vector<vector<SDL_Rect>> colisions;
+	SDL_Rect coliitons[211][16];
 	
 
 public:
