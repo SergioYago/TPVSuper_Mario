@@ -169,6 +169,7 @@ Game::handleEvents()
 			seguir = false;
 		else if (evento.type == SDL_KEYDOWN) {
 			//perro->handleEvent(evento);
+			mario->handleEvents(evento);
 		}
 	}
 }

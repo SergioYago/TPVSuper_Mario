@@ -37,12 +37,12 @@ void player::update()
 {
 	
 	int mapoffset = game->getMapOffset();
-	if(mapoffset<1)
-	{
-		if (screenPosition.x < (game->WIN_WIDTH / 64)) { screenPosition.x++; }
-		mapPosition.x++;
+	//if(mapoffset<1)
+	//{
+	//	if (screenPosition.x < (game->WIN_WIDTH / 64)) { screenPosition.x++; }
+	//	mapPosition.x++;
 		
-	}
+	//}
 	//si colisiona con un enemigo, hit();
 	vidas--;
 	aspecto--;
@@ -52,7 +52,6 @@ void player::update()
 	aspecto++;
 
 	// actualiza la posición del jugador en función de las teclas pulsadas, cambiando la direccion del jugador
-	
 
 }
 void player::render()
@@ -69,4 +68,9 @@ void player::render()
 	texture->renderFrame(destRect, 0, 0);
 
 
+}
+//switch CON KEYUP Y OTRO CON KEYDOWN
+void player::handleEvents(SDL_Event a) {
+	switch (SDL_KEYDOWN)
+		case SDLK_a 
 }
