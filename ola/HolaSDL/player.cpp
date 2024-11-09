@@ -1,16 +1,10 @@
 #include "player.h"
 #include "Game.h"
 
-/*player::player(Texture* texture, Vector2D<int> position, Game* g)
-	:game(g)
-	, texture(g->getTexture(Game::PLAYER))
-{
-	game = g;
 
-}
-*/
-
-//constructor de player, recibe un std::istream y un puntero a Game, con el que inicializa el atributo game. Lee de is la posición del jugador y sus vidas y las almacena en el atributo position y vidas. Inicializa el atributo texture con la textura del jugador.
+//constructor de player, recibe un std::istream y un puntero a Game, con el que inicializa el atributo game. 
+// Lee de is la posición del jugador y sus vidas y las almacena en el atributo position y vidas. 
+// Inicializa el atributo texture con la textura del jugador.
 player::player(std::istream& is, Game* g)
 	:game(g)
 {
@@ -22,6 +16,7 @@ player::player(std::istream& is, Game* g)
 	screenPosition.y--;
 	mapPosition = screenPosition;
 }
+
 void player::hit()
 {
 	//SDL_GetRectIntersection();
@@ -33,27 +28,39 @@ void player::hit()
 		game->loose();
 	}
 }
+
+// Se encarga de actualizar la posición del jugador en función de las teclas pulsadas, cambiando la dirección del jugador.
+// Además, si colisiona con un enemigo, llama a hit(); si colisiona con una moneda, incrementa monedas; si colisiona con una seta, incrementa aspecto.
 void player::update()
 {
 	
 	int mapoffset = game->getMapOffset();
-	//if(mapoffset<1)
-	//{
-	//	if (screenPosition.x < (game->WIN_WIDTH / 64)) { screenPosition.x++; }
-	//	mapPosition.x++;
-		
-	//}
+
 	//si colisiona con un enemigo, hit();
-	vidas--;
-	aspecto--;
-	
 	//si colisiona con una moneda, monedas++;
 	//si colisiona con una seta, aspecto++;
-	aspecto++;
 
 	// actualiza la posición del jugador en función de las teclas pulsadas, cambiando la direccion del jugador
+	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH/64)
+	{
+		screenPosition.x++;
+		mapPosition.x++;
+	}
+	else if (direccion == -1 && screenPosition.x>0)
+	{
+		screenPosition.x--;
+		mapPosition.x--;
+	}
+
+	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
+	if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
+	{
+		mapPosition.x++;
+	}
 
 }
+
+//renderiza al jugador en la pantalla
 void player::render()
 {
 
@@ -69,8 +76,45 @@ void player::render()
 
 
 }
-//switch CON KEYUP Y OTRO CON KEYDOWN
-void player::handleEvents(SDL_Event a) {
-	switch (SDL_KEYDOWN)
-		case SDLK_a 
+
+
+// gestiona los eventos de teclado. 
+// Si se pulsa la tecla de flecha izquierda, la dirección del jugador se pone a -1. 
+// Si se pulsa la tecla de flecha derecha, la dirección del jugador se pone a 1. 
+// Tambien tiene en cuenta cuando se deja de pulsar una tecla, para que el jugador deje de moverse.
+
+void player::handleEvents(SDL_Event event)
+{
+	switch (event.type)
+	{
+	case SDL_KEYDOWN:
+		switch (event.key.keysym.sym)
+		{
+		case SDLK_UP:
+
+			break;
+		case SDLK_DOWN:
+
+			break;
+		case SDLK_LEFT:
+			direccion = -1;
+			break;
+		case SDLK_RIGHT:
+			direccion = 1;
+			break;
+		}
+
+		break;
+	case SDL_KEYUP:
+		switch (event.key.keysym.sym)
+		{
+		case SDLK_LEFT:
+			direccion = 0;
+			break;
+		case SDLK_RIGHT:
+			direccion = 0;
+			break;
+		}
+		break;
+	}
 }

@@ -171,6 +171,10 @@ Game::handleEvents()
 			//perro->handleEvent(evento);
 			mario->handleEvents(evento);
 		}
+		else if (evento.type == SDL_KEYUP) {
+			//perro->handleEvent(evento);
+			mario->handleEvents(evento);
+		}
 	}
 }
 void Game::loose()
