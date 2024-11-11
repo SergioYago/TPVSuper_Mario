@@ -7,7 +7,8 @@
 class Game;
 class goomba
 {
-	Point2D position;
+	Vector2D<float> screenPos;
+	Vector2D<float> mapPos;
 	int direccion;
 	Texture* texture;
 	Game* game;
@@ -17,7 +18,8 @@ public:
 	void render();
 	void update();
 	void hit();
-	Point2D getPosition() { return position; }
+	Vector2D<float> getScreenPos() { return screenPos; }
+	Vector2D<float> getMapPos() { return mapPos; }
 	int getDireccion() { return direccion; }
 	//void igualaMovimiento();
 	//void VueltaPosicion();

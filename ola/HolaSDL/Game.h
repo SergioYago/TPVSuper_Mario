@@ -10,6 +10,7 @@
 #include "Texture.h"
 #include "TileMap.h"
 #include "player.h"
+#include "goomba.h"
 
 using uint = unsigned int;
 
@@ -23,6 +24,7 @@ public:
 	enum TextureName {
 		BACKGROUND,
 		PLAYER,
+		GOOMBA,
 		NUM_TEXTURES,  // Truco C++: número de texturas definidas
 	};
 
@@ -41,6 +43,7 @@ private:
 	// Objetos del juego
 	TileMap* tilemap;
 	player* mario;
+	goomba* goombaa[15];
 
 public:
 	static constexpr uint WIN_WIDTH = 576;

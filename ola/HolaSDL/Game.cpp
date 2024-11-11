@@ -19,6 +19,7 @@ const string textureRoot = "../assets/imgs/";
 const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	TextureSpec{"background.png", 9, 7},
 	{"mario.png", 12, 1},
+	{"goomba.png", 4, 1},
 	//{"helicopter.png", 5, 1},
 };
 
@@ -51,8 +52,10 @@ Game::Game()
 	ifstream file("../assets/maps/world1.txt");
 	string line;
 
+	int i = 0;
 	while (getline(file, line))
 	{
+		
 		// Crea una entidad de juego
 		// si la primera letra de la linea es 'M', crea al player
 		// si la primera letra de la linea es 'B', crea un bloque
@@ -69,7 +72,9 @@ Game::Game()
 
 		}
 		else if (line[0] == 'G') {
-
+			
+			goombaa[i] = new goomba(is, this);
+			i++;
 		}
 		else if (line[0] == 'K') {
 
@@ -136,6 +141,10 @@ Game::render() const
 	//perro->render();
 	tilemap->renderTileMap();
 	mario->render();
+	for (int i = 0; i < 14; i++)
+	{
+		goombaa[i]->render();
+	}
 
 	SDL_RenderPresent(renderer);
 }
