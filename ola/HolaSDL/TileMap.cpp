@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include  <SDL_rect.h>
 #include "Game.h"
 
 TileMap::TileMap(const string& filename, Game* g)
@@ -34,23 +35,15 @@ TileMap::TileMap(const string& filename, Game* g)
 		{
 			getline(file, line, ',');
 			indices[i][j] = stoi(line);
-			if (indices[i][j]==36)
-			{
-				coliitons[i][j].x = i * 32;
-				coliitons[i][j].y = j * 32;
-				coliitons[i][j].w =32;
-				coliitons[i][j].h =32;
-			}
-			else
-			{
-				coliitons[i][j].x = 0;
-				coliitons[i][j].y = 0;
-				coliitons[i][j].h = 0;
-				coliitons[i][j].w = 0;
-			}
+			
+			
+			
 
 		}
+		
 	}
+	
+
 	
 }
 
@@ -89,6 +82,35 @@ void TileMap ::  renderTileMap()
 			// Usa renderFrame para pintar la tesela
 			background->renderFrame(rect, fy, fx);
 		}
-		//cout << '\n';
+
 	}
+}
+bool TileMap::checkMapColision(const SDL_Rect& rect, bool fromPlayer)
+{
+	vector<vector<int>> matrix; // atributos de TileMap
+	Texture* texture;
+
+	constexpr int OBSTACLE_THRESHOLD = 4; // constante
+
+	// Celda del nivel que contiene la esquina superior izquierda del rectángulo
+	int row0 = rect.y / Game::TILE_SIDE;
+	int col0 = rect.x / Game::TILE_SIDE;
+
+	// Celda del nivel que contiene la esquina inferior derecha del rectángulo
+	int row1 = (rect.y + rect.h - 1) / Game::TILE_SIDE;
+	int col1 = (rect.x + rect.w - 1) / Game::TILE_SIDE;
+
+	for (int row = row0; row <= row1; ++row)
+		for (int col = col0; col <= col1; ++col) {
+			int indice = indices[row][col];
+
+			if (indice != -1 && indice % 9 < OBSTACLE_THRESHOLD)
+			{
+				cout << "true";
+				return true;
+			}
+				
+		}
+
+	return false;
 }

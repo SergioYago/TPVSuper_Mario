@@ -36,8 +36,10 @@ class player
 	int vidas;
 	int direccion;
 	int aspecto;
-
+	
 public:
+	bool hitted = false;
+	SDL_Rect nextposition;
 	player(std::istream& is, Game* g);
 	~player();
 	void render();
@@ -50,7 +52,10 @@ public:
 	int getVidas() { return vidas; }
 	int getDireccion() { return direccion; }
 	int getAspecto() { return aspecto; }
-
+	
+	
+	void igualaMovimiento();
+	void VueltaPosicion();
 	// cuando el jugador llega a la mitad de la pantalla e intenta avanzar, se incrementa el mapOffset porque se incrementa la posición del jugador en el mapa
 	// , pero la posición en pantalla no cambia
 

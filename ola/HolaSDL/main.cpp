@@ -34,6 +34,12 @@ void firstTest()
 
 int main(int argc, char* argv[])
 {
+<<<<<<< Updated upstream
+=======
+
+	
+
+>>>>>>> Stashed changes
 	//TileMap hola("../assets/maps/world1.csv");
 	
 	//firstTest();

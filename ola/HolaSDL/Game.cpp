@@ -142,7 +142,25 @@ Game::render() const
 void
 Game::checkColision()
 {
+<<<<<<< Updated upstream
 
+=======
+	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
+	{ mario->igualaMovimiento(); }
+	else 
+	{ 
+		mario->VueltaPosicion(); }
+	/*mapOffset = 0;
+	// Inicializa la SDL
+	SDL_Init(SDL_INIT_EVERYTHING);
+	window = SDL_CreateWindow("First test with SDL",
+		SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED,
+		WIN_WIDTH,
+		WIN_HEIGHT,
+		SDL_WINDOW_SHOWN);
+		^*/
+>>>>>>> Stashed changes
 }
 
 void

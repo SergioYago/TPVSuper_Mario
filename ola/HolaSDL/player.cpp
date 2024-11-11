@@ -15,11 +15,22 @@ player::player(std::istream& is, Game* g)
 	aspecto = 0;
 	screenPosition.y--;
 	mapPosition = screenPosition;
+	nextposition.x = screenPosition.x * game->TILE_SIDE;
+	nextposition.y = screenPosition.y * game->TILE_SIDE;
+	nextposition.w = game->TILE_SIDE;
+	nextposition.h = game->TILE_SIDE;
+	
 }
 
 void player::hit()
 {
+	SDL_Rect aux;
+	aux.x = screenPosition.x * game->TILE_SIDE;
+	aux.y = screenPosition.y * game->TILE_SIDE;
+	aux.w = game->TILE_SIDE;
+	aux.h = game->TILE_SIDE;
 	//SDL_GetRectIntersection();
+	
 	//si por encima, destruye al otro
 	//si por debajo, vida--;
 	vidas--;
@@ -43,20 +54,25 @@ void player::update()
 	// actualiza la posición del jugador en función de las teclas pulsadas, cambiando la direccion del jugador
 	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH/64)
 	{
-		screenPosition.x++;
-		mapPosition.x++;
+		nextposition.x++;
+
+		
 	}
 	else if (direccion == -1 && screenPosition.x>0)
 	{
-		screenPosition.x--;
-		mapPosition.x--;
+		nextposition.x--;
+	
+
+	}
+	if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
+	{
+		nextposition.x++;
+	
+
 	}
 
 	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
-	if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
-	{
-		mapPosition.x++;
-	}
+	
 
 }
 
@@ -117,4 +133,31 @@ void player::handleEvents(SDL_Event event)
 		}
 		break;
 	}
+}
+void player::igualaMovimiento()
+{
+	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH / 64)
+	{
+		
+		screenPosition.x++;
+		mapPosition.x++;
+		cout << mapPosition.x;
+	}
+	else if (direccion == -1 && screenPosition.x > 0)
+	{
+		
+		screenPosition.x--;
+		mapPosition.x--;
+	}
+
+	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
+	if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
+	{
+		mapPosition.x++;
+	}
+}
+void player::VueltaPosicion()
+{
+	nextposition.x = mapPosition.x;
+	nextposition.y = mapPosition.y;
 }

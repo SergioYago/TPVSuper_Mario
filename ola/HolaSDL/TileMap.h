@@ -1,5 +1,6 @@
 #pragma once
 #include <SDL.h>
+#include<SDL_rect.h>
 #include "vector2D.h"
 #include "Texture.h"
 #include <vector>
@@ -16,7 +17,7 @@ private:
 	Texture* background;
 	const int TILE_MAP=211*32;
 	//vector<vector<SDL_Rect>> colisions;
-	SDL_Rect coliitons[211][16];
+	
 	
 
 public:
@@ -26,6 +27,6 @@ public:
 	// Carga el mapa de teselas desde un archivo CSV y lo guarda en indices (atributo de TileMap) 
  	
 	void renderTileMap();
-
+	bool checkMapColision(const SDL_Rect& rect, bool fromPlayer);
 };
 
