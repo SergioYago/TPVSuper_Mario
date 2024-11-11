@@ -142,14 +142,10 @@ Game::render() const
 void
 Game::checkColision()
 {
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 
-=======
-	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
-	{ mario->igualaMovimiento(); }
-	else 
-	{ 
-		mario->VueltaPosicion(); }
+
+	
 	/*mapOffset = 0;
 	// Inicializa la SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -160,13 +156,27 @@ Game::checkColision()
 		WIN_HEIGHT,
 		SDL_WINDOW_SHOWN);
 		^*/
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 }
 
 void
 Game::update()
 {
-	mario->update();
+	//mario->update();
+	mario->mueveY();
+	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
+		{ mario->igualaMovimientoy(); }
+	else 
+		{ 
+			mario->VueltaPosiciony(); 
+		}
+	mario->mueveX();
+	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
+	{mario->igualaMovimiento();}
+	else 
+	{
+		mario->VueltaPosicionx();
+	}
 	// Actualiza los objetos del juego
 	//perro->update();
 	// si mario llega a la mitad de la pantalla, incrementa el mapOffset

@@ -35,7 +35,7 @@ private:
 	std::array<Texture*, NUM_TEXTURES> textures;
 	// Interruptor para terminar el juego
 	bool seguir;
-	int mapOffset;
+	float mapOffset;
 
 
 	// Objetos del juego

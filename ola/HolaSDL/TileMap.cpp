@@ -94,17 +94,17 @@ bool TileMap::checkMapColision(const SDL_Rect& rect, bool fromPlayer)
 
 	// Celda del nivel que contiene la esquina superior izquierda del rectángulo
 	int row0 = rect.y / Game::TILE_SIDE;
-	int col0 = rect.x / Game::TILE_SIDE;
+	int col0 = rect.x/ Game::TILE_SIDE;
 
 	// Celda del nivel que contiene la esquina inferior derecha del rectángulo
 	int row1 = (rect.y + rect.h - 1) / Game::TILE_SIDE;
-	int col1 = (rect.x + rect.w - 1) / Game::TILE_SIDE;
+	int col1 = (rect.x + rect.w - 1)/ Game::TILE_SIDE;
 
 	for (int row = row0; row <= row1; ++row)
 		for (int col = col0; col <= col1; ++col) {
 			int indice = indices[row][col];
 
-			if (indice != -1 && indice % 9 < OBSTACLE_THRESHOLD)
+			if (indice != -1 && indice % background->getNumColumns() < OBSTACLE_THRESHOLD)
 			{
 				cout << "true";
 				return true;

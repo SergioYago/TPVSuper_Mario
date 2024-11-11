@@ -27,9 +27,9 @@ public:
 class Game;
 class player
 {
-	Vector2D<float> mapPosition;
+	Vector2D<int> mapPosition;
 	// posición relativa del jugador respecto al inicio del mapa
-	Vector2D<float> screenPosition;
+	Vector2D<int> screenPosition;
 
 	Texture* texture;
 	Game* game;
@@ -50,15 +50,18 @@ public:
 	void hit();
 	void handleEvents(SDL_Event event);
 	//getter position
-	Vector2D<float> getMapPosition() { return mapPosition; }
-	Vector2D<float> getScreenPosition() { return screenPosition; }
+	Vector2D<int> getMapPosition() { return mapPosition; }
+	Vector2D<int> getScreenPosition() { return screenPosition; }
 	int getVidas() { return vidas; }
 	int getDireccion() { return direccion; }
 	int getAspecto() { return aspecto; }
 	
-	
+	void mueveX();
+	void mueveY();
 	void igualaMovimiento();
-	void VueltaPosicion();
+	void igualaMovimientoy();
+	void VueltaPosicionx();
+	void VueltaPosiciony();
 	// cuando el jugador llega a la mitad de la pantalla e intenta avanzar, se incrementa el mapOffset porque se incrementa la posición del jugador en el mapa
 	// , pero la posición en pantalla no cambia
 
