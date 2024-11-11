@@ -182,7 +182,8 @@ Game::update()
 	// si mario llega a la mitad de la pantalla, incrementa el mapOffset
  	if (mario->getScreenPosition().x == WIN_WIDTH / 64)
 	{
-		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*50;
+		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
+		
 	}
 }
 

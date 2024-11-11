@@ -27,9 +27,9 @@ public:
 class Game;
 class player
 {
-	Vector2D<int> mapPosition;
+	Vector2D<float> mapPosition;
 	// posición relativa del jugador respecto al inicio del mapa
-	Vector2D<int> screenPosition;
+	Vector2D<float> screenPosition;
 
 	Texture* texture;
 	Game* game;
@@ -50,8 +50,8 @@ public:
 	void hit();
 	void handleEvents(SDL_Event event);
 	//getter position
-	Vector2D<int> getMapPosition() { return mapPosition; }
-	Vector2D<int> getScreenPosition() { return screenPosition; }
+	Vector2D<float> getMapPosition() { return mapPosition; }
+	Vector2D<float> getScreenPosition() { return screenPosition; }
 	int getVidas() { return vidas; }
 	int getDireccion() { return direccion; }
 	int getAspecto() { return aspecto; }
