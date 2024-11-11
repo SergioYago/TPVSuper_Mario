@@ -54,19 +54,19 @@ void player::update()
 	// actualiza la posición del jugador en función de las teclas pulsadas, cambiando la direccion del jugador
 	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH/64)
 	{
-		nextposition.x++;
+		nextposition.x+=0.3;
 
 		
 	}
 	else if (direccion == -1 && screenPosition.x>0)
 	{
-		nextposition.x--;
+		nextposition.x-=0.3;
 	
 
 	}
 	if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
 	{
-		nextposition.x++;
+		nextposition.x+=0.3;
 	
 
 	}
@@ -139,21 +139,21 @@ void player::igualaMovimiento()
 	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH / 64)
 	{
 		
-		screenPosition.x++;
-		mapPosition.x++;
+		screenPosition.x+=0.3;
+		mapPosition.x+=0.3;
 		cout << mapPosition.x;
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
 		
-		screenPosition.x--;
-		mapPosition.x--;
+		screenPosition.x-=0.3;
+		mapPosition.x-=0.3;
 	}
 
 	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
 	if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
 	{
-		mapPosition.x++;
+		mapPosition.x+=0.3;
 	}
 }
 void player::VueltaPosicion()
