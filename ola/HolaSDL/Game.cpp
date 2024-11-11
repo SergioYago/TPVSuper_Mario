@@ -162,13 +162,18 @@ Game::checkColision()
 void
 Game::update()
 {
-	//mario->update();
+	mario->update();
 	mario->mueveY();
 	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
-		{ mario->igualaMovimientoy(); }
+		{ 
+		mario->igualaMovimientoy();
+		mario->setIsGrounded(false);
+			
+	}
 	else 
 		{ 
 			mario->VueltaPosiciony(); 
+			mario->setIsGrounded(true);
 		}
 	mario->mueveX();
 	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))

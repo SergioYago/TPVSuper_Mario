@@ -19,6 +19,9 @@ player::player(std::istream& is, Game* g)
 	nextposition.y = screenPosition.y*game->TILE_SIDE ;
 	nextposition.w = game->TILE_SIDE;
 	nextposition.h = game->TILE_SIDE;
+
+	isGrounded = false;
+	jump = 0;
 	
 }
 
@@ -51,7 +54,6 @@ void player::update()
 	//si colisiona con una seta, aspecto++;
 
 	// actualiza la posición del jugador en función de las teclas pulsadas, cambiando la direccion del jugador
-	
 
 
 	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
@@ -89,10 +91,13 @@ void player::handleEvents(SDL_Event event)
 	case SDL_KEYDOWN:
 		switch (event.key.keysym.sym)
 		{
-		case SDLK_UP:
-
-			break;
-		case SDLK_DOWN:
+		
+		case SDLK_SPACE:
+			if (isGrounded)
+			{
+				jump = 16;
+				isGrounded = false;
+			}
 
 			break;
 		case SDLK_LEFT:
@@ -173,7 +178,25 @@ void player::mueveX()
 }
 	void player::mueveY()
 	{
-		nextposition.y+=8;
+		// si no está en el suelo y ya ha llegado a la altura maxima del salto, empieza a caer
+		if (!isGrounded && jump == 0)
+		{
+			nextposition.y += 8;
+		}
+		// si está en el suelo y se pulsa la tecla de salto, salta
+		else if (isGrounded && jump >= 1)
+		{
+			nextposition.y -= 8;
+			isGrounded = false;
+			jump--;
+		}
+		// si no está en el suelo y no ha llegado a la altura maxima del salto, sigue subiendo
+		else if (!isGrounded && jump > 0)
+		{
+			nextposition.y -= 8;
+			jump--;
+		}
+		
 	}
 	void player::igualaMovimientoy()
 	{
