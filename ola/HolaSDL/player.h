@@ -4,24 +4,6 @@
 #include "Texture.h"
 #include <SDL.h>
 
-/*class Game;
-class player
-{
-	Point2D position;
-	Texture* texture;
-	Game* game;
-	int vidas;
-	
-public:
-	player(Texture* texture, Vector2D<int> position, Game* g);
-	~player();
-	void render();
-	void update();
-	void hit();
-
-};
-*/
-
 // Clase que representa al jugador. Como atributos tiene su posición actual, un puntero a su textura y un puntero al juego. Además , tiene un atributo para las vidas del jugador y para su dirección actual y su aspecto (Mario o super Mario). Tiene un método para renderizarlo, uno para actualizarlo (update), otro para restarle una vida (hit) y uno para los eventos de teclado (handleEvents).
 
 class Game;
@@ -36,8 +18,8 @@ class player
 	int vidas;
 	int direccion;
 	int aspecto;
-	int grounded = 0;
-	int jump = 0;
+	bool isGrounded;
+	int jump;
 
 	
 public:
@@ -55,6 +37,9 @@ public:
 	int getVidas() { return vidas; }
 	int getDireccion() { return direccion; }
 	int getAspecto() { return aspecto; }
+
+	// setter isGrounded
+	void setIsGrounded(bool b) { isGrounded = b; }
 	
 	void mueveX();
 	void mueveY();
