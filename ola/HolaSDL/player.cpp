@@ -10,7 +10,8 @@ player::player(std::istream& is, Game* g)
 {
 	game = g;
 	is >> screenPosition.x >> screenPosition.y >> vidas;
-	texture = game->getTexture(Game::PLAYER);
+	peque = game->getTexture(Game::PLAYER);
+	grandote = game->getTexture(Game::GRANDE);
 	direccion = 0;
 	aspecto = 0;
 	screenPosition.y=6;
@@ -68,20 +69,42 @@ void player::render()
 	
 	SDL_Rect destRect;
 	destRect.x = screenPosition.x* game->TILE_SIDE;
-	destRect.y = screenPosition.y* game->TILE_SIDE;
+	
 	destRect.w = 32;
-	destRect.h = 32;
+	
 	
 	//SDL_RenderCopy(game->getRenderer(), texture->getTexture(), nullptr, &destRect);
+	if (aspecto == 0) {
+		destRect.h = 32;
+		destRect.y = screenPosition.y * game->TILE_SIDE;
+		if (!isGrounded) {
+			peque->renderFrame(destRect, 0, 6);
+		}
+		else if (direccion == 0) {
+			peque->renderFrame(destRect, 0, 0);
+		}
+		else {
 
-	if (direccion == 0) {
-		texture->renderFrame(destRect, 0, 0);
+			if (anim < 4) { anim++; }
+			else if (anim == 4) { anim = 2; }
+			peque->renderFrame(destRect, 0, anim);
+		}
 	}
-	else {
-		
-		if (anim < 4) { anim++; }
-		else if (anim == 4) { anim = 2; }
-		texture->renderFrame(destRect, 0, anim);
+	else if (aspecto == 1) {
+		destRect.h = 64;
+		destRect.y = (screenPosition.y-1) * game->TILE_SIDE;
+		if (!isGrounded) {
+			grandote->renderFrame(destRect, 0, 6);
+		}
+		else if (direccion == 0) {
+			grandote->renderFrame(destRect, 0, 0);
+		}
+		else {
+
+			if (anim < 4) { anim++; }
+			else if (anim == 4) { anim = 2; }
+			grandote->renderFrame(destRect, 0, anim);
+		}
 	}
 
 }

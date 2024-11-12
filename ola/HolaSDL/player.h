@@ -13,7 +13,8 @@ class player
 	// posición relativa del jugador respecto al inicio del mapa
 	Vector2D<float> screenPosition;
 
-	Texture* texture;
+	Texture* peque;
+	Texture* grandote;
 	Game* game;
 	int vidas;
 	int direccion;
