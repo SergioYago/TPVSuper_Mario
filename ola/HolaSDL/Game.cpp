@@ -199,6 +199,22 @@ Game::update()
 		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
 		
 	}
+	for(int i=0;i<14;i++)
+	{/*
+		//goombaa[i]->mueveY();
+		if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
+		{
+			goombaa[i]->VueltaY();
+		}
+		else { goombaa[i]->igualaY(); }
+		goombaa[i]->mueveX();
+		if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
+		{
+			goombaa[i]->VueltaX();
+		}
+		else { goombaa[i]->igualaX(); }*/
+		goombaa[i]->mueveX();
+	}
 }
 
 void

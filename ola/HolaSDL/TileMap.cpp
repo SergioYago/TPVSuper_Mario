@@ -106,7 +106,6 @@ bool TileMap::checkMapColision(const SDL_Rect& rect, bool fromPlayer)
 
 			if (indice != -1 && indice % background->getNumColumns() < OBSTACLE_THRESHOLD)
 			{
-				cout << "true";
 				return true;
 			}
 				

@@ -12,12 +12,20 @@ class goomba
 	int direccion;
 	Texture* texture;
 	Game* game;
+	
 public:
+	SDL_Rect nextposition;
 	goomba(std::istream& is, Game* g);
 	~goomba();
 	void render();
 	void update();
 	void hit();
+	void mueveX();
+	void mueveY();
+	void igualaX();
+	void igualaY();
+	void VueltaX();
+	void VueltaY();
 	Vector2D<float> getScreenPos() { return screenPos; }
 	Vector2D<float> getMapPos() { return mapPos; }
 	int getDireccion() { return direccion; }
