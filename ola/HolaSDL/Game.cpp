@@ -13,7 +13,7 @@ struct TextureSpec
 };
 
 // Directorio ra�z de los archivos de textura
-const string textureRoot = "../assets/imgs/";
+const string textureRoot = "../assets/images/";
 
 // Especificaci�n de las texturas del juego
 const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
@@ -180,7 +180,9 @@ Game::update()
 			
 	}
 	else 
-		{ 
+		{
+		// subir la misma cantidad que baja
+		// se calcula restando la diferencia de alturas a 32 (32-diferencia de alturas)
 			mario->VueltaPosiciony(); 
 			mario->setIsGrounded(true);
 		}
@@ -206,14 +208,14 @@ Game::update()
 		{
 			goombaa[i]->VueltaY();
 		}
-		else { goombaa[i]->igualaY(); }
+		else { goombaa[i]->igualaY(); }*/
 		goombaa[i]->mueveX();
 		if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
 		{
-			goombaa[i]->VueltaX();
+			goombaa[i]->igualaX();
 		}
-		else { goombaa[i]->igualaX(); }*/
-		goombaa[i]->mueveX();
+		else { goombaa[i]->VueltaX(); cout << "true"; }
+		
 	}
 }
 

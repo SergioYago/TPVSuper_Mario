@@ -44,7 +44,7 @@ void goomba::render()
 	// si la posicion del goomba map offset y map offset mas la anchura de la pantalla, lo renderiza
 	if (mapPos.x >= mapoffset && mapPos.x <= mapoffset + game->WIN_WIDTH)
 	{
-		screenPos.x = (mapPos.x - mapoffset)/32;
+		screenPos.x = (mapPos.x - mapoffset);
 		screenPos.y = mapPos.y;
 	}
 	else
@@ -73,27 +73,29 @@ void goomba::mueveX()
 {
 	if (direccion==1)
 	{
-		if (nextposition.x+=32> 6752)
-		{
-			direccion = -1;
-		}
-		else 
-		{
+		
+			if ((nextposition.x+32)>(200*32))
+			{
+				ChangeDirection();
+			}
+		
 			nextposition.x += 32;
 			mapPos.x++;
 			screenPos.x++;
-		}
+		
 	}
 	else
 	{
-		if ((nextposition.x -= 32) < 0) 
-		{ direccion = 1; }
-		else 
+		if ((nextposition.x-32)<0)
 		{
+			ChangeDirection();
+		}
+		else {
 			nextposition.x -= 32;
 			mapPos.x--;
-			screenPos.x -- ;
+			screenPos.x--;
 		}
+		
 
 	}
 }
@@ -113,6 +115,10 @@ void goomba::VueltaY()
 void goomba::VueltaX()
 {
 	nextposition.x = mapPos.x*32;
+}
+void goomba::ChangeDirection()
+{
+	direccion = -direccion;
 }
 
 

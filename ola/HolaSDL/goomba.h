@@ -1,5 +1,5 @@
 #pragma once
-#include "vector2D.h"
+#include "Vector2D.h"
 #include "Texture.h"
 
 // clase de enemigo goomba que se mueve y detecta colisiones con el mapa y con el jugador
@@ -26,6 +26,7 @@ public:
 	void igualaY();
 	void VueltaX();
 	void VueltaY();
+	void ChangeDirection();
 	Vector2D<float> getScreenPos() { return screenPos; }
 	Vector2D<float> getMapPos() { return mapPos; }
 	int getDireccion() { return direccion; }
