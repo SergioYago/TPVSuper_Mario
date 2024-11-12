@@ -20,6 +20,7 @@ class player
 	int aspecto;
 	bool isGrounded;
 	int jump;
+	int anim;
 
 	
 public:

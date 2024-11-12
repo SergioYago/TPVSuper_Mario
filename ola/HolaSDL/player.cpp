@@ -22,6 +22,7 @@ player::player(std::istream& is, Game* g)
 
 	isGrounded = false;
 	jump = 0;
+	anim = 2;
 	
 }
 
@@ -64,7 +65,7 @@ void player::update()
 //renderiza al jugador en la pantalla
 void player::render()
 {
-
+	
 	SDL_Rect destRect;
 	destRect.x = screenPosition.x* game->TILE_SIDE;
 	destRect.y = screenPosition.y* game->TILE_SIDE;
@@ -73,8 +74,15 @@ void player::render()
 	
 	//SDL_RenderCopy(game->getRenderer(), texture->getTexture(), nullptr, &destRect);
 
-	texture->renderFrame(destRect, 0, 0);
-
+	if (direccion == 0) {
+		texture->renderFrame(destRect, 0, 0);
+	}
+	else {
+		
+		if (anim < 4) { anim++; }
+		else if (anim == 4) { anim = 2; }
+		texture->renderFrame(destRect, 0, anim);
+	}
 
 }
 
