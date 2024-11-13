@@ -24,6 +24,7 @@ public:
 	enum TextureName {
 		BACKGROUND,
 		PLAYER,
+		GRANDE,
 		GOOMBA,
 		NUM_TEXTURES,  // Truco C++: número de texturas definidas
 	};

@@ -19,6 +19,7 @@ const string textureRoot = "../assets/images/";
 const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	TextureSpec{"background.png", 9, 7},
 	{"mario.png", 12, 1},
+	{"supermario.png",22,1},
 	{"goomba.png", 4, 1},
 	//{"helicopter.png", 5, 1},
 };
