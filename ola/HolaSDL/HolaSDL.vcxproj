@@ -68,6 +68,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bloque.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="goomba.cpp" />
     <ClCompile Include="main.cpp" />
@@ -76,6 +77,7 @@
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bloque.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="goomba.h" />
