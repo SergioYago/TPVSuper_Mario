@@ -81,6 +81,7 @@ void goomba::mueveX()
 		
 			nextposition.x += 32;
 			mapPos.x++;
+
 			screenPos.x++;
 		
 	}
@@ -105,7 +106,7 @@ void goomba::igualaY()
 }
 void goomba::igualaX()
 {
-	if (direccion == -1) { mapPos.x = nextposition.x/32;  }
+	if (direccion == -1) { mapPos.x = nextposition.x / 32; screenPos.x = mapPos.x - game->getMapOffset(); }
 	else { mapPos.x = nextposition.x / 32;  }
 }
 void goomba::VueltaY()

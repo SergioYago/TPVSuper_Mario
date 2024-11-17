@@ -182,7 +182,7 @@ void player::VueltaPosicionx()
 }
 void player::VueltaPosiciony()
 {
-	nextposition.y= mapPosition.y*32;
+	nextposition.y-=8;
 }
 void player::mueveX()
 {
@@ -227,6 +227,7 @@ void player::mueveX()
 			nextposition.y -= 8;
 			jump--;
 		}
+		else { nextposition.y += 8; }
 		
 	}
 	void player::igualaMovimientoy()
