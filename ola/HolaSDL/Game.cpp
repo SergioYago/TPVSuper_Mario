@@ -21,6 +21,7 @@ const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	{"mario.png", 12, 1},
 	{"supermario.png",22,1},
 	{"goomba.png", 4, 1},
+	{"blocks.png", 6, 1},
 	//{"helicopter.png", 5, 1},
 };
 
@@ -54,6 +55,7 @@ Game::Game()
 	string line;
 
 	int i = 0;
+	int j = 0;
 	while (getline(file, line))
 	{
 		
@@ -70,7 +72,8 @@ Game::Game()
 			mario = new player(is, this);
 		}
 		else if (line[0] == 'B') {
-
+			bloques[j] = new bloque(is, this);
+			j++;
 		}
 		else if (line[0] == 'G') {
 			
@@ -142,6 +145,12 @@ Game::render() const
 	//perro->render();
 	tilemap->renderTileMap();
 	mario->render();
+
+	for (int i = 0; i < 44; i++)
+	{
+			bloques[i]->render();
+		
+	}
 	for (int i = 0; i < 14; i++)
 	{
 		goombaa[i]->render();
