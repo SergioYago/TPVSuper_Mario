@@ -9,6 +9,7 @@ class goomba
 {
 	Vector2D<float> screenPos;
 	Vector2D<float> mapPos;
+	Point2D position;
 	int direccion;
 	Texture* texture;
 	Game* game;

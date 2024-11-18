@@ -7,9 +7,11 @@ goomba::goomba(std::istream& is, Game* g)
 	:game(g)
 {
 	game = g;
-	is >> mapPos.x >> mapPos.y;
+	is >> position.x >> position.y;
 	direccion = -1;
 	mapPos.x = mapPos.x * 32;
+	position.x = position.x * 32;
+	position.y = position.y * 32;
 	texture = game->getTexture(Game::TextureName::GOOMBA);
 	screenPos.x = mapPos.x - g->getMapOffset();
 	nextposition.x = mapPos.x;
@@ -39,9 +41,23 @@ void goomba::hit()
 void goomba::render()
 {
 	float mapoffset = game->getMapOffset();
-	//SDL_Rect dest = { position.x * game->TILE_SIDE, position.y * game->TILE_SIDE, game->TILE_SIDE, game->TILE_SIDE };
+	SDL_Rect destRect;
+	destRect.x = position.x;// *32;
+	destRect.y = position.y-32;// *32;
+	destRect.w = 32;
+	destRect.h = 32;
+
+	if (position.x >= game->getMapOffset() && position.x <= game->getMapOffset() + game->WIN_WIDTH)
+	{
+		destRect.x = position.x - game->getMapOffset();
+		texture->renderFrame(destRect, 0, 0);
+	}
+
+
+
 
 	// si la posicion del goomba map offset y map offset mas la anchura de la pantalla, lo renderiza
+	/*
 	if (mapPos.x >= mapoffset && mapPos.x <= mapoffset + game->WIN_WIDTH)
 	{
 		screenPos.x = (mapPos.x - mapoffset);
@@ -62,7 +78,7 @@ void goomba::render()
 
 
 	texture->renderFrame(destRect,0,0);
-
+	*/
 }
 void goomba::mueveY()
 {
@@ -78,11 +94,11 @@ void goomba::mueveX()
 			{
 				ChangeDirection();
 			}
-		
 			nextposition.x += 32;
 			mapPos.x++;
-
 			screenPos.x++;
+
+			position.x += 2;
 		
 	}
 	else
@@ -95,9 +111,9 @@ void goomba::mueveX()
 			nextposition.x -= 32;
 			mapPos.x--;
 			screenPos.x--;
-		}
-		
 
+			position.x -= 2;
+		}
 	}
 }
 void goomba::igualaY()

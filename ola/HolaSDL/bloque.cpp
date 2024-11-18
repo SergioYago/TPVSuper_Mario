@@ -59,9 +59,6 @@ void bloque::render()
 	destRect.w = 32;
 	destRect.h = 32;
 
-
-	//texture->renderFrame(destRect, 0, 0);
-
 	// se dibuja el bloque en la pantalla si su posición es mayor que el map offset y menor que el map offset más la anchura de la pantalla
 	if (position.x >= game->getMapOffset() && position.x <= game->getMapOffset() + game->WIN_WIDTH)
 	{
