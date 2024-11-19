@@ -212,8 +212,8 @@ Game::update()
 		
 	}
 	for(int i=0;i<14;i++)
-	{/*
-		//goombaa[i]->mueveY();
+	{
+		/*goombaa[i]->mueveY();
 		if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
 		{
 			goombaa[i]->VueltaY();
@@ -224,7 +224,7 @@ Game::update()
 		{
 			goombaa[i]->igualaX();
 		}
-		else { goombaa[i]->VueltaX(); cout << "true"; }
+		else { goombaa[i]->ChangeDirection(); cout << "true"; }
 		
 	}
 }
