@@ -190,20 +190,40 @@ Game::update()
 	aux.w = aux.h = 0;
 	mario->update();
 	mario->mueveY();
-	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
+	int colision = false;
+	int j = 0;
+	while(!colision&&j<44)
+	{
+		colision = SDL_HasIntersection(&mario->nextposition, bloques[j]->getColision());
+		j++;
+	}
+	
+	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted)&&!colision)
 		{ 
+		
 		mario->igualaMovimientoy();
 		mario->setIsGrounded(false);
 			
 	}
 	else 
 		{
+		if (colision ==true )
+		{
+			mario->SetJump(0);
+		}
+		else{
 		// subir la misma cantidad que baja
 		// se calcula restando la diferencia de alturas a 32 (32-diferencia de alturas)
 			mario->VueltaPosiciony(); 
 			mario->setIsGrounded(true);
 		}
 	mario->mueveX();
+
+	while (!colision && j < 44)
+	{
+		colision = SDL_HasIntersection(&mario->nextposition, bloques[j]->getColision());
+		j++;
+	}
 	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
 	{mario->igualaMovimiento();}
 	else 
@@ -233,18 +253,12 @@ Game::update()
 		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
 		
 	}
-	goombaa[4]->mueveY();
+	
 	
 	for(int i=0;i<14;i++)
 	{
 		if (goombaa[i]->GetisActive()) 
 		{
-			bool colision = false;
-			int j = 0;
-			while(!colision&&j<44)
-			{
-				colision = SDL_HasIntersection(&bloques[j]->getColision(), &goombaa[i]->nextposition);
-			}
 			goombaa[i]->mueveY();
 			if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
 			{
