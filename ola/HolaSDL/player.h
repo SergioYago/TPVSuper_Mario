@@ -50,9 +50,7 @@ public:
 	void VueltaPosicionx();
 	void VueltaPosiciony();
 	int GetJump() { return jump; }
-	void SetJump(int i) { jump = i; }
-	void SetAspecto(int i) { aspecto = i; }
-{	// cuando el jugador llega a la mitad de la pantalla e intenta avanzar, se incrementa el mapOffset porque se incrementa la posición del jugador en el mapa
+	// cuando el jugador llega a la mitad de la pantalla e intenta avanzar, se incrementa el mapOffset porque se incrementa la posición del jugador en el mapa
 	// , pero la posición en pantalla no cambia
 
 };
