@@ -17,6 +17,7 @@ goomba::goomba(std::istream& is, Game* g)
 	nextposition.x = position.x;
 	nextposition.y = position.y;
 	nextposition.w = nextposition.h = 32;
+	isactive = true;
 }
 
 void goomba::hit()
@@ -83,10 +84,10 @@ void goomba::render()
 void goomba::mueveY()
 {
 	
-	if (nextposition.y < game->WIN_HEIGHT) 
+	if (nextposition.y < game->WIN_HEIGHT-32) 
 	{  
 		nextposition.y += 8;
-		if (nextposition.y >= game->WIN_HEIGHT) { nextposition.y = game->WIN_HEIGHT; }
+		if (nextposition.y >= game->WIN_HEIGHT - 32) { SetisActive(false); }
 	}
 	
 }

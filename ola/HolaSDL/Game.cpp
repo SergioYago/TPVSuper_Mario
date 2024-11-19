@@ -1,5 +1,6 @@
 #include <string>
-
+#include <SDL.h>
+#include <SDL_rect.h>
 #include "Game.h"
 
 using namespace std;
@@ -153,7 +154,10 @@ Game::render() const
 	}
 	for (int i = 0; i < 14; i++)
 	{
-		goombaa[i]->render();
+		if (goombaa[i]->GetisActive())
+		{
+			goombaa[i]->render();
+		}
 	}
 
 	SDL_RenderPresent(renderer);
@@ -181,6 +185,9 @@ Game::checkColision()
 void
 Game::update()
 {
+	SDL_Rect aux;
+	aux.x = aux.y = 0;
+	aux.w = aux.h = 0;
 	mario->update();
 	mario->mueveY();
 	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
@@ -203,6 +210,21 @@ Game::update()
 	{
 		mario->VueltaPosicionx();
 	}
+	for (int i = 0; i < 14; i++)
+	{
+		
+		if (goombaa[i]->GetisActive()&& SDL_IntersectRect(&goombaa[i]->nextposition, &mario->nextposition, &aux))
+		{
+			if (aux.w > aux.h && mario->GetJump() == 0)
+			{
+				goombaa[i]->SetisActive(false);
+			}
+			else
+			{
+				//jugador muere
+			}
+		}
+	}
 	// Actualiza los objetos del juego
 	//perro->update();
 	// si mario llega a la mitad de la pantalla, incrementa el mapOffset
@@ -211,20 +233,43 @@ Game::update()
 		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
 		
 	}
+	goombaa[4]->mueveY();
+	
 	for(int i=0;i<14;i++)
 	{
-		/*goombaa[i]->mueveY();
-		if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
+		if (goombaa[i]->GetisActive()) 
 		{
-			goombaa[i]->VueltaY();
+			bool colision = false;
+			int j = 0;
+			while(!colision&&j<44)
+			{
+				colision = SDL_HasIntersection(&bloques[j]->getColision(), &goombaa[i]->nextposition);
+			}
+			goombaa[i]->mueveY();
+			if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
+			{
+				goombaa[i]->VueltaY();
+			}
+			else { goombaa[i]->igualaY(); }
+			
+			goombaa[i]->mueveX();
+			if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
+			{
+				goombaa[i]->igualaX();
+			}
+			else { goombaa[i]->ChangeDirection(); }
 		}
-		else { goombaa[i]->igualaY(); }*/
-		goombaa[i]->mueveX();
-		if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
+		if (SDL_IntersectRect(&goombaa[i]->nextposition, &mario->nextposition, &aux))
 		{
-			goombaa[i]->igualaX();
+			if (aux.w > aux.h && mario->GetJump() == 0)
+			{
+				goombaa[i]->SetisActive(false);
+			}
+			else
+			{
+				//jugador muere
+			}
 		}
-		else { goombaa[i]->ChangeDirection(); cout << "true"; }
 		
 	}
 }

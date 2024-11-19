@@ -44,8 +44,8 @@ bloque::bloque(std::istream& is, Game* g)
 			accionBloque = moneda;
 		}
 	}
-	position.x = position.x * 32;
-	position.y = position.y * 32;
+	colision.x=position.x = position.x * 32;
+	colision.y= position.y = position.y * 32;
 	texture = game->getTexture(Game::BLOQUE);
 	anim = 0;
 }

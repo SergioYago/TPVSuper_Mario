@@ -13,6 +13,7 @@ class goomba
 	int direccion;
 	Texture* texture;
 	Game* game;
+	bool isactive;
 	
 public:
 	SDL_Rect nextposition;
@@ -30,6 +31,8 @@ public:
 	void ChangeDirection();
 	Vector2D<float> getScreenPos() { return screenPos; }
 	Vector2D<float> getMapPos() { return mapPos; }
+	void SetisActive(bool b) { isactive = b; }
+	bool GetisActive() { return isactive; }
 	int getDireccion() { return direccion; }
 	//void igualaMovimiento();
 	//void VueltaPosicion();

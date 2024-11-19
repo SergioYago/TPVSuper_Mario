@@ -15,7 +15,7 @@ class bloque
 	enum tipo { ladrillo, sorpresa, vacio, oculto };
 	enum accion { potenciador, moneda, nada };
 	int anim;
-
+	SDL_Rect colision;
 	tipo tipoBloque;
 	accion accionBloque;
 public:
@@ -28,5 +28,6 @@ public:
 	Point2D getPosition() { return position; }
 	tipo getTipo() { return tipoBloque; }
 	accion getAccion() { return accionBloque; }
+	SDL_Rect getColision() { return colision; }
 };
 
