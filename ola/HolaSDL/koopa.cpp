@@ -1,9 +1,9 @@
-#include "goomba.h"
+#include "koopa.h"
 #include "Game.h"
 #include <sstream>
 
 
-goomba::goomba(std::istream& is, Game* g)
+koopa::koopa(std::istream& is, Game* g)
 	:game(g)
 {
 	game = g;
@@ -11,7 +11,7 @@ goomba::goomba(std::istream& is, Game* g)
 	direccion = -1;
 
 	position.x = position.x * 32;
-	position.y = (position.y-1) * 32;
+	position.y = (position.y - 1) * 32;
 	texture = game->getTexture(Game::TextureName::GOOMBA);
 
 	nextposition.x = position.x;
@@ -20,13 +20,13 @@ goomba::goomba(std::istream& is, Game* g)
 	isactive = true;
 }
 
-void goomba::hit()
+void koopa::hit()
 {
 
 }
 
 // render del goomba en la pantalla 
-void goomba::render()
+void koopa::render()
 {
 	float mapoffset = game->getMapOffset();
 	SDL_Rect destRect;
@@ -42,33 +42,33 @@ void goomba::render()
 	}
 
 }
-void goomba::mueveY()
+void koopa::mueveY()
 {
-	
-	if (nextposition.y < game->WIN_HEIGHT-32) 
-	{  
+
+	if (nextposition.y < game->WIN_HEIGHT - 32)
+	{
 		nextposition.y += 8;
 		if (nextposition.y >= game->WIN_HEIGHT - 32) { SetisActive(false); }
 	}
-	
-}
-void goomba::mueveX()
-{
-	if (direccion==1)
-	{
-		
-			if ((nextposition.x+32)>(200*32))
-			{
-				ChangeDirection();
-			}
-			nextposition.x += 2;
 
-			position.x += 2;
-		
+}
+void koopa::mueveX()
+{
+	if (direccion == 1)
+	{
+
+		if ((nextposition.x + 32) > (200 * 32))
+		{
+			ChangeDirection();
+		}
+		nextposition.x += 2;
+
+		position.x += 2;
+
 	}
 	else
 	{
-		if ((nextposition.x-32)<0)
+		if ((nextposition.x - 32) < 0)
 		{
 			ChangeDirection();
 		}
@@ -79,24 +79,24 @@ void goomba::mueveX()
 		}
 	}
 }
-void goomba::igualaY()
+void koopa::igualaY()
 {
 	nextposition.y = position.y;
 }
-void goomba::igualaX()
+void koopa::igualaX()
 {
 	if (direccion == -1) {  }
-	else {   }
+	else {  }
 }
-void goomba::VueltaY()
+void koopa::VueltaY()
 {
 	position.y = nextposition.y;
 }
-void goomba::VueltaX()
+void koopa::VueltaX()
 {
 
 }
-void goomba::ChangeDirection()
+void koopa::ChangeDirection()
 {
 	direccion = -direccion;
 }

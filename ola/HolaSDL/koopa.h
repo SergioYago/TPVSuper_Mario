@@ -2,21 +2,21 @@
 #include "Vector2D.h"
 #include "Texture.h"
 
-// clase de enemigo goomba que se mueve y detecta colisiones con el mapa y con el jugador
+// clase de enemigo koopa que se mueve y detecta colisiones con el mapa y con el jugador
 // contiene su posición actual, su dirección de movimiento, un puntero a su textura y un puntero al juego
 class Game;
-class goomba
+class koopa
 {
 	Point2D position;
 	int direccion;
 	Texture* texture;
 	Game* game;
 	bool isactive;
-	
+
 public:
 	SDL_Rect nextposition;
-	goomba(std::istream& is, Game* g);
-	~goomba();
+	koopa(std::istream& is, Game* g);
+	~koopa();
 	void render();
 	void update();
 	void hit();
@@ -27,11 +27,11 @@ public:
 	void VueltaX();
 	void VueltaY();
 	void ChangeDirection();
-
 	void SetisActive(bool b) { isactive = b; }
 	bool GetisActive() { return isactive; }
 	int getDireccion() { return direccion; }
 	//void igualaMovimiento();
 	//void VueltaPosicion();
 };
+
 

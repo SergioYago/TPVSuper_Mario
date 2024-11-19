@@ -1,9 +1,9 @@
-#include "goomba.h"
+#include "champi.h"
 #include "Game.h"
 #include <sstream>
 
 
-goomba::goomba(std::istream& is, Game* g)
+champi::champi(std::istream& is, Game* g)
 	:game(g)
 {
 	game = g;
@@ -11,7 +11,7 @@ goomba::goomba(std::istream& is, Game* g)
 	direccion = -1;
 
 	position.x = position.x * 32;
-	position.y = (position.y-1) * 32;
+	position.y = (position.y - 1) * 32;
 	texture = game->getTexture(Game::TextureName::GOOMBA);
 
 	nextposition.x = position.x;
@@ -20,13 +20,13 @@ goomba::goomba(std::istream& is, Game* g)
 	isactive = true;
 }
 
-void goomba::hit()
+void champi::hit()
 {
 
 }
 
-// render del goomba en la pantalla 
-void goomba::render()
+// render del champi en la pantalla 
+void champi::render()
 {
 	float mapoffset = game->getMapOffset();
 	SDL_Rect destRect;
@@ -42,33 +42,33 @@ void goomba::render()
 	}
 
 }
-void goomba::mueveY()
+void champi::mueveY()
 {
-	
-	if (nextposition.y < game->WIN_HEIGHT-32) 
-	{  
+
+	if (nextposition.y < game->WIN_HEIGHT - 32)
+	{
 		nextposition.y += 8;
 		if (nextposition.y >= game->WIN_HEIGHT - 32) { SetisActive(false); }
 	}
-	
-}
-void goomba::mueveX()
-{
-	if (direccion==1)
-	{
-		
-			if ((nextposition.x+32)>(200*32))
-			{
-				ChangeDirection();
-			}
-			nextposition.x += 2;
 
-			position.x += 2;
-		
+}
+void champi::mueveX()
+{
+	if (direccion == 1)
+	{
+
+		if ((nextposition.x + 32) > (200 * 32))
+		{
+			ChangeDirection();
+		}
+		nextposition.x += 2;
+
+		position.x += 2;
+
 	}
 	else
 	{
-		if ((nextposition.x-32)<0)
+		if ((nextposition.x - 32) < 0)
 		{
 			ChangeDirection();
 		}
@@ -79,24 +79,24 @@ void goomba::mueveX()
 		}
 	}
 }
-void goomba::igualaY()
+void champi::igualaY()
 {
 	nextposition.y = position.y;
 }
-void goomba::igualaX()
+void champi::igualaX()
 {
-	if (direccion == -1) {  }
-	else {   }
+	if (direccion == -1) {}
+	else {}
 }
-void goomba::VueltaY()
+void champi::VueltaY()
 {
 	position.y = nextposition.y;
 }
-void goomba::VueltaX()
+void champi::VueltaX()
 {
 
 }
-void goomba::ChangeDirection()
+void champi::ChangeDirection()
 {
 	direccion = -direccion;
 }
