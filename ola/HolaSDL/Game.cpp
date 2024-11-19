@@ -239,18 +239,13 @@ Game::update()
 	{
 		if (goombaa[i]->GetisActive()) 
 		{
-			
-			
-			goombaa[i]->mueveY();
 			bool colision = false;
 			int j = 0;
-			while (!colision && j < 44)
+			while(!colision&&j<44)
 			{
-
-				colision = SDL_HasIntersection(bloques[i]->getColision(), &goombaa[i]->nextposition);
-				j++;
+				colision = SDL_HasIntersection(&bloques[j]->getColision(), &goombaa[i]->nextposition);
 			}
-			cout << colision << '\n';
+			goombaa[i]->mueveY();
 			if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
 			{
 				goombaa[i]->VueltaY();
