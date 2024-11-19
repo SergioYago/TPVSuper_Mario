@@ -207,9 +207,10 @@ Game::update()
 	}
 	else
 	{
-		if (colision == true)
+		if (colision == true&&mario->GetJump() >= 1)
 		{
 			mario->SetJump(0);
+			mario->setIsGrounded(false);
 		}
 		else {
 			// subir la misma cantidad que baja
@@ -219,8 +220,8 @@ Game::update()
 		}
 	}
 	mario->mueveX();
-	int j = 0;
-	bool colision = false;
+	 j = 0;
+	 colision = false;
 	while (!colision && j < 44) 
 	{
 		colision = SDL_HasIntersection(&mario->nextposition, bloques[j]->getColision());
