@@ -205,26 +205,28 @@ Game::update()
 		mario->setIsGrounded(false);
 			
 	}
-	else 
-		{
-		if (colision ==true )
+	else
+	{
+		if (colision == true)
 		{
 			mario->SetJump(0);
 		}
-		else{
-		// subir la misma cantidad que baja
-		// se calcula restando la diferencia de alturas a 32 (32-diferencia de alturas)
-			mario->VueltaPosiciony(); 
+		else {
+			// subir la misma cantidad que baja
+			// se calcula restando la diferencia de alturas a 32 (32-diferencia de alturas)
+			mario->VueltaPosiciony();
 			mario->setIsGrounded(true);
 		}
+	}
 	mario->mueveX();
-
-	while (!colision && j < 44)
+	int j = 0;
+	bool colision = false;
+	while (!colision && j < 44) 
 	{
 		colision = SDL_HasIntersection(&mario->nextposition, bloques[j]->getColision());
-		j++;
+			j++;
 	}
-	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
+	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted)&&!colision)
 	{mario->igualaMovimiento();}
 	else 
 	{
