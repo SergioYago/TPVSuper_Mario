@@ -60,7 +60,9 @@ public:
 	void run();
 	void loose();
 	void update();
-	void checkColision();
+	bool checkMapColision( SDL_Rect collider);
+	bool checkGoombaCollision(SDL_Rect collider);
+	bool checkBlockColision(char name, SDL_Rect collider);
 	void render() const;
 	void handleEvents();
 	

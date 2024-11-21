@@ -52,6 +52,10 @@ bloque::bloque(std::istream& is, Game* g)
 	texture = game->getTexture(Game::BLOQUE);
 	anim = 0;
 }
+ bloque::~bloque()
+{
+
+}
 
 // render del bloque en la pantalla
 void bloque::render()

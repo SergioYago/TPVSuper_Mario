@@ -24,6 +24,7 @@ public:
 	void render();
 	void update();
 	void hit();
+	void setTipo(){tipoBloque = vacio;}
 	//getters
 	Point2D getPosition() { return position; }
 	tipo getTipo() { return tipoBloque; }

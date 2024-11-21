@@ -21,7 +21,7 @@ const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	TextureSpec{"background.png", 9, 7},
 	{"mario.png", 12, 1},
 	{"supermario.png",22,1},
-	{"goomba.png", 4, 1},
+	{"goomba.png", 3, 1},
 	{"blocks.png", 6, 1},
 	//{"helicopter.png", 5, 1},
 };
@@ -82,7 +82,7 @@ Game::Game()
 			i++;
 		}
 		else if (line[0] == 'K') {
-
+				
 		}
 		
 		//entities.push_back(new Entity(this, line));
@@ -122,7 +122,7 @@ Game::run()
 		uint32_t inicio = SDL_GetTicks();
 
 		update();       // Actualiza el estado de los objetos del juego
-		checkColision();
+		
 		render();       // Dibuja los objetos en la venta
 		handleEvents(); // Maneja los eventos de la SDL
 
@@ -162,30 +162,82 @@ Game::render() const
 
 	SDL_RenderPresent(renderer);
 }
-void
-Game::checkColision()
+bool
+Game::checkMapColision( SDL_Rect collider)
 {
-//<<<<<<< Updated upstream
-
-
 	
-	/*mapOffset = 0;
-	// Inicializa la SDL
-	SDL_Init(SDL_INIT_EVERYTHING);
-	window = SDL_CreateWindow("First test with SDL",
-		SDL_WINDOWPOS_CENTERED,
-		SDL_WINDOWPOS_CENTERED,
-		WIN_WIDTH,
-		WIN_HEIGHT,
-		SDL_WINDOW_SHOWN);
-		^*/
-//>>>>>>> Stashed changes
+	bool colision =tilemap->checkMapColision(collider,true);
+	return colision;
+}
+bool
+Game::checkGoombaCollision(SDL_Rect collider)
+{	
+	SDL_Rect aux;
+	aux.x = 0; aux.y = 0;
+	aux.h = 0; aux.w = 0;
+	int j = 0;
+	int colision = 0;
+	while(j<14&&!colision)
+	{
+		colision =SDL_IntersectRect(&collider, &goombaa[j]->nextposition,&aux);
+		if (colision==1)
+		{
+			colision == (aux.h<=aux.w && mario->getDireccion() == 0) + 1;
+			goombaa[j]->hit();
+		}
+	}
+	return colision;
+}
+bool Game::checkBlockColision(char name, SDL_Rect collider)
+{
+	SDL_Rect aux;
+	aux.x = aux.y = 0;
+	aux.w = aux.h = 0;
+	bool colision = false;
+	int j = 0;
+	while(!colision&&j<44)
+	{
+		colision = SDL_IntersectRect(&collider, bloques[j]->getColision(),&aux);
+		j++;
+	}
+	if (colision&&name=='p')
+	{
+		if (aux.h<aux.w&&mario->GetJump()>0)
+		{
+			//si es ladrillo
+		if (bloques[j]->getTipo()==0&&mario->getAspecto()==1)
+		{
+			bloques[j]->~bloque();
+		}
+		//si es sorpresa
+		else if (bloques[j]->getTipo()==1)
+		{
+		//spawn cosas
+			bloques[j]->setTipo();
+		}
+		//si es oculto
+		else if (bloques[j]->getTipo()==3)
+		{
+			bloques[j]->setTipo();
+		}
+		}
+		else if (bloques[j]->getTipo() == 3) { colision = false; }
+	}
+	
+	
+	return colision;
 }
 
 void
 Game::update()
 {
-	SDL_Rect aux;
+	mario->update();
+	for (int i =0;i<14;i++)
+	{
+		goombaa[i]->update();
+	}
+	
+	/*SDL_Rect aux;
 	aux.x = aux.y = 0;
 	aux.w = aux.h = 0;
 	mario->update();
@@ -250,13 +302,13 @@ Game::update()
 	}
 	// Actualiza los objetos del juego
 	//perro->update();
-	// si mario llega a la mitad de la pantalla, incrementa el mapOffset
+	// si mario llega a la mitad de la pantalla, incrementa el mapOffset*/
  	if (mario->getScreenPosition().x == WIN_WIDTH / 64)
 	{
 		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
 		
 	}
-	
+	/*
 	
 	for(int i=0;i<14;i++)
 	{
@@ -288,7 +340,7 @@ Game::update()
 			}
 		}
 		
-	}
+	}*/
 }
 
 void

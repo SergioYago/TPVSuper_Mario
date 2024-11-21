@@ -24,6 +24,10 @@ void goomba::hit()
 {
 
 }
+void goomba::update()
+{
+
+}
 
 // render del goomba en la pantalla 
 void goomba::render()

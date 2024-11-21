@@ -52,6 +52,24 @@ void player::update()
 {
 	
 	int mapoffset = game->getMapOffset();
+	mueveY();
+	if (game->checkMapColision(nextposition)||game->checkBlockColision('p', nextposition))
+	{
+		VueltaPosiciony();
+		if (jump <= 0) { isGrounded = true; }
+		else { SetJump(0); }
+	}
+	else 
+	{
+		igualaMovimientoy();
+		isGrounded = false;
+	}
+	mueveX();
+	if (game->checkMapColision(nextposition)||game->checkBlockColision('p',nextposition))
+	{
+		VueltaPosicionx();
+	}
+	else { igualaMovimiento(); }
 	//si colisiona con un enemigo, hit();
 	//si colisiona con una moneda, monedas++;
 	//si colisiona con una seta, aspecto++;
