@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\assets\\maps\\world2.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\maps\\world2.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\bloque.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\bloque.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -13,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\bloque.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\bloque.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\goomba.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -35,10 +47,6 @@
       "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\TileMap.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -49,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\Texture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\Texture.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{28A4C5CD-307A-4FE6-81E4-4CE1F1E49AB4}|HolaSDL\\HolaSDL.vcxproj|solutionrelative:HolaSDL\\TileMap.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -62,11 +66,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
+              "Title": "world2.csv",
+              "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\assets\\maps\\world2.csv",
+              "RelativeDocumentMoniker": "assets\\maps\\world2.csv",
+              "ToolTip": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\assets\\maps\\world2.csv",
+              "RelativeToolTip": "assets\\maps\\world2.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-11-21T20:55:22.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "goomba.h",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\goomba.h",
               "RelativeDocumentMoniker": "HolaSDL\\goomba.h",
@@ -74,12 +91,11 @@
               "RelativeToolTip": "HolaSDL\\goomba.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-17T17:49:11.793Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-17T17:49:11.793Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "goomba.cpp",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\goomba.cpp",
               "RelativeDocumentMoniker": "HolaSDL\\goomba.cpp",
@@ -87,25 +103,24 @@
               "RelativeToolTip": "HolaSDL\\goomba.cpp",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-17T17:49:08.356Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-17T17:49:08.356Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "bloque.cpp",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\bloque.cpp",
               "RelativeDocumentMoniker": "HolaSDL\\bloque.cpp",
               "ToolTip": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\bloque.cpp",
               "RelativeToolTip": "HolaSDL\\bloque.cpp",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAEwAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEoAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-17T17:48:26.06Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "bloque.h",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\bloque.h",
               "RelativeDocumentMoniker": "HolaSDL\\bloque.h",
@@ -113,12 +128,11 @@
               "RelativeToolTip": "HolaSDL\\bloque.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-17T17:43:30.33Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-17T17:43:30.33Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 2,
               "Title": "TileMap.h",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\TileMap.h",
               "RelativeDocumentMoniker": "HolaSDL\\TileMap.h",
@@ -131,19 +145,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 1,
               "Title": "TileMap.cpp",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\TileMap.cpp",
               "RelativeDocumentMoniker": "HolaSDL\\TileMap.cpp",
               "ToolTip": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\TileMap.cpp",
               "RelativeToolTip": "HolaSDL\\TileMap.cpp",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAD8AAABdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T12:08:49.475Z"
+              "WhenOpened": "2024-11-02T12:08:49.475Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "player.cpp",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\player.cpp",
               "RelativeDocumentMoniker": "HolaSDL\\player.cpp",
@@ -151,12 +166,11 @@
               "RelativeToolTip": "HolaSDL\\player.cpp",
               "ViewState": "AgIAAEUAAAAAAAAAAAAAAFkAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-11-02T12:03:02.327Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-02T12:03:02.327Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "player.h",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\player.h",
               "RelativeDocumentMoniker": "HolaSDL\\player.h",
@@ -164,25 +178,24 @@
               "RelativeToolTip": "HolaSDL\\player.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-11-02T11:55:31.381Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-02T11:55:31.381Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Game.cpp",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\Game.cpp",
               "RelativeDocumentMoniker": "HolaSDL\\Game.cpp",
               "ToolTip": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\Game.cpp",
               "RelativeToolTip": "HolaSDL\\Game.cpp",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAAAJYAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAF0AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-10-22T15:01:19.005Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Game.h",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\Game.h",
               "RelativeDocumentMoniker": "HolaSDL\\Game.h",
@@ -190,12 +203,11 @@
               "RelativeToolTip": "HolaSDL\\Game.h",
               "ViewState": "AgIAAC0AAAAAAAAAAAAAADAAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-10-22T15:01:29.406Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-22T15:01:29.406Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Texture.h",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\Texture.h",
               "RelativeDocumentMoniker": "HolaSDL\\Texture.h",
@@ -207,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Texture.cpp",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\Texture.cpp",
               "RelativeDocumentMoniker": "HolaSDL\\Texture.cpp",
@@ -219,7 +231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\Diego\\Desktop\\Unity Projects\\TPVSuper_Mario\\ola\\HolaSDL\\main.cpp",
               "RelativeDocumentMoniker": "HolaSDL\\main.cpp",

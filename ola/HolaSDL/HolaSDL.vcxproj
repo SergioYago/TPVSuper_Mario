@@ -69,19 +69,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bloque.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="goomba.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bloque.h" />
     <ClInclude Include="checkML.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="gameList.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="goomba.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileMap.h" />
   </ItemGroup>
