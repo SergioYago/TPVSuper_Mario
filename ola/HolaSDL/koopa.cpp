@@ -8,7 +8,7 @@ koopa::koopa(std::istream& is, Game* g)
 {
 	game = g;
 	is >> position.x >> position.y;
-	direccion = -1;
+	velocity.x = -1;
 
 	position.x = position.x * 32;
 	position.y = (position.y - 1) * 32;
@@ -17,7 +17,29 @@ koopa::koopa(std::istream& is, Game* g)
 	nextposition.x = position.x;
 	nextposition.y = position.y;
 	nextposition.w = nextposition.h = 32;
-	isactive = true;
+	
+}
+void koopa::update()
+{
+	mueveY();
+	if(game->checkBlockColision('k',nextposition)||game->checkMapColision(nextposition)||game->checkGoombaCollision(nextposition))
+	{
+		igualaY();
+	}
+	else
+	{
+		VueltaY();
+	}
+	mueveX();
+	if(game->checkBlockColision('k',nextposition)||game->checkGoombaCollision(nextposition)||game->checkMapColision(nextposition))
+	{
+		ChangeDirection();
+		igualaX();
+	}
+	else
+	{
+		VueltaX();
+	}
 }
 
 void koopa::hit()
@@ -54,7 +76,7 @@ void koopa::mueveY()
 }
 void koopa::mueveX()
 {
-	if (direccion == 1)
+	if (velocity.x == 1)
 	{
 
 		if ((nextposition.x + 32) > (200 * 32))
@@ -85,8 +107,7 @@ void koopa::igualaY()
 }
 void koopa::igualaX()
 {
-	if (direccion == -1) {  }
-	else {  }
+	nextposition.x = position.x;
 }
 void koopa::VueltaY()
 {
@@ -98,7 +119,7 @@ void koopa::VueltaX()
 }
 void koopa::ChangeDirection()
 {
-	direccion = -direccion;
+	velocity.x=-velocity.x;
 }
 
 

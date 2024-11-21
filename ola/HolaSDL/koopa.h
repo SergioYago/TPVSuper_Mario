@@ -11,7 +11,7 @@ class koopa
 	int direccion;
 	Texture* texture;
 	Game* game;
-	bool isactive;
+	Point2D velocity;
 
 public:
 	SDL_Rect nextposition;
@@ -27,9 +27,9 @@ public:
 	void VueltaX();
 	void VueltaY();
 	void ChangeDirection();
-	void SetisActive(bool b) { isactive = b; }
-	bool GetisActive() { return isactive; }
-	int getDireccion() { return direccion; }
+	void SetisActive(bool b) {  }
+	bool GetisActive() {  }
+	int getDireccion() {  }
 	//void igualaMovimiento();
 	//void VueltaPosicion();
 };
