@@ -6,9 +6,9 @@ class Enemy : public SceneObject
 {
 protected:
 
-	bool jugador;
+
 public:
-	Enemy(Game* g, bool j);
+	Enemy(Game* g);
 	virtual void render() override;
 	virtual void update() override;
 	virtual void hit(SDL_Rect ataque, bool jugador);

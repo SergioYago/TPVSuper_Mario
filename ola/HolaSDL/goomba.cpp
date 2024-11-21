@@ -2,7 +2,7 @@
 #include "Game.h"
 #include <sstream>
 
-
+/*
 goomba::goomba(std::istream& is, Game* g)
 	:game(g)
 {
@@ -18,12 +18,21 @@ goomba::goomba(std::istream& is, Game* g)
 	nextposition.y = position.y;
 	nextposition.w = nextposition.h = 32;
 	isactive = true;
-}
+}*/
 
-void goomba::hit()
+goomba::goomba(std::istream& is, Game* g) : Enemy(g)
 {
-
+	std::string filename;
+	is >> filename;
+	texture = game->getTexture(Game:: TextureName:: GOOMBA);
+	is >> position.x;
+	is >> position.y;
+	nextposition.x = position.x;
+	nextposition.y = position.y;
+	is >> velocity.x;
 }
+
+
 void goomba::update()
 {
 
@@ -52,22 +61,25 @@ void goomba::mueveY()
 	if (nextposition.y < game->WIN_HEIGHT-32) 
 	{  
 		nextposition.y += 8;
-		if (nextposition.y >= game->WIN_HEIGHT - 32) { SetisActive(false); }
+		if (nextposition.y >= game->WIN_HEIGHT - 32) { 
+			//SetisActive(false); 
+
+		}
 	}
 	
 }
 void goomba::mueveX()
 {
-	if (direccion==1)
+	if (velocity.x>=1)
 	{
 		
 			if ((nextposition.x+32)>(200*32))
 			{
 				ChangeDirection();
 			}
-			nextposition.x += 2;
+			nextposition.x += velocity.x;
 
-			position.x += 2;
+			position.x += velocity.x;
 		
 	}
 	else
@@ -77,9 +89,9 @@ void goomba::mueveX()
 			ChangeDirection();
 		}
 		else {
-			nextposition.x -= 2;
+			nextposition.x -= velocity.x;
 
-			position.x -= 2;
+			position.x -= velocity.x;
 		}
 	}
 }
@@ -89,7 +101,7 @@ void goomba::igualaY()
 }
 void goomba::igualaX()
 {
-	if (direccion == -1) {  }
+	if (velocity.x == -1) {  }
 	else {   }
 }
 void goomba::VueltaY()
@@ -102,7 +114,7 @@ void goomba::VueltaX()
 }
 void goomba::ChangeDirection()
 {
-	direccion = -direccion;
+	velocity.x = -velocity.x;
 }
 
 
