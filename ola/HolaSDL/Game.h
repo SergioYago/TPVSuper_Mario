@@ -11,7 +11,10 @@
 #include "TileMap.h"
 #include "player.h"
 #include "goomba.h"
+#include "koopa.h"
 #include "bloque.h"
+#include "GameObject.h"
+#include "gameList.h"
 
 using uint = unsigned int;
 
@@ -27,6 +30,7 @@ public:
 		PLAYER,
 		GRANDE,
 		GOOMBA,
+		KOOPA,
 		BLOQUE,
 		NUM_TEXTURES,  // Truco C++: número de texturas definidas
 	};
@@ -41,6 +45,17 @@ private:
 	// Interruptor para terminar el juego
 	bool seguir;
 	int mapOffset;
+	string mapa1;
+	string mapa2;
+	int mapaActual;
+
+	// Puntuación del jugador
+	int score;
+
+
+	// Vidas del jugador
+	int lives;
+
 
 
 	// Objetos del juego
@@ -48,6 +63,11 @@ private:
 	player* mario;
 	goomba* goombaa[15];
 	bloque* bloques[44];
+
+	// Lista de objetos del juego
+	GameList<SceneObject> entities;
+	// lista de objetos activos que se van a renderizar
+	GameList<SceneObject> activeEntities;
 
 public:
 	static constexpr uint WIN_WIDTH = 576;

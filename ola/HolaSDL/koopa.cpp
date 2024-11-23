@@ -3,22 +3,13 @@
 #include <sstream>
 
 
-koopa::koopa(std::istream& is, Game* g)
-	:game(g)
+koopa::koopa(Game* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g, pos, w, h, p, points)
 {
-	game = g;
-	is >> position.x >> position.y;
-	velocity.x = -1;
-
-	position.x = position.x * 32;
-	position.y = (position.y - 1) * 32;
-	texture = game->getTexture(Game::TextureName::GOOMBA);
-
-	nextposition.x = position.x;
-	nextposition.y = position.y;
-	nextposition.w = nextposition.h = 32;
-	
+	texture = game->getTexture(Game::TextureName::KOOPA);
+	nextposition = { pos.x, pos.y, w, h };
 }
+
+
 void koopa::update()
 {
 	mueveY();
@@ -42,10 +33,7 @@ void koopa::update()
 	}
 }
 
-void koopa::hit()
-{
 
-}
 
 // render del goomba en la pantalla 
 void koopa::render()
@@ -70,9 +58,10 @@ void koopa::mueveY()
 	if (nextposition.y < game->WIN_HEIGHT - 32)
 	{
 		nextposition.y += 8;
-		if (nextposition.y >= game->WIN_HEIGHT - 32) { SetisActive(false); }
-	}
+		if (nextposition.y >= game->WIN_HEIGHT - 32) { //SetisActive(false); }
+		}
 
+	}
 }
 void koopa::mueveX()
 {

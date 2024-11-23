@@ -2,24 +2,12 @@
 #include "Game.h"
 #include <sstream>
 
-/*
-goomba::goomba(std::istream& is, Game* g)
-	:game(g)
+goomba::goomba(Game* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g, pos, w, h, p, points)
 {
-	game = g;
-	is >> position.x >> position.y;
-	direccion = -1;
-
-	position.x = position.x * 32;
-	position.y = (position.y-1) * 32;
 	texture = game->getTexture(Game::TextureName::GOOMBA);
-
-	nextposition.x = position.x;
-	nextposition.y = position.y;
-	nextposition.w = nextposition.h = 32;
-	isactive = true;
-}*/
-
+	nextposition = { pos.x, pos.y, w, h };
+}
+/*
 goomba::goomba(std::istream& is, Game* g) : Enemy(g)
 {
 	std::string filename;
@@ -31,12 +19,13 @@ goomba::goomba(std::istream& is, Game* g) : Enemy(g)
 	nextposition.y = position.y;
 	is >> velocity.x;
 }
-
+*/
 
 void goomba::update()
 {
 
 }
+
 
 // render del goomba en la pantalla 
 void goomba::render()
@@ -45,8 +34,8 @@ void goomba::render()
 	SDL_Rect destRect;
 	destRect.x = position.x;// *32;
 	destRect.y = position.y;// *32;
-	destRect.w = 32;
-	destRect.h = 32;
+	destRect.w = width;
+	destRect.h = height;
 
 	if (position.x >= game->getMapOffset() && position.x <= game->getMapOffset() + game->WIN_WIDTH)
 	{

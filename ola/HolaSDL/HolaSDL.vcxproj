@@ -48,6 +48,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -73,6 +74,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="goomba.cpp" />
+    <ClCompile Include="koopa.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="SceneObject.cpp" />
@@ -87,6 +89,7 @@
     <ClInclude Include="gameList.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="goomba.h" />
+    <ClInclude Include="koopa.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Texture.h" />

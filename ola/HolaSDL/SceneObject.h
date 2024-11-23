@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "vector2D.h"
 #include "Texture.h"
-#include "GameList.h"
+#include "gameList.h"
 // abstract class SceneObject hereda de GameObject y luego todas las clases que heredan de SceneObject
 
 class SceneObject : public GameObject
@@ -16,10 +16,12 @@ protected:
 	GameList<SceneObject>::anchor anchor;
 
 public:
-	SceneObject(Game* g);
-	virtual void render() override;
-	virtual void update() override;
+	SceneObject(Game* g, Point2D pos, int w, int h, bool p);
 	virtual void hit(SDL_Rect ataque, bool jugador) = 0;
-	virtual SceneObject* clone() const = 0;
+	// Method to set the list anchor
+	void setListAnchor(GameList<SceneObject>::anchor anchor) {
+		this->anchor = std::move(anchor);
+	}
+	//virtual SceneObject* clone() const = 0;
 };
 

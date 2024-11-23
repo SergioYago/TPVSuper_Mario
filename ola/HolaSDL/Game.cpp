@@ -22,6 +22,7 @@ const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	{"mario.png", 12, 1},
 	{"supermario.png",22,1},
 	{"goomba.png", 3, 1},
+	{"koopa.png", 4, 1},
 	{"blocks.png", 6, 1},
 	//{"helicopter.png", 5, 1},
 };
@@ -29,9 +30,13 @@ const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 Game::Game()
 	: seguir(true)
 {
-	
+	cout << "Initializing SDL..." << endl;
 	// Inicializa la SDL
-	SDL_Init(SDL_INIT_EVERYTHING);
+	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
+		cerr << "Error initializing SDL: " << SDL_GetError() << endl;
+		exit(1);
+	}
+
 	window = SDL_CreateWindow("First test with SDL",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
@@ -39,36 +44,44 @@ Game::Game()
 		WIN_HEIGHT,
 		SDL_WINDOW_SHOWN);
 
+	if (window == nullptr) {
+		cerr << "Error creating window: " << SDL_GetError() << endl;
+		SDL_Quit();
+		exit(1);
+	}
+
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-	if (window == nullptr || renderer == nullptr)
-		throw "Error cargando SDL"s;
+	if (renderer == nullptr) {
+		cerr << "Error creating renderer: " << SDL_GetError() << endl;
+		SDL_DestroyWindow(window);
+		SDL_Quit();
+		exit(1);
+	}
 
+	cout << "Loading textures..." << endl;
 	// Carga las texturas
-	for (int i = 0; i < NUM_TEXTURES; ++i)
+	for (int i = 0; i < NUM_TEXTURES; ++i) {
 		textures[i] = new Texture(renderer,
 			(textureRoot + textureSpec[i].name).c_str(),
 			textureSpec[i].numRows,
 			textureSpec[i].numColumns);
+	}
 
+	cout << "Loading entities..." << endl;
 	// Lee el archivo de entidades de juego y crea las entidades, llamando a sus constructores con los datos leidos
 	ifstream file("../assets/maps/world1.txt");
-	string line;
+	if (!file.is_open()) {
+		cerr << "Error opening file: ../assets/maps/world1.txt" << endl;
+		exit(1);
+	}
 
+	string line;
 	int i = 0;
 	int j = 0;
 	while (getline(file, line))
 	{
-		
-		// Crea una entidad de juego
-		// si la primera letra de la linea es 'M', crea al player
-		// si la primera letra de la linea es 'B', crea un bloque
-		// si la primera letra de la linea es 'G', crea un goomba
-		// si la primera letra de la linea es 'K', crea un koopa
-
-		// crear un istream a partir de la linea, incluyendo todo el contenido de la linea menos el primer caracter
 		istringstream is(line.substr(1));
-		
 		if (line[0] == 'M') {
 			mario = new player(is, this);
 		}
@@ -77,24 +90,27 @@ Game::Game()
 			j++;
 		}
 		else if (line[0] == 'G') {
-			
-			goombaa[i] = new goomba(is, this);
-			i++;
+			Point2D pos;
+			is >> pos.x >> pos.y;
+			entities.push_back(new goomba(this, pos, TILE_SIDE, TILE_SIDE, false, 50));
 		}
 		else if (line[0] == 'K') {
-				
+			Point2D pos;
+			is >> pos.x >> pos.y;
+			entities.push_back(new koopa(this, pos, TILE_SIDE, TILE_SIDE, false, 50));
 		}
-		
-		//entities.push_back(new Entity(this, line));
 	}
 
-	// Crea los objetos del juego
-	//perro = new Dog(this, -textures[DOG]->getFrameWidth(), 390);
-	tilemap = new TileMap("../assets/maps/world1.csv", this);
+	mapa1 = "../assets/maps/world1.csv";
+	mapa2 = "../assets/maps/world2.csv";
+	tilemap = new TileMap(mapa1, this);
+
+	cout << "Initialization complete." << endl;
 }
 
 Game::~Game()
 {
+	cout << "Cleaning up resources..." << endl;
 	// Elimina los objetos del juego
 	delete tilemap;
 
@@ -106,33 +122,33 @@ Game::~Game()
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
+	cout << "Cleanup complete." << endl;
 }
 
-int
-Game::getMapOffset() {
+int Game::getMapOffset() {
 	return mapOffset;
 }
 
-void
-Game::run()
+void Game::run()
 {
+	cout << "Starting main game loop..." << endl;
 	// Bucle principal del juego
 	while (seguir) {
-		// Marca de tiempo del inicio de la iteraci�n
+		// Marca de tiempo del inicio de la iteración
 		uint32_t inicio = SDL_GetTicks();
 
 		update();       // Actualiza el estado de los objetos del juego
-		
 		render();       // Dibuja los objetos en la venta
 		handleEvents(); // Maneja los eventos de la SDL
 
 		// Tiempo que se ha tardado en ejecutar lo anterior
 		uint32_t elapsed = SDL_GetTicks() - inicio;
 
-		// Duerme el resto de la duraci�n del frame
+		// Duerme el resto de la duración del frame
 		if (elapsed < FRAME_RATE)
 			SDL_Delay(FRAME_RATE - elapsed);
 	}
+	cout << "Exiting main game loop..." << endl;
 }
 
 void
@@ -152,13 +168,27 @@ Game::render() const
 			bloques[i]->render();
 		
 	}
+	/*
 	for (int i = 0; i < 14; i++)
 	{
-		if (goombaa[i]->GetisActive())
-		{
+		//if (goombaa[i]->GetisActive())
+		//{
 			goombaa[i]->render();
+		//}
+	}
+	*/
+
+	// renderiza las entidades de la lista de entidades
+	for (SceneObject* entity : entities) {
+		if (entity != nullptr) {
+			entity->render();
+		}
+		else {
+			cerr << "Warning: Null entity found in entities list." << endl;
 		}
 	}
+
+
 
 	SDL_RenderPresent(renderer);
 }
@@ -183,7 +213,7 @@ Game::checkGoombaCollision(SDL_Rect collider)
 		if (colision==1)
 		{
 			colision == (aux.h<=aux.w && mario->getDireccion() == 0) + 1;
-			goombaa[j]->hit();
+			//goombaa[j]->hit();
 		}
 	}
 	return colision;

@@ -12,8 +12,8 @@ class goomba : public Enemy
 	
 public:
 	SDL_Rect nextposition;
-	goomba(std::istream& is, Game* g);
-	~goomba();
+	goomba(Game* g, Point2D pos, int w, int h, bool p, int points);
+	//~goomba();
 	void render() override;
 	void update() override;
 	void mueveX();

@@ -2,10 +2,10 @@
 
 // Constructor de la clase Enemy
 
-Enemy::Enemy(Game* g)
-	:SceneObject(g)
+Enemy::Enemy(Game* g, Point2D pos, int w, int h, bool p, int points)
+	:SceneObject(g, pos, w, h, p)
 {
-	player = false;
+	puntos = points;
 }
 
 // Método hit de los enemigos, se encarga de recibir el ataque del jugador y restarle vida al enemigo o hacerle daño

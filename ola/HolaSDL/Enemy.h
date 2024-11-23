@@ -5,12 +5,11 @@
 class Enemy : public SceneObject
 {
 protected:
-
+	int puntos;
 
 public:
-	Enemy(Game* g);
-	virtual void render() override;
-	virtual void update() override;
+	Enemy(Game* g, Point2D pos, int w, int h, bool p, int points);
+
 	virtual void hit(SDL_Rect ataque, bool jugador);
 
 };
