@@ -396,3 +396,12 @@ void Game::loose()
 {
 	seguir = false;
 }
+void Game::addEntity(SceneObject* entity)
+{
+	entities.push_back(entity);
+}
+bool Game::isSupermario() const
+{
+	if (mario->getAspecto() >= 1) { return true; }
+	else { return false; }
+}

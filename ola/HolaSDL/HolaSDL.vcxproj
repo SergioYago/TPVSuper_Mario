@@ -70,12 +70,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bloque.cpp" />
+    <ClCompile Include="coin.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="goomba.cpp" />
     <ClCompile Include="koopa.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pickable.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -84,12 +86,14 @@
   <ItemGroup>
     <ClInclude Include="bloque.h" />
     <ClInclude Include="checkML.h" />
+    <ClInclude Include="coin.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="gameList.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="goomba.h" />
     <ClInclude Include="koopa.h" />
+    <ClInclude Include="pickable.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Texture.h" />

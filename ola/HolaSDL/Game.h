@@ -67,7 +67,7 @@ private:
 	// Lista de objetos del juego
 	GameList<SceneObject> entities;
 	// lista de objetos activos que se van a renderizar
-	GameList<SceneObject> activeEntities;
+	GameList<SceneObject*> activeEntities;
 
 public:
 	static constexpr uint WIN_WIDTH = 576;
@@ -85,6 +85,11 @@ public:
 	bool checkBlockColision(char name, SDL_Rect collider);
 	void render() const;
 	void handleEvents();
+	void addEntity(SceneObject* entity);
+	void grantPoints(int points) { score += points;};
+	int getPoints() const { return score; };
+	bool isSupermario() const;
+	int getMapOffset() const { return mapOffset; };
 	
 	Texture* getTexture(TextureName name) const;
 

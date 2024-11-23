@@ -1,10 +1,81 @@
 ﻿  Game.cpp
 C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(158,42): warning C4305: 'argument': truncation from 'int' to 'Uint8'
 C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(158,42): warning C4309: 'argument': truncation of constant value
-C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(202,13): warning C4553: '==': result of expression not used; did you intend '='?
-C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(325,73): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
-C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(325,73): warning C4244:         with
-C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(325,73): warning C4244:         [
-C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(325,73): warning C4244:             T=float
-C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(325,73): warning C4244:         ]
-  HolaSDL.vcxproj -> C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\bin\HolaSDLDebug.exe
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(182,37): error C2440: 'initializing': cannot convert from 'RT' to 'SceneObject *'
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(182,37): error C2440:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(182,37): error C2440:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(182,37): error C2440:             RT=const SceneObject *
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(182,37): error C2440:         ]
+      C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(182,37):
+      Conversion loses qualifiers
+  
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(215,13): warning C4553: '==': result of expression not used; did you intend '='?
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(338,73): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(338,73): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(338,73): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(338,73): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\Game.cpp(338,73): warning C4244:         ]
+  pickable.cpp
+  player.cpp
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(20,35): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(20,35): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(20,35): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(20,35): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(20,35): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(21,35): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(21,35): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(21,35): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(21,35): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(21,35): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(34,27): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(34,27): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(34,27): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(34,27): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(34,27): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(35,27): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(35,27): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(35,27): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(35,27): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(35,27): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(90,31): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(90,31): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(90,31): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(90,31): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(90,31): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(98,33): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(98,33): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(98,33): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(98,33): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(98,33): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(114,37): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(114,37): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(114,37): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(114,37): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(114,37): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(177,18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(182,33): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(182,33): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(182,33): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(182,33): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(182,33): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(188,33): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(188,33): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(188,33): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(188,33): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(188,33): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(194,31): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(194,31): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(194,31): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(194,31): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(194,31): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(200,31): warning C4244: '=': conversion from 'T' to 'int', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(200,31): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(200,31): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(200,31): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(200,31): warning C4244:         ]
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(254,52): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(254,52): warning C4244:         with
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(254,52): warning C4244:         [
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(254,52): warning C4244:             T=float
+C:\Users\Diego\Desktop\Unity Projects\TPVSuper_Mario\ola\HolaSDL\player.cpp(254,52): warning C4244:         ]
+  Generating Code...
