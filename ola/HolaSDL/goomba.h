@@ -9,12 +9,12 @@ class Game;
 class goomba : public Enemy
 {
 	Texture* texture;
-	
-public:
 	SDL_Rect nextposition;
+public:
+	
 	goomba(Game* g, Point2D pos, int w, int h, bool p, int points);
 	//~goomba();
-	void render() override;
+	void render()  override;
 	void update() override;
 	void mueveX();
 	void mueveY();
@@ -23,7 +23,7 @@ public:
 	void VueltaX();
 	void VueltaY();
 	void ChangeDirection();
-
+	SDL_Rect* GetNextPosition() { return &nextposition; }
 	//void igualaMovimiento();
 	//void VueltaPosicion();
 };

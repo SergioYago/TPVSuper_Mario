@@ -7,6 +7,7 @@
 #include <SDL.h>
 
 // Nuestras clases
+#include "collision.h"
 #include "Texture.h"
 #include "TileMap.h"
 #include "player.h"
@@ -80,10 +81,11 @@ public:
 	void run();
 	void loose();
 	void update();
-	bool checkMapColision( SDL_Rect collider);
-	bool checkGoombaCollision(SDL_Rect collider);
+	Point2D checkMapColision( SDL_Rect collider);
+	Point2D checkEntitieColision(SDL_Rect collider);
 	bool checkBlockColision(char name, SDL_Rect collider);
-	void render() const;
+	Collision CheckColision(SDL_Rect rect, Collision::Target target);
+	void render()const;
 	void handleEvents();
 	void addEntity(SceneObject* entity);
 	void grantPoints(int points) { score += points;};

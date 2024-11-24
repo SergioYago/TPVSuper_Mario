@@ -136,9 +136,9 @@ void Game::run()
 	while (seguir) {
 		// Marca de tiempo del inicio de la iteración
 		uint32_t inicio = SDL_GetTicks();
-
+		render();
 		update();       // Actualiza el estado de los objetos del juego
-		render();       // Dibuja los objetos en la venta
+		      // Dibuja los objetos en la venta
 		handleEvents(); // Maneja los eventos de la SDL
 
 		// Tiempo que se ha tardado en ejecutar lo anterior
@@ -179,198 +179,114 @@ Game::render() const
 	*/
 
 	// renderiza las entidades de la lista de entidades
-	for (SceneObject* entity : entities) {
-		if (entity != nullptr) {
-			entity->render();
-		}
-		else {
-			cerr << "Warning: Null entity found in entities list." << endl;
-		}
+	
+	for ( auto entitie:entities)
+	{
+	//en teoria aqui se debería hacer el render
+		entitie->render();
 	}
+	
 
 
 
 	SDL_RenderPresent(renderer);
 }
-bool
+Point2D
 Game::checkMapColision( SDL_Rect collider)
 {
-	
+	Point2D aux;
 	bool colision =tilemap->checkMapColision(collider,true);
-	return colision;
+	//ni idea de cómo devolver el valor adecuado dependiendo de distancia
+	aux.x = 0;
+	aux.y = 0;
+	return aux;
 }
-bool
-Game::checkGoombaCollision(SDL_Rect collider)
+Point2D
+Game::checkEntitieColision(SDL_Rect collider)
 {	
-	SDL_Rect aux;
-	aux.x = 0; aux.y = 0;
-	aux.h = 0; aux.w = 0;
-	int j = 0;
-	int colision = 0;
-	while(j<14&&!colision)
-	{
-		colision =SDL_IntersectRect(&collider, &goombaa[j]->nextposition,&aux);
-		if (colision==1)
-		{
-			colision == (aux.h<=aux.w && mario->getDireccion() == 0) + 1;
-			//goombaa[j]->hit();
-		}
-	}
-	return colision;
-}
-bool Game::checkBlockColision(char name, SDL_Rect collider)
-{
-	SDL_Rect aux;
-	aux.x = aux.y = 0;
-	aux.w = aux.h = 0;
+	Point2D aux;
 	bool colision = false;
-	int j = 0;
-	while(!colision&&j<44)
+	for(auto entitie:entities)
 	{
-		colision = SDL_IntersectRect(&collider, bloques[j]->getColision(),&aux);
-		j++;
-	}
-	if (colision&&name=='p')
+	colision= SDL_HasIntersection(&entitie->getCollisionRect(),&collider);
+	//se hace esto para que no compruebe consigo mismo
+	if(colision&& &collider==&entitie->getCollisionRect())
 	{
-		if (aux.h<aux.w&&mario->GetJump()>0)
-		{
-			//si es ladrillo
-		if (bloques[j]->getTipo()==0&&mario->getAspecto()==1)
-		{
-			bloques[j]->~bloque();
-		}
-		//si es sorpresa
-		else if (bloques[j]->getTipo()==1)
-		{
-		//spawn cosas
-			bloques[j]->setTipo();
-		}
-		//si es oculto
-		else if (bloques[j]->getTipo()==3)
-		{
-			bloques[j]->setTipo();
-		}
-		}
-		else if (bloques[j]->getTipo() == 3) { colision = false; }
+		colision = false;
 	}
-	
-	
-	return colision;
+	if (colision) 
+		{
+		aux.x = entitie->getCollisionRect().x - collider.x;
+		aux.y = entitie->getCollisionRect().y - collider.y;
+		break; 
+		}
+	}
+	return aux;
+}
+
+Collision
+Game::CheckColision(SDL_Rect rect, Collision::Target target)
+{
+	Collision aux;
+	if(target==1)
+	{
+		if(tilemap->checkMapColision(rect,true))
+		{
+			aux.horizontal = aux.vertical = 0;
+		}
+		else 
+		{
+			Point2D direction;
+			 direction =checkEntitieColision(rect);
+			 if (direction.x != 0 && direction.y != 0)
+			 {
+				 aux.horizontal = direction.x;
+				 aux.vertical = direction.y;
+			 }
+		}
+		
+	}
+	else if (target ==2)
+	{
+		if (tilemap->checkMapColision(rect, true))
+		{
+			aux.horizontal = aux.vertical = 0;
+		}
+		else
+		{
+			Point2D direction;
+			direction = checkEntitieColision(rect);
+			if (direction.x != 0 && direction.y != 0)
+			{
+				aux.horizontal = direction.x;
+				aux.vertical = direction.y;
+			}
+		}
+		
+	}
+	else if(target==3){}
+	//mira el mapa y las entidades, pero entonces 
+	// tenemos que hacer que el struct de target apunte a bot
+	//chequea enemigos, solo para player
+	//chequea bloques, para ambos de nuevo
+	return aux;
 }
 
 void
 Game::update()
 {
 	mario->update();
-	for (int i =0;i<14;i++)
+	for(auto entitie:entities)
 	{
-		goombaa[i]->update();
-	}
-	
-	/*SDL_Rect aux;
-	aux.x = aux.y = 0;
-	aux.w = aux.h = 0;
-	mario->update();
-	mario->mueveY();
-	int colision = false;
-	int j = 0;
-	while(!colision&&j<44)
-	{
-		colision = SDL_HasIntersection(&mario->nextposition, bloques[j]->getColision());
-		j++;
-	}
-	
-	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted)&&!colision)
-		{ 
+		entitie->update();
 		
-		mario->igualaMovimientoy();
-		mario->setIsGrounded(false);
-			
 	}
-	else
-	{
-		if (colision == true&&mario->GetJump() >= 1)
-		{
-			mario->SetJump(0);
-			mario->setIsGrounded(false);
-		}
-		else {
-			// subir la misma cantidad que baja
-			// se calcula restando la diferencia de alturas a 32 (32-diferencia de alturas)
-			mario->VueltaPosiciony();
-			mario->setIsGrounded(true);
-		}
-	}
-	mario->mueveX();
-	 j = 0;
-	 colision = false;
-	while (!colision && j < 44) 
-	{
-		colision = SDL_HasIntersection(&mario->nextposition, bloques[j]->getColision());
-			j++;
-	}
-	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted)&&!colision)
-	{mario->igualaMovimiento();}
-	else 
-	{
-		mario->VueltaPosicionx();
-	}
-	for (int i = 0; i < 14; i++)
-	{
-		
-		if (goombaa[i]->GetisActive()&& SDL_IntersectRect(&goombaa[i]->nextposition, &mario->nextposition, &aux))
-		{
-			if (aux.w > aux.h && mario->GetJump() == 0)
-			{
-				goombaa[i]->SetisActive(false);
-			}
-			else
-			{
-				//jugador muere
-			}
-		}
-	}
-	// Actualiza los objetos del juego
-	//perro->update();
-	// si mario llega a la mitad de la pantalla, incrementa el mapOffset*/
  	if (mario->getScreenPosition().x == WIN_WIDTH / 64)
 	{
 		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
 		
 	}
-	/*
 	
-	for(int i=0;i<14;i++)
-	{
-		if (goombaa[i]->GetisActive()) 
-		{
-			goombaa[i]->mueveY();
-			if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
-			{
-				goombaa[i]->VueltaY();
-			}
-			else { goombaa[i]->igualaY(); }
-			
-			goombaa[i]->mueveX();
-			if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
-			{
-				goombaa[i]->igualaX();
-			}
-			else { goombaa[i]->ChangeDirection(); }
-		}
-		if (SDL_IntersectRect(&goombaa[i]->nextposition, &mario->nextposition, &aux))
-		{
-			if (aux.w > aux.h && mario->GetJump() == 0)
-			{
-				goombaa[i]->SetisActive(false);
-			}
-			else
-			{
-				//jugador muere
-			}
-		}
-		
-	}*/
 }
 
 void
