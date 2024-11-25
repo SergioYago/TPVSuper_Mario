@@ -86,8 +86,17 @@ Game::Game()
 			mario = new player(is, this);
 		}
 		else if (line[0] == 'B') {
-			bloques[j] = new bloque(is, this);
-			j++;
+
+			Point2D pos;
+			is >> pos.x >> pos.y;
+			string tipo;
+			is >> tipo;
+
+				entities.push_back(new bloque(this, pos, TILE_SIDE, TILE_SIDE, false,tipo));
+			
+
+			//bloques[j] = new bloque(is, this);
+			//j++;
 		}
 		else if (line[0] == 'G') {
 			Point2D pos;
@@ -162,13 +171,13 @@ Game::render() const
 	//perro->render();
 	tilemap->renderTileMap();
 	mario->render();
-
+	/*
 	for (int i = 0; i < 44; i++)
 	{
 			bloques[i]->render();
 		
 	}
-	/*
+	
 	for (int i = 0; i < 14; i++)
 	{
 		//if (goombaa[i]->GetisActive())
