@@ -8,7 +8,7 @@ coin::~coin()
 {
 
 }
-void coin::render()
+void coin::render() const
 {
 
 }

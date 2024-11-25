@@ -50,7 +50,7 @@ void goomba::update()
 
 
 // render del goomba en la pantalla 
-void goomba::render()
+void goomba::render() const
 {
 	float mapoffset = game->getMapOffset();
 	SDL_Rect destRect;

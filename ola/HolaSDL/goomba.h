@@ -14,7 +14,7 @@ public:
 	
 	goomba(Game* g, Point2D pos, int w, int h, bool p, int points);
 	//~goomba();
-	void render()  override;
+	void render() const override;
 	void update() override;
 	void mueveX();
 	void mueveY();

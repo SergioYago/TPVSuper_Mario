@@ -39,7 +39,7 @@ void koopa::update()
 
 
 // render del goomba en la pantalla 
-void koopa::render()
+void koopa::render() const
 {
 	float mapoffset = game->getMapOffset();
 	SDL_Rect destRect;

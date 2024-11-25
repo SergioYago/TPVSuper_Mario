@@ -18,6 +18,8 @@ protected:
 public:
 	SceneObject(Game* g, Point2D pos, int w, int h, bool p);
 	virtual void hit(SDL_Rect ataque, bool jugador) = 0;
+	virtual void render() const = 0;
+	virtual void update() = 0;
 	// Method to set the list anchor
 	void setListAnchor(GameList<SceneObject>::anchor anchor) {
 		this->anchor = std::move(anchor);

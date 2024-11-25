@@ -179,13 +179,23 @@ Game::render() const
 	*/
 
 	// renderiza las entidades de la lista de entidades
-	
-	for ( auto entitie:entities)
+
+	for (const SceneObject* entitie : entities)
+	{
+		entitie->render();
+
+		//entitie.render();
+	}
+
+
+
+	/*
+	for ( SceneObject obj:entities)
 	{
 	//en teoria aqui se debería hacer el render
 		//entitie->render();
 	}
-	
+	*/
 
 
 

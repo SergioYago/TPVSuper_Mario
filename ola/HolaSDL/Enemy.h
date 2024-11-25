@@ -10,7 +10,7 @@ protected:
 public:
 	Enemy(Game* g, Point2D pos, int w, int h, bool p, int points);
 
-	virtual void hit(SDL_Rect ataque, bool jugador);
+	void hit(SDL_Rect ataque, bool jugador) override;
 
 };
 
