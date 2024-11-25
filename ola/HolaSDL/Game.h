@@ -62,8 +62,6 @@ private:
 	// Objetos del juego
 	TileMap* tilemap;
 	player* mario;
-	goomba* goombaa[15];
-	bloque* bloques[44];
 
 	// Lista de objetos del juego
 	GameList<SceneObject> entities;

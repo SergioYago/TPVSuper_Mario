@@ -24,13 +24,11 @@ const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	{"goomba.png", 3, 1},
 	{"koopa.png", 4, 1},
 	{"blocks.png", 6, 1},
-	//{"helicopter.png", 5, 1},
 };
 
 Game::Game()
 	: seguir(true)
 {
-	cout << "Initializing SDL..." << endl;
 	// Inicializa la SDL
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
 		cerr << "Error initializing SDL: " << SDL_GetError() << endl;
@@ -59,7 +57,6 @@ Game::Game()
 		exit(1);
 	}
 
-	cout << "Loading textures..." << endl;
 	// Carga las texturas
 	for (int i = 0; i < NUM_TEXTURES; ++i) {
 		textures[i] = new Texture(renderer,
@@ -86,17 +83,11 @@ Game::Game()
 			mario = new player(is, this);
 		}
 		else if (line[0] == 'B') {
-
 			Point2D pos;
 			is >> pos.x >> pos.y;
 			string tipo;
 			is >> tipo;
-
-				entities.push_back(new bloque(this, pos, TILE_SIDE, TILE_SIDE, false,tipo));
-			
-
-			//bloques[j] = new bloque(is, this);
-			//j++;
+			entities.push_back(new bloque(this, pos, TILE_SIDE, TILE_SIDE, false,tipo));
 		}
 		else if (line[0] == 'G') {
 			Point2D pos;
@@ -110,9 +101,18 @@ Game::Game()
 		}
 	}
 
+	mapaActual = 2;
 	mapa1 = "../assets/maps/world1.csv";
 	mapa2 = "../assets/maps/world2.csv";
-	tilemap = new TileMap(mapa1, this);
+	if (mapaActual == 1)
+	{
+		tilemap = new TileMap(mapa1, this);
+	}
+	else
+	{
+		tilemap = new TileMap(mapa2, this);
+	}
+	
 
 	cout << "Initialization complete." << endl;
 }
@@ -164,48 +164,26 @@ void
 Game::render() const
 {
 	SDL_RenderClear(renderer);
+	if (mapaActual == 1){
 	SDL_SetRenderDrawColor(renderer,100,100,500,100);
+	}
+	else
+	{
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	}
 
 	// Pinta los objetos del juego
-	//textures[BACKGROUND]->render();
-	//perro->render();
+
 	tilemap->renderTileMap();
 	mario->render();
-	/*
-	for (int i = 0; i < 44; i++)
-	{
-			bloques[i]->render();
-		
-	}
-	
-	for (int i = 0; i < 14; i++)
-	{
-		//if (goombaa[i]->GetisActive())
-		//{
-			goombaa[i]->render();
-		//}
-	}
-	*/
+
 
 	// renderiza las entidades de la lista de entidades
 
 	for (const SceneObject* entitie : entities)
 	{
 		entitie->render();
-
-		//entitie.render();
 	}
-
-
-
-	/*
-	for ( SceneObject obj:entities)
-	{
-	//en teoria aqui se debería hacer el render
-		//entitie->render();
-	}
-	*/
-
 
 
 	SDL_RenderPresent(renderer);
