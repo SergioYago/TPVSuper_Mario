@@ -183,7 +183,7 @@ Game::render() const
 	for ( auto entitie:entities)
 	{
 	//en teoria aqui se debería hacer el render
-		entitie->render();
+		//entitie->render();
 	}
 	
 
@@ -230,11 +230,11 @@ Collision
 Game::CheckColision(SDL_Rect rect, Collision::Target target)
 {
 	Collision aux;
-	if(target==1)
+	if(target==0)
 	{
 		if(tilemap->checkMapColision(rect,true))
 		{
-			aux.horizontal = aux.vertical = -1;
+			aux.horizontal = aux.vertical = -100;
 		}
 		else 
 		{
@@ -249,11 +249,11 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 		}
 		
 	}
-	else if (target ==2)
+	else if (target ==1)
 	{
 		if (tilemap->checkMapColision(rect, true))
 		{
-			aux.horizontal = aux.vertical = -1;
+			aux.horizontal = aux.vertical = -100;
 			//ns cómo ponerlos
 		}
 		else
@@ -268,11 +268,11 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 		}
 		
 	}
-	else if(target==3)
+	else if(target==2)
 	{
 		if (tilemap->checkMapColision(rect, true))
 		{
-			aux.horizontal = aux.vertical = -1;
+			aux.horizontal = aux.vertical = -100;
 			//ns cómo ponerlos
 		}
 		else

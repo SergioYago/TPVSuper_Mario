@@ -53,20 +53,47 @@ void player::update()
 	Collision aux;
 	mueveY();
 
-	aux = game->CheckColision(nextposition, Collision::ENEMIES);
+	aux = game->CheckColision(nextposition, Collision::PLAYER);
 	if (aux.vertical != 0)
 	{
+		if (aux.vertical == aux.horizontal && aux.vertical == -100)
+		{
+			if (jump == 0)
+			{
+				aux.vertical = ((nextposition.y / 32) + 1) * 32 - nextposition.y;
+				isGrounded = true;
+			}
+			else
+			{
+				aux.vertical = ((nextposition.y / 32) - 1) - nextposition.y;
+				jump = 0;
+			}
+			
+		}
 		igualaMovimientoy(aux.vertical);
 	}
+	 
 	else
 	{
 		VueltaPosiciony();
 	}
 	mueveX();
-	aux = game->CheckColision(nextposition, Collision::ENEMIES);
+	aux = game->CheckColision(nextposition, Collision::PLAYER);
 	if (aux.horizontal != 0)
-	{
-		igualaMovimiento(aux.vertical);
+	{	
+		if(aux.horizontal==aux.vertical&&aux.horizontal==-100)
+		{
+		if (direccion==1)
+		{
+			aux.horizontal = -(((nextposition.x / 32) + 1) * 32 - nextposition.x)/32;
+			cout << aux.horizontal;
+		}
+		else
+		{
+			aux.horizontal = (((nextposition.x / 32) + 1) * 32 - nextposition.x)/32;
+		}
+		}
+		igualaMovimiento(aux.horizontal);
 	}
 	else
 	{
@@ -178,8 +205,9 @@ void player::handleEvents(SDL_Event event)
 void player::igualaMovimiento(int i)
 {
 	mapPosition.x += i;
-	screenPosition.x = mapPosition.x - game->getMapOffset();
-	nextposition.x = mapPosition.x;
+	screenPosition.x +=i;
+	nextposition.x = mapPosition.x*32;
+	cout << nextposition.x;
 }
 void player::VueltaPosicionx()
 {
@@ -207,6 +235,7 @@ void player::VueltaPosicionx()
 void player::VueltaPosiciony()
 {
 	mapPosition.y = screenPosition.y = nextposition.y / 32;
+	
 	
 }
 void player::mueveX()
@@ -257,7 +286,8 @@ void player::mueveX()
 	}
 	void player::igualaMovimientoy(int i)
 	{
-		mapPosition.y += i;
+		mapPosition.y += i/32;
 		screenPosition.y = mapPosition.y;
-		nextposition.y = mapPosition.y;
+		nextposition.y = mapPosition.y*32;
+		
 	}

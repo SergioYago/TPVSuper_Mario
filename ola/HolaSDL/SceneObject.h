@@ -22,6 +22,11 @@ public:
 	void setListAnchor(GameList<SceneObject>::anchor anchor) {
 		this->anchor = std::move(anchor);
 	}
+	
+	SDL_Rect getCollisionRect()
+	{
+		return colision;
+	}
 	//virtual SceneObject* clone() const = 0;
 };
 

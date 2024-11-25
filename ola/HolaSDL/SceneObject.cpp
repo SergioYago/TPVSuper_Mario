@@ -7,7 +7,8 @@ SceneObject::SceneObject(Game* g, Point2D pos, int w, int h, bool p)
 	position = pos;
 	width = w;
 	height = h;
-	colision = { pos.x, pos.y, w, h };
+	colision = { pos.x*32, pos.y*32, w, h };
 	velocity = { 0, 0 };
 	player = p;
 }
+
