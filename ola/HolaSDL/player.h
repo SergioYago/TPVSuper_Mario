@@ -45,8 +45,8 @@ public:
 	
 	void mueveX();
 	void mueveY();
-	void igualaMovimiento();
-	void igualaMovimientoy();
+	void igualaMovimiento(int i);
+	void igualaMovimientoy(int i);
 	void VueltaPosicionx();
 	void VueltaPosiciony();
 	int GetJump() { return jump; }

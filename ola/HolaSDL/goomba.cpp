@@ -24,6 +24,28 @@ goomba::goomba(std::istream& is, Game* g) : Enemy(g)
 void goomba::update()
 {
 
+	Collision aux;
+	mueveY();
+
+	aux = game->CheckColision(nextposition, Collision::ENEMIES);
+	if (aux.vertical != 0)
+	{
+		igualaY(aux.vertical);
+	}
+	else
+	{
+		VueltaY();
+	}
+	mueveX();
+	aux = game->CheckColision(nextposition, Collision::ENEMIES);
+	if (aux.horizontal != 0)
+	{
+		igualaX(aux.vertical);
+	}
+	else
+	{
+		VueltaX();
+	}
 }
 
 
@@ -84,14 +106,15 @@ void goomba::mueveX()
 		}
 	}
 }
-void goomba::igualaY()
+void goomba::igualaY(int i)
 {
+	position.y += i;
 	nextposition.y = position.y;
 }
-void goomba::igualaX()
+void goomba::igualaX(int i)
 {
-	if (velocity.x == -1) {  }
-	else {   }
+	position.x += i;
+	nextposition.x = position.x;
 }
 void goomba::VueltaY()
 {

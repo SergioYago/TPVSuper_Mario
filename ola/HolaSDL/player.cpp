@@ -50,26 +50,29 @@ void player::hit()
 // Además, si colisiona con un enemigo, llama a hit(); si colisiona con una moneda, incrementa monedas; si colisiona con una seta, incrementa aspecto.
 void player::update()
 {
-	
-	int mapoffset = game->getMapOffset();
+	Collision aux;
 	mueveY();
-	if (game->checkMapColision(nextposition)||game->checkBlockColision('p', nextposition))
+
+	aux = game->CheckColision(nextposition, Collision::ENEMIES);
+	if (aux.vertical != 0)
+	{
+		igualaMovimientoy(aux.vertical);
+	}
+	else
 	{
 		VueltaPosiciony();
-		if (jump <= 0) { isGrounded = true; }
-		else { SetJump(0); }
-	}
-	else 
-	{
-		igualaMovimientoy();
-		isGrounded = false;
 	}
 	mueveX();
-	if (game->checkMapColision(nextposition)||game->checkBlockColision('p',nextposition))
+	aux = game->CheckColision(nextposition, Collision::ENEMIES);
+	if (aux.horizontal != 0)
+	{
+		igualaMovimiento(aux.vertical);
+	}
+	else
 	{
 		VueltaPosicionx();
 	}
-	else { igualaMovimiento(); }
+	
 	//si colisiona con un enemigo, hit();
 	//si colisiona con una moneda, monedas++;
 	//si colisiona con una seta, aspecto++;
@@ -172,36 +175,39 @@ void player::handleEvents(SDL_Event event)
 		break;
 	}
 }
-void player::igualaMovimiento()
+void player::igualaMovimiento(int i)
+{
+	mapPosition.x += i;
+	screenPosition.x = mapPosition.x - game->getMapOffset();
+	nextposition.x = mapPosition.x;
+}
+void player::VueltaPosicionx()
 {
 	float mapoffset = game->getMapOffset();
 	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH / 64)
 	{
 
 		screenPosition.x++; ;
-		mapPosition.x = nextposition.x/32 ;
+		mapPosition.x = nextposition.x / 32;
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
-		
-		screenPosition.x -- ;
-		mapPosition.x = nextposition.x/32 ;
+
+		screenPosition.x--;
+		mapPosition.x = nextposition.x / 32;
 	}
 
 	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
 	else if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
 	{
-		mapPosition.x=nextposition.x/32;
+		mapPosition.x = nextposition.x / 32;
 	}
 	
 }
-void player::VueltaPosicionx()
-{
-	nextposition.x= mapPosition.x*32;
-}
 void player::VueltaPosiciony()
 {
-	nextposition.y-=8;
+	mapPosition.y = screenPosition.y = nextposition.y / 32;
+	
 }
 void player::mueveX()
 {
@@ -249,7 +255,9 @@ void player::mueveX()
 		else { nextposition.y += 8; }
 		
 	}
-	void player::igualaMovimientoy()
+	void player::igualaMovimientoy(int i)
 	{
-		mapPosition.y = screenPosition.y = nextposition.y/32;
+		mapPosition.y += i;
+		screenPosition.y = mapPosition.y;
+		nextposition.y = mapPosition.y;
 	}

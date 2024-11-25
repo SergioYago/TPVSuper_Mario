@@ -87,6 +87,7 @@
     <ClInclude Include="bloque.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="coin.h" />
+    <ClInclude Include="collision.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="gameList.h" />

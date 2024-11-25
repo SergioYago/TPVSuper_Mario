@@ -18,8 +18,8 @@ public:
 	void update() override;
 	void mueveX();
 	void mueveY();
-	void igualaX();
-	void igualaY();
+	void igualaX(int i);
+	void igualaY(int i);
 	void VueltaX();
 	void VueltaY();
 	void ChangeDirection();

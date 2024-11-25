@@ -12,20 +12,23 @@ koopa::koopa(Game* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g, 
 
 void koopa::update()
 {
+	Collision aux;
 	mueveY();
-	if(game->checkBlockColision('k',nextposition)||game->checkMapColision(nextposition)||game->checkGoombaCollision(nextposition))
+	
+	aux = game->CheckColision(nextposition,Collision::ENEMIES);
+	if(aux.vertical!=0)
 	{
-		igualaY();
+		igualaY(aux.vertical);
 	}
 	else
 	{
 		VueltaY();
 	}
 	mueveX();
-	if(game->checkBlockColision('k',nextposition)||game->checkGoombaCollision(nextposition)||game->checkMapColision(nextposition))
+	aux = game->CheckColision(nextposition, Collision::ENEMIES);
+	if (aux.horizontal != 0)
 	{
-		ChangeDirection();
-		igualaX();
+		igualaX(aux.vertical);
 	}
 	else
 	{
@@ -90,13 +93,16 @@ void koopa::mueveX()
 		}
 	}
 }
-void koopa::igualaY()
+void koopa::igualaY(int i)
 {
-	nextposition.y = position.y;
+	nextposition.y = position.y+i;
+	position.y += i;
 }
-void koopa::igualaX()
+void koopa::igualaX(int i )
 {
-	nextposition.x = position.x;
+	
+	nextposition.x = position.x+i;
+	position.x += i;
 }
 void koopa::VueltaY()
 {
@@ -104,7 +110,7 @@ void koopa::VueltaY()
 }
 void koopa::VueltaX()
 {
-
+	position.x = nextposition.x;
 }
 void koopa::ChangeDirection()
 {

@@ -206,11 +206,13 @@ Game::checkEntitieColision(SDL_Rect collider)
 {	
 	Point2D aux;
 	bool colision = false;
+	SDL_Rect aux2;
 	for(auto entitie:entities)
 	{
-	colision= SDL_HasIntersection(&entitie->getCollisionRect(),&collider);
+		aux2 = entitie->getCollisionRect();
+	colision= SDL_HasIntersection(&aux2,&collider);
 	//se hace esto para que no compruebe consigo mismo
-	if(colision&& &collider==&entitie->getCollisionRect())
+	if(colision&& &collider==&aux2)
 	{
 		colision = false;
 	}
@@ -232,7 +234,7 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 	{
 		if(tilemap->checkMapColision(rect,true))
 		{
-			aux.horizontal = aux.vertical = 0;
+			aux.horizontal = aux.vertical = -1;
 		}
 		else 
 		{
@@ -240,6 +242,7 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 			 direction =checkEntitieColision(rect);
 			 if (direction.x != 0 && direction.y != 0)
 			 {
+				 
 				 aux.horizontal = direction.x;
 				 aux.vertical = direction.y;
 			 }
@@ -250,7 +253,8 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 	{
 		if (tilemap->checkMapColision(rect, true))
 		{
-			aux.horizontal = aux.vertical = 0;
+			aux.horizontal = aux.vertical = -1;
+			//ns cómo ponerlos
 		}
 		else
 		{
@@ -264,7 +268,24 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 		}
 		
 	}
-	else if(target==3){}
+	else if(target==3)
+	{
+		if (tilemap->checkMapColision(rect, true))
+		{
+			aux.horizontal = aux.vertical = -1;
+			//ns cómo ponerlos
+		}
+		else
+		{
+			Point2D direction;
+			direction = checkEntitieColision(rect);
+			if (direction.x != 0 && direction.y != 0)
+			{
+				aux.horizontal = direction.x;
+				aux.vertical = direction.y;
+			}
+		}
+	}
 	//mira el mapa y las entidades, pero entonces 
 	// tenemos que hacer que el struct de target apunte a bot
 	//chequea enemigos, solo para player
