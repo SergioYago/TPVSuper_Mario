@@ -85,12 +85,12 @@ void player::update()
 		{
 		if (direccion==1)
 		{
-			aux.horizontal = -(((nextposition.x / 32) + 1) * 32 - nextposition.x)/32;
-			cout << aux.horizontal;
+			aux.horizontal = -(nextposition.x + 30 - nextposition.x)/32;
+			
 		}
 		else
 		{
-			aux.horizontal = (((nextposition.x / 32) + 1) * 32 - nextposition.x)/32;
+			aux.horizontal = (nextposition.x -30 - nextposition.x)/32;
 		}
 		}
 		igualaMovimiento(aux.horizontal);
@@ -207,7 +207,7 @@ void player::igualaMovimiento(int i)
 	mapPosition.x += i;
 	screenPosition.x +=i;
 	nextposition.x = mapPosition.x*32;
-	cout << nextposition.x;
+	
 }
 void player::VueltaPosicionx()
 {
@@ -235,7 +235,7 @@ void player::VueltaPosicionx()
 void player::VueltaPosiciony()
 {
 	mapPosition.y = screenPosition.y = nextposition.y / 32;
-	
+	isGrounded = false;
 	
 }
 void player::mueveX()

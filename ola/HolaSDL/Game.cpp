@@ -101,7 +101,7 @@ Game::Game()
 		}
 	}
 
-	mapaActual = 2;
+	mapaActual = 1;
 	mapa1 = "../assets/maps/world1.csv";
 	mapa2 = "../assets/maps/world2.csv";
 	if (mapaActual == 1)
