@@ -28,12 +28,13 @@ class player:public SceneObject
 public:
 	bool hitted = false;
 	SDL_Rect nextposition;
-	player(std::istream& is, Game* g);
-	~player();
+	player(Game* g,Point2D pos, int w, int h, bool p);
+	//~player();
 	void render() const override;
 	void update()override;
-	void hit() ;
+	void hit(SDL_Rect ataque, bool jugador) override ;
 	void handleEvents(SDL_Event event);
+	void updateAnim();
 	//getter position
 	Vector2D<float> getMapPosition() { return mapPosition; }
 	Vector2D<float> getScreenPosition() { return screenPosition; }

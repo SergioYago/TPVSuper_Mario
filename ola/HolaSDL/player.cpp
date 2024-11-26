@@ -6,15 +6,16 @@
 //constructor de player, recibe un std::istream y un puntero a Game, con el que inicializa el atributo game. 
 // Lee de is la posición del jugador y sus vidas y las almacena en el atributo position y vidas. 
 // Inicializa el atributo texture con la textura del jugador.
-player::player(std::istream& is, Game* g)
-	:game(g)
+player::player(Game* g, Point2D pos, int w, int h, bool p) : SceneObject(g, pos, w, h, p)
 {
 	game = g;
-	is >> screenPosition.x >> screenPosition.y >> vidas;
+	//is >> screenPosition.x >> screenPosition.y >> vidas;
 	peque = game->getTexture(Game::PLAYER);
 	grandote = game->getTexture(Game::GRANDE);
 	direccion = 0;
 	aspecto = 0;
+	screenPosition.x = pos.x;
+	screenPosition.y = pos.y;
 	screenPosition.y=6;
 	mapPosition = screenPosition;
 	nextposition.x = screenPosition.x*game->TILE_SIDE ;
@@ -28,7 +29,7 @@ player::player(std::istream& is, Game* g)
 	
 }
 
-void player::hit()
+void player::hit(SDL_Rect ataque, bool jugador)
 {
 	SDL_Rect aux;
 	aux.x = screenPosition.x * game->TILE_SIDE;
@@ -50,6 +51,7 @@ void player::hit()
 // Además, si colisiona con un enemigo, llama a hit(); si colisiona con una moneda, incrementa monedas; si colisiona con una seta, incrementa aspecto.
 void player::update()
 {
+	updateAnim();
 	Collision aux;
 	mueveY();
 
@@ -113,7 +115,7 @@ void player::update()
 }
 
 //renderiza al jugador en la pantalla
-void player::render()
+void player::render() const
 {
 	
 	SDL_Rect destRect;
@@ -133,9 +135,6 @@ void player::render()
 			peque->renderFrame(destRect, 0, 0);
 		}
 		else {
-
-			if (anim < 4) { anim++; }
-			else if (anim == 4) { anim = 2; }
 			peque->renderFrame(destRect, 0, anim);
 		}
 	}
@@ -149,13 +148,15 @@ void player::render()
 			grandote->renderFrame(destRect, 0, 0);
 		}
 		else {
-
-			if (anim < 4) { anim++; }
-			else if (anim == 4) { anim = 2; }
 			grandote->renderFrame(destRect, 0, anim);
 		}
 	}
 
+}
+
+void player::updateAnim() {
+	if(anim < 4) { anim++; }
+	else if (anim == 4) { anim = 2; }
 }
 
 

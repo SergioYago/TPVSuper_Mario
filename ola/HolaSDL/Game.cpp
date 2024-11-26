@@ -80,7 +80,9 @@ Game::Game()
 	{
 		istringstream is(line.substr(1));
 		if (line[0] == 'M') {
-			mario = new player(is, this);
+			Point2D pos;
+			is >> pos.x >> pos.y;
+			mario = new player(this, pos, TILE_SIDE, TILE_SIDE,true);
 			entities.push_back(mario);
 		}
 		else if (line[0] == 'B') {
@@ -176,7 +178,7 @@ Game::render() const
 	// Pinta los objetos del juego
 
 	tilemap->renderTileMap();
-	mario->render();
+	//mario->render();
 
 
 	// renderiza las entidades de la lista de entidades
@@ -294,7 +296,7 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 void
 Game::update()
 {
-	mario->update();
+	//mario->update();
 	for(auto entitie:entities)
 	{
 		entitie->update();
