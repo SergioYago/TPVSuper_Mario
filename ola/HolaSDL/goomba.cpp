@@ -7,7 +7,7 @@ goomba::goomba(Game* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g
 	texture = game->getTexture(Game::TextureName::GOOMBA);
 	position.x = pos.x * 32;
 	position.y = pos.y * 32;
-	nextposition = { pos.x, pos.y, w, h };
+	nextposition = { position.x, position.y-64, w, h };
 	velocity.x = 1;
 
 }
@@ -34,6 +34,7 @@ void goomba::update()
 	aux = game->CheckColision(nextposition, Collision::ENEMIES);
 	if (aux.vertical != 0)
 	{
+		aux.vertical = 0;
 		igualaY(aux.vertical);
 	}
 	else
@@ -44,7 +45,7 @@ void goomba::update()
 	aux = game->CheckColision(nextposition, Collision::ENEMIES);
 	if (aux.horizontal != 0)
 	{
-		igualaX(aux.vertical);
+		ChangeDirection();
 	}
 	else
 	{
@@ -104,9 +105,9 @@ void goomba::mueveX()
 			ChangeDirection();
 		}
 		else {
-			nextposition.x -= velocity.x;
+			nextposition.x += velocity.x;
 
-			position.x -= velocity.x;
+			position.x += velocity.x;
 		}
 	}
 }
