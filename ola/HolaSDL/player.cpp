@@ -53,7 +53,7 @@ void player::update()
 	Collision aux;
 	mueveY();
 
-	aux = game->CheckColision(nextposition, Collision::PLAYER);
+		aux = game->CheckColision(nextposition, Collision::PLAYER);
 	if (aux.vertical != 0)
 	{
 		if (aux.vertical == aux.horizontal && aux.vertical == -100)

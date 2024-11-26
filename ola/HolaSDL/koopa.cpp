@@ -8,7 +8,7 @@ koopa::koopa(Game* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g, 
 	texture = game->getTexture(Game::TextureName::KOOPA);
 	position.x = pos.x * 32;
 	position.y = pos.y * 32;
-	nextposition = { pos.x, pos.y, w, h };
+	nextposition = { position.x, position.y, w, h };
 }
 
 
@@ -26,7 +26,7 @@ void koopa::update()
 	{
 		VueltaY();
 	}
-	mueveX();
+	/*mueveX();
 	aux = game->CheckColision(nextposition, Collision::ENEMIES);
 	if (aux.horizontal != 0)
 	{
@@ -35,7 +35,7 @@ void koopa::update()
 	else
 	{
 		VueltaX();
-	}
+	}*/
 }
 
 
