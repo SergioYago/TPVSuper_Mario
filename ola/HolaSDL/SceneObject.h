@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "vector2D.h"
+#include "Vector2D.h"
 #include "Texture.h"
 #include "gameList.h"
 // abstract class SceneObject hereda de GameObject y luego todas las clases que heredan de SceneObject
