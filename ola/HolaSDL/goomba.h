@@ -9,7 +9,7 @@ class Game;
 class goomba : public Enemy
 {
 	Texture* texture;
-	SDL_Rect nextposition;
+	SDL_Rect colision;
 public:
 	
 	goomba(Game* g, Point2D pos, int w, int h, bool p, int points);
@@ -23,7 +23,7 @@ public:
 	void VueltaX();
 	void VueltaY();
 	void ChangeDirection();
-	SDL_Rect* GetNextPosition() { return &nextposition; }
+	SDL_Rect* getCollisionRect() { return &colision; }
 	//void igualaMovimiento();
 	//void VueltaPosicion();
 };

@@ -81,6 +81,7 @@ Game::Game()
 		istringstream is(line.substr(1));
 		if (line[0] == 'M') {
 			mario = new player(is, this);
+			entities.push_back(mario);
 		}
 		else if (line[0] == 'B') {
 			Point2D pos;
