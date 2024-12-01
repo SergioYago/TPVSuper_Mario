@@ -45,7 +45,7 @@ void goomba::update()
 	aux = game->CheckColision(colision, Collision::ENEMIES);
 	if (aux.horizontal != 0)
 	{
-		ChangeDirection();
+			ChangeDirection();
 	}
 	else
 	{

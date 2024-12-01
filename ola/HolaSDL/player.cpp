@@ -72,6 +72,11 @@ void player::update()
 			}
 			
 		}
+		else
+		{
+			if (jump == 0) { isGrounded = true; }
+			else { jump = 0; }
+		}
 		igualaMovimientoy(aux.vertical);
 	}
 	 
@@ -82,20 +87,21 @@ void player::update()
 	mueveX();
 	aux = game->CheckColision(nextposition, Collision::PLAYER);
 	if (aux.horizontal != 0)
-	{	
-		if(aux.horizontal==aux.vertical&&aux.horizontal==-100)
-		{
-		if (direccion==1)
-		{
-			aux.horizontal = -(nextposition.x + 30 - nextposition.x)/32;
-			
+	{
+		if (aux.vertical == aux.horizontal && aux.vertical == -100){
+			if (direccion == 1)
+			{
+				aux.horizontal = -(nextposition.x + 30 - nextposition.x) / 32;
+
+			}
+			else
+			{
+				aux.horizontal = (nextposition.x - 30 - nextposition.x) / 32;
+			}
 		}
-		else
-		{
-			aux.horizontal = (nextposition.x -30 - nextposition.x)/32;
-		}
-		}
-		igualaMovimiento(aux.horizontal);
+		else { if (direccion < 0) { aux.horizontal = -aux.horizontal; } }
+	
+			igualaMovimiento(aux.horizontal);
 	}
 	else
 	{
@@ -205,8 +211,8 @@ void player::handleEvents(SDL_Event event)
 }
 void player::igualaMovimiento(int i)
 {
-	mapPosition.x += i;
-	screenPosition.x +=i;
+	mapPosition.x += i/32;
+	screenPosition.x +=i/32;
 	nextposition.x = mapPosition.x*32;
 	
 }

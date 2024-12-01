@@ -191,16 +191,8 @@ Game::render() const
 
 	SDL_RenderPresent(renderer);
 }
-Point2D
-Game::checkMapColision( SDL_Rect collider)
-{
-	Point2D aux;
-	bool colision =tilemap->checkMapColision(collider,true);
-	//ni idea de cómo devolver el valor adecuado dependiendo de distancia
-	aux.x = 0;
-	aux.y = 0;
-	return aux;
-}
+
+
 Point2D
 Game::checkEntitieColision(SDL_Rect collider)
 {	
@@ -240,7 +232,7 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 		{
 			Point2D direction;
 			 direction =checkEntitieColision(rect);
-			 if (direction.x != 0 && direction.y != 0)
+			 if (direction.x != 0 || direction.y != 0)
 			 {
 				 
 				 aux.horizontal = direction.x;
@@ -260,10 +252,11 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 		{
 			Point2D direction;
 			direction = checkEntitieColision(rect);
-			if (direction.x != 0 && direction.y != 0)
+			if (direction.x != 0 || direction.y != 0)
 			{
 				aux.horizontal = direction.x;
 				aux.vertical = direction.y;
+				
 			}
 		}
 		
@@ -278,11 +271,12 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 		else
 		{
 			Point2D direction;
-			direction = checkEntitieColision(rect);
-			if (direction.x != 0 && direction.y != 0)
+				direction = checkEntitieColision(rect);
+			if (direction.x != 0 || direction.y != 0)
 			{
-				aux.horizontal = direction.x;
+				aux.horizontal = -30;
 				aux.vertical = direction.y;
+				cout << "true";
 			}
 		}
 	}
