@@ -90,17 +90,17 @@ Game::Game()
 			is >> pos.x >> pos.y;
 			string tipo;
 			is >> tipo;
-			entities.push_back(new bloque(this, pos, TILE_SIDE, TILE_SIDE, false,tipo));
+			entities.push_back(new bloque(this, is));
 		}
 		else if (line[0] == 'G') {
 			Point2D pos;
 			is >> pos.x >> pos.y;
-			entities.push_back(new goomba(this, pos, TILE_SIDE, TILE_SIDE, false, 50));
+			entities.push_back(new goomba(this, is));
 		}
 		else if (line[0] == 'K') {
 			Point2D pos;
 			is >> pos.x >> pos.y;
-			entities.push_back(new koopa(this, pos, TILE_SIDE, TILE_SIDE, false, 50));
+			entities.push_back(new koopa(this,is));
 		}
 	}
 

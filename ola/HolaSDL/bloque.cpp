@@ -7,9 +7,52 @@
 // Si el tipo de bloque es B es ladrillo y no contiene nada.
 // Si el tipo de bloque es 0 es vacío y no contiene nada. 
 // Si el tipo de bloque es H es oculto y contiene un potenciador o moneda.
-bloque::bloque(Game* g, Point2D pos, int w, int h, bool p, string tipoAcc) :SceneObject(g, pos, w, h, p), anim(0)
+bloque::bloque(Game* g, std::istream& is) :SceneObject(g, is), anim(0)
 
 {
+	game = g;
+	// >> position.x >> position.y;
+	char tipoBl;
+	is >> tipoBl;
+	if (tipoBl == '?') {
+		tipoBloque = sorpresa;
+		char accionBl;
+		is >> accionBl;
+		if (accionBl == 'P') {
+			accionBloque = potenciador;
+		}
+		else if (accionBloque == 'C') {
+			accionBloque = moneda;
+		}
+	}
+	else if (tipoBl == 'B') {
+		tipoBloque = ladrillo;
+		accionBloque = nada;
+	}
+	else if (tipoBl == '0') {
+		tipoBloque = vacio;
+		accionBloque = nada;
+	}
+	else if (tipoBl == 'H') {
+		tipoBloque = oculto;
+		char accionBl;
+		is >> accionBl;
+		if (accionBl == 'P') {
+			accionBloque = potenciador;
+		}
+		else if (accionBl == 'C') {
+			accionBloque = moneda;
+		}
+	}
+	position.x = position.x * 32;
+	colision.x = position.x;
+	position.y = position.y * 32;
+	colision.y = position.y;
+	colision.w = colision.h = game->TILE_SIDE;
+	texture = game->getTexture(Game::BLOQUE);
+	anim = 0;
+
+	/*
 	position.x = pos.x*32;
 	position.y = pos.y * 32;
 	colision = { position.x , position.y, w, h };
@@ -45,6 +88,7 @@ bloque::bloque(Game* g, Point2D pos, int w, int h, bool p, string tipoAcc) :Scen
 
 	texture = game->getTexture(Game::BLOQUE);
 	anim = 0;
+	*/
 }
  bloque::~bloque()
 {

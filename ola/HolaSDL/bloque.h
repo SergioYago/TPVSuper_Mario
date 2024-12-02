@@ -17,7 +17,7 @@ class bloque : public SceneObject
 	tipo tipoBloque;
 	accion accionBloque;
 public:
-	bloque(Game* g, Point2D pos, int w, int h, bool p, string tipoAcc);
+	bloque(Game* g, std::istream& is);
 	~bloque();
 	void render() const override;
 	void update() override;
