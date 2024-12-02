@@ -1,14 +1,15 @@
 #include "SceneObject.h"
 #include "gameList.h"
+#include "Game.h"
 
-SceneObject::SceneObject(Game* g, Point2D pos, int w, int h, bool p)
+SceneObject::SceneObject(Game* g, std::istream& is)
 	:GameObject(g)
 {
-	position = pos;
-	width = w;
-	height = h;
-	colision = { pos.x*32, pos.y*32, w, h };
+	is >> position.x >> position.y;
+	width = g->TILE_SIDE;
+	height = g->TILE_SIDE;
+	colision = { position.x*g->TILE_SIDE, position.y*g->TILE_SIDE, width, height };
 	velocity = { 0, 0 };
-	player = p;
+	isPlayer = false;
 }
 

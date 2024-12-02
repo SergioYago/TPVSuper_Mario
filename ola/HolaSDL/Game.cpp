@@ -82,7 +82,7 @@ Game::Game()
 		if (line[0] == 'M') {
 			Point2D pos;
 			is >> pos.x >> pos.y;
-			mario = new player(this, pos, TILE_SIDE, TILE_SIDE,true);
+			mario = new player(this, is);
 			entities.push_back(mario);
 		}
 		else if (line[0] == 'B') {

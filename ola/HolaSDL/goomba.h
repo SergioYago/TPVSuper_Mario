@@ -9,10 +9,9 @@ class Game;
 class goomba : public Enemy
 {
 	Texture* texture;
-	SDL_Rect colision;
 public:
 	
-	goomba(Game* g, Point2D pos, int w, int h, bool p, int points);
+	goomba(Game* g, std::istream& is);
 	//~goomba();
 	void render() const override;
 	void update() override;

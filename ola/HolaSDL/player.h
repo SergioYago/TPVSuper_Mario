@@ -28,7 +28,7 @@ class player:public SceneObject
 public:
 	bool hitted = false;
 	SDL_Rect colision;
-	player(Game* g,Point2D pos, int w, int h, bool p);
+	player(Game* g, std::istream& is);
 	//~player();
 	void render() const override;
 	void update()override;

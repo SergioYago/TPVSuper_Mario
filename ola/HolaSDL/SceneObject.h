@@ -5,6 +5,7 @@
 #include "gameList.h"
 // abstract class SceneObject hereda de GameObject y luego todas las clases que heredan de SceneObject
 
+class Game;
 class SceneObject : public GameObject
 {
 protected:
@@ -12,11 +13,11 @@ protected:
 	int width, height;
 	SDL_Rect colision;
 	Point2D velocity;
-	bool player;
+	bool isPlayer;
 	GameList<SceneObject>::anchor anchor;
 
 public:
-	SceneObject(Game* g, Point2D pos, int w, int h, bool p);
+	SceneObject(Game* g, std::istream& is);
 	virtual void hit(SDL_Rect ataque, bool jugador) = 0;
 	virtual void render() const = 0;
 	virtual void update() = 0;

@@ -12,7 +12,7 @@ class koopa : public Enemy
 
 public:
 	SDL_Rect nextposition;
-	koopa(Game* g, Point2D pos, int w, int h, bool p, int points);
+	koopa(Game* g, std::istream& is);
 	//~koopa();
 	void render() const override;
 	void update() override;

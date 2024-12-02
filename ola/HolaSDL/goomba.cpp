@@ -2,12 +2,9 @@
 #include "Game.h"
 #include <sstream>
 
-goomba::goomba(Game* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g, pos, w, h, p, points)
+goomba::goomba(Game* g, std::istream& is) : Enemy(g,is)
 {
 	texture = game->getTexture(Game::TextureName::GOOMBA);
-	position.x = pos.x * 32;
-	position.y = pos.y * 32;
-	colision = { position.x, position.y-64, w, h };
 	velocity.x = 1;
 
 }

@@ -6,7 +6,7 @@
 //constructor de player, recibe un std::istream y un puntero a Game, con el que inicializa el atributo game. 
 // Lee de is la posición del jugador y sus vidas y las almacena en el atributo position y vidas. 
 // Inicializa el atributo texture con la textura del jugador.
-player::player(Game* g, Point2D pos, int w, int h, bool p) : SceneObject(g, pos, w, h, p)
+player::player(Game* g, std::istream& is) : SceneObject(g,is)
 {
 	game = g;
 	//is >> screenPosition.x >> screenPosition.y >> vidas;
@@ -14,19 +14,40 @@ player::player(Game* g, Point2D pos, int w, int h, bool p) : SceneObject(g, pos,
 	grandote = game->getTexture(Game::GRANDE);
 	direccion = 0;
 	aspecto = 0;
-	screenPosition.x = pos.x;
-	screenPosition.y = pos.y-1;
+	screenPosition.x = position.x;
+	screenPosition.y = position.y-1;
 	mapPosition = screenPosition;
-	colision.x = screenPosition.x*game->TILE_SIDE ;
-	colision.y = screenPosition.y*game->TILE_SIDE ;
-	colision.w = game->TILE_SIDE;
-	colision.h = game->TILE_SIDE;
 
 	isGrounded = false;
 	jump = 0;
 	anim = 2;
+	isPlayer = true;
 	
 }
+
+/*
+player::player(std::istream& is, Game* g)
+	:game(g)
+{
+	game = g;
+	is >> screenPosition.x >> screenPosition.y >> vidas;
+	peque = game->getTexture(Game::PLAYER);
+	grandote = game->getTexture(Game::GRANDE);
+	direccion = 0;
+	aspecto = 0;
+	screenPosition.y = 6;
+	mapPosition = screenPosition;
+	nextposition.x = screenPosition.x * game->TILE_SIDE;
+	nextposition.y = screenPosition.y * game->TILE_SIDE;
+	nextposition.w = game->TILE_SIDE;
+	nextposition.h = game->TILE_SIDE;
+
+	isGrounded = false;
+	jump = 0;
+	anim = 2;
+
+}
+*/
 
 void player::hit(SDL_Rect ataque, bool jugador)
 {

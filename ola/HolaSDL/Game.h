@@ -72,7 +72,7 @@ public:
 	static constexpr uint WIN_WIDTH = 576;
 	static constexpr uint WIN_HEIGHT = 512;
 	static constexpr uint FRAME_RATE = 50;
-	static constexpr uint TILE_SIDE = 32;
+	static constexpr int TILE_SIDE = 32;
 	Game();
 	~Game();
 	int getMapOffset();
