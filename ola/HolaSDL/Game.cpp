@@ -170,7 +170,7 @@ Game::render() const
 	if (mapaActual == 1){
 	SDL_SetRenderDrawColor(renderer,100,100,500,100);
 	}
-	else
+	else if (mapaActual == 2)
 	{
 		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	}
