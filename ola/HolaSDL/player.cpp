@@ -15,13 +15,12 @@ player::player(Game* g, Point2D pos, int w, int h, bool p) : SceneObject(g, pos,
 	direccion = 0;
 	aspecto = 0;
 	screenPosition.x = pos.x;
-	screenPosition.y = pos.y;
-	screenPosition.y=6;
+	screenPosition.y = pos.y-1;
 	mapPosition = screenPosition;
-	nextposition.x = screenPosition.x*game->TILE_SIDE ;
-	nextposition.y = screenPosition.y*game->TILE_SIDE ;
-	nextposition.w = game->TILE_SIDE;
-	nextposition.h = game->TILE_SIDE;
+	colision.x = screenPosition.x*game->TILE_SIDE ;
+	colision.y = screenPosition.y*game->TILE_SIDE ;
+	colision.w = game->TILE_SIDE;
+	colision.h = game->TILE_SIDE;
 
 	isGrounded = false;
 	jump = 0;
@@ -55,19 +54,19 @@ void player::update()
 	Collision aux;
 	mueveY();
 
-		aux = game->CheckColision(nextposition, Collision::PLAYER);
+		aux = game->CheckColision(colision, Collision::PLAYER);
 	if (aux.vertical != 0)
 	{
 		if (aux.vertical == aux.horizontal && aux.vertical == -100)
 		{
 			if (jump == 0)
 			{
-				aux.vertical = ((nextposition.y / 32) + 1) * 32 - nextposition.y;
+				aux.vertical = ((colision.y / 32) + 1) * 32 - colision.y;
 				isGrounded = true;
 			}
 			else
 			{
-				aux.vertical = ((nextposition.y / 32) - 1) - nextposition.y;
+				aux.vertical = ((colision.y / 32) - 1) - colision.y;
 				jump = 0;
 			}
 			
@@ -84,19 +83,20 @@ void player::update()
 	{
 		VueltaPosiciony();
 	}
+	colision.y = colision.y;
 	mueveX();
-	aux = game->CheckColision(nextposition, Collision::PLAYER);
+	aux = game->CheckColision(colision, Collision::PLAYER);
 	if (aux.horizontal != 0)
 	{
 		if (aux.vertical == aux.horizontal && aux.vertical == -100){
 			if (direccion == 1)
 			{
-				aux.horizontal = -(nextposition.x + 30 - nextposition.x) / 32;
+				aux.horizontal = -(colision.x + 30 - colision.x) / 32;
 
 			}
 			else
 			{
-				aux.horizontal = (nextposition.x - 30 - nextposition.x) / 32;
+				aux.horizontal = (colision.x - 30 - colision.x) / 32;
 			}
 		}
 		else { if (direccion < 0) { aux.horizontal = -aux.horizontal; } }
@@ -107,7 +107,7 @@ void player::update()
 	{
 		VueltaPosicionx();
 	}
-	
+	colision.x = colision.x;
 	//si colisiona con un enemigo, hit();
 	//si colisiona con una moneda, monedas++;
 	//si colisiona con una seta, aspecto++;
@@ -213,7 +213,7 @@ void player::igualaMovimiento(int i)
 {
 	mapPosition.x += i/32;
 	screenPosition.x +=i/32;
-	nextposition.x = mapPosition.x*32;
+	colision.x = mapPosition.x*32;
 	
 }
 void player::VueltaPosicionx()
@@ -223,25 +223,25 @@ void player::VueltaPosicionx()
 	{
 
 		screenPosition.x++; ;
-		mapPosition.x = nextposition.x / 32;
+		mapPosition.x = colision.x / 32;
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
 
 		screenPosition.x--;
-		mapPosition.x = nextposition.x / 32;
+		mapPosition.x = colision.x / 32;
 	}
 
 	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
 	else if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
 	{
-		mapPosition.x = nextposition.x / 32;
+		mapPosition.x = colision.x / 32;
 	}
 	
 }
 void player::VueltaPosiciony()
 {
-	mapPosition.y = screenPosition.y = nextposition.y / 32;
+	mapPosition.y = screenPosition.y = colision.y / 32;
 	isGrounded = false;
 	
 }
@@ -251,19 +251,19 @@ void player::mueveX()
 	//de alguna manera no se mueve lo necesario para que llegue al abujero
 	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH / 64)
 	{
-		nextposition.x+=32;
+		colision.x+=32;
 
 
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
-		nextposition.x-=32;
+		colision.x-=32;
 
 
 	}
 	else if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
 	{
-		nextposition.x+=32;
+		colision.x+=32;
 
 
 	}
@@ -273,28 +273,28 @@ void player::mueveX()
 		// si no está en el suelo y ya ha llegado a la altura maxima del salto, empieza a caer
 		if (!isGrounded && jump == 0)
 		{
-			nextposition.y += 8;
+			colision.y += 8;
 		}
 		// si está en el suelo y se pulsa la tecla de salto, salta
 		else if (isGrounded && jump >= 1)
 		{
-			nextposition.y -= 8;
+			colision.y -= 8;
 			isGrounded = false;
 			jump--;
 		}
 		// si no está en el suelo y no ha llegado a la altura maxima del salto, sigue subiendo
 		else if (!isGrounded && jump > 0)
 		{
-			nextposition.y -= 8;
+			colision.y -= 8;
 			jump--;
 		}
-		else { nextposition.y += 8; }
+		else { colision.y += 8; }
 		
 	}
 	void player::igualaMovimientoy(int i)
 	{
 		mapPosition.y += i/32;
 		screenPosition.y = mapPosition.y;
-		nextposition.y = mapPosition.y*32;
+		colision.y = mapPosition.y*32;
 		
 	}

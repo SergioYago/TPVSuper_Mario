@@ -23,7 +23,7 @@ public:
 	void VueltaX();
 	void VueltaY();
 	void ChangeDirection();
-	SDL_Rect* getCollisionRect() { return &colision; }
+	
 	//void igualaMovimiento();
 	//void VueltaPosicion();
 };

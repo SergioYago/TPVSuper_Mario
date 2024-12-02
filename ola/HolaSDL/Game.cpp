@@ -202,13 +202,13 @@ Game::checkEntitieColision(SDL_Rect collider)
 	for(auto entitie:entities)
 	{
 		aux2 = entitie->getCollisionRect();
-	colision= SDL_HasIntersection(&aux2,&collider);
-	//se hace esto para que no compruebe consigo mismo
-	if(colision&& &collider==&aux2)
-	{
+		colision= SDL_HasIntersection(&aux2,&collider);
+		//se hace esto para que no compruebe consigo mismo
+		if(colision&& &collider==&aux2)
+		{
 		colision = false;
-	}
-	if (colision) 
+		}
+		if (colision) 
 		{
 		aux.x = entitie->getCollisionRect().x - collider.x;
 		aux.y = entitie->getCollisionRect().y - collider.y;
@@ -254,7 +254,7 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 			direction = checkEntitieColision(rect);
 			if (direction.x != 0 || direction.y != 0)
 			{
-				aux.horizontal = direction.x;
+				aux.horizontal = direction.x-32;
 				aux.vertical = direction.y;
 				
 			}
@@ -276,7 +276,7 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 			{
 				aux.horizontal = -30;
 				aux.vertical = direction.y;
-				cout << "true";
+				
 			}
 		}
 	}

@@ -27,7 +27,7 @@ class player:public SceneObject
 	
 public:
 	bool hitted = false;
-	SDL_Rect nextposition;
+	SDL_Rect colision;
 	player(Game* g,Point2D pos, int w, int h, bool p);
 	//~player();
 	void render() const override;
