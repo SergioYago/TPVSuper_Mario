@@ -336,3 +336,8 @@ bool Game::isSupermario() const
 	if (mario->getAspecto() >= 1) { return true; }
 	else { return false; }
 }
+void
+Game::connect(SDLEventCallback cb)
+{
+	callbacks.push_back(cb);
+}

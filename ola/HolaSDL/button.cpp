@@ -9,9 +9,9 @@ Button::Button(Game* game)
 	// Conectamos el handleEvent con el Game
 
 	// (1) Con expresión lambda (véase Counter)
-	game->connect([this](auto event) { handleEvent(event); });
+	//game->connect([this](auto event) { handleEvent(event); });
 	// (2) Con bind_front (C++20)
-	// game->connect(std::bind_front(&Button::handleEvent, this));
+	game->connect(std::bind_front(&Button::handleEvent, this));
 	// (3) Con bind (C++11), pero hay que utilizar std::placeholders
 	// game->connect(std::bind(&Button::handleEvent, this, std::placeholders::_1));
 	// (4) Con el envoltorio de métodos de method.h

@@ -7,6 +7,7 @@
 #include <SDL.h>
 
 // Nuestras clases
+#include <functional>
 #include "collision.h"
 #include "Texture.h"
 #include "TileMap.h"
@@ -18,6 +19,7 @@
 #include "gameList.h"
 
 using uint = unsigned int;
+using SDLEventCallback = std::function<void(const SDL_Event&)>;
 
 //
 // Clase que representa el juego y controla todos sus aspectos
@@ -44,6 +46,8 @@ private:
 	// Array con todas las texturas del juego
 	std::array<Texture*, NUM_TEXTURES> textures;
 	// Interruptor para terminar el juego
+	std::vector<SDLEventCallback> callbacks;
+
 	bool seguir;
 	int mapOffset;
 	string mapa1;
@@ -87,11 +91,12 @@ public:
 	void render()const;
 	void handleEvents();
 	void addEntity(SceneObject* entity);
+	void connect(SDLEventCallback cb);
 	void grantPoints(int points) { score += points;};
 	int getPoints() const { return score; };
 	bool isSupermario() const;
 	int getMapOffset() const { return mapOffset; };
-	
+	SDL_Renderer* getRenderer();
 	Texture* getTexture(TextureName name) const;
 
 	// Constante globales
@@ -104,4 +109,9 @@ inline Texture*
 Game::getTexture(TextureName name) const
 {
 	return textures[name];
+}
+inline SDL_Renderer*
+Game::getRenderer()
+{
+	return renderer;
 }
