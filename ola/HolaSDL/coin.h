@@ -1,5 +1,6 @@
 #pragma once
 #include "pickable.h"
+class Game;
 class coin : public pickable
 {
 public:

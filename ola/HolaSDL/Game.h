@@ -67,6 +67,7 @@ private:
 	GameList<SceneObject> entities;
 	// lista de objetos activos que se van a renderizar
 	GameList<SceneObject*> activeEntities;
+	
 
 public:
 	static constexpr uint WIN_WIDTH = 576;
