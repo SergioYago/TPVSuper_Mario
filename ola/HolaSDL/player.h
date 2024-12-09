@@ -33,7 +33,7 @@ public:
 	void render() const override;
 	void update()override;
 	void hit(SDL_Rect ataque, bool jugador) override ;
-	void handleEvents(SDL_Event event);
+	void handleEvents(const SDL_Event event);
 	void updateAnim();
 	//getter position
 	Vector2D<float> getMapPosition() { return mapPosition; }

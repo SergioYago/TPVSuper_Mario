@@ -171,7 +171,7 @@ void player::updateAnim() {
 // Si se pulsa la tecla de flecha derecha, la dirección del jugador se pone a 1. 
 // Tambien tiene en cuenta cuando se deja de pulsar una tecla, para que el jugador deje de moverse.
 
-void player::handleEvents(SDL_Event event)
+void player::handleEvents(const SDL_Event event)
 {
 	switch (event.type)
 	{
