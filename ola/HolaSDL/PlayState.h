@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 
 // Biblioteca estándar de C++
 #include <array>
@@ -24,7 +24,7 @@ using SDLEventCallback = std::function<void(const SDL_Event&)>;
 //
 // Clase que representa el juego y controla todos sus aspectos
 //
-class Game
+class PlayState
 {
 public:
 	// Identificadores de las texturas
@@ -71,20 +71,20 @@ private:
 	GameList<SceneObject> entities;
 	// lista de objetos activos que se van a renderizar
 	GameList<SceneObject*> activeEntities;
-	
+
 
 public:
 	static constexpr uint WIN_WIDTH = 576;
 	static constexpr uint WIN_HEIGHT = 512;
 	static constexpr uint FRAME_RATE = 50;
 	static constexpr uint TILE_SIDE = 32;
-	Game();
-	~Game();
+	PlayState();
+	~PlayState();
 	int getMapOffset();
 	void run();
 	void loose();
 	void update();
-	Point2D checkMapColision( SDL_Rect collider);
+	Point2D checkMapColision(SDL_Rect collider);
 	Point2D checkEntitieColision(SDL_Rect collider);
 	bool checkBlockColision(char name, SDL_Rect collider);
 	Collision CheckColision(SDL_Rect rect, Collision::Target target);
@@ -92,7 +92,7 @@ public:
 	void handleEvents();
 	void addEntity(SceneObject* entity);
 	void connect(SDLEventCallback cb);
-	void grantPoints(int points) { score += points;};
+	void grantPoints(int points) { score += points; };
 	int getPoints() const { return score; };
 	bool isSupermario() const;
 	int getMapOffset() const { return mapOffset; };
@@ -100,18 +100,18 @@ public:
 	Texture* getTexture(TextureName name) const;
 
 	// Constante globales
-	
-	
-	
+
+
+
 };
 
 inline Texture*
-Game::getTexture(TextureName name) const
+PlayState::getTexture(TextureName name) const
 {
 	return textures[name];
 }
 inline SDL_Renderer*
-Game::getRenderer()
+PlayState::getRenderer()
 {
 	return renderer;
-}*/
+}

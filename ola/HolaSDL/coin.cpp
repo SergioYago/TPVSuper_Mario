@@ -1,6 +1,6 @@
 #include "coin.h"
-#include "Game.h"
-coin::coin(Game* g, Point2D pos, int w, int h, bool p)
+#include "PlayState.h"
+coin::coin(PlayState* g, Point2D pos, int w, int h, bool p)
 	:pickable(g, pos, w, h, p, 1)
 {
 }

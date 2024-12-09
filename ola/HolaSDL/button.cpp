@@ -2,7 +2,7 @@
 #include "button.h"
 //#include "method.h"
 
-Button::Button(Game* game) 
+Button::Button(PlayState* game) 
   : game(game)
   , boundingBox{50, 50, 200, 100}
 {

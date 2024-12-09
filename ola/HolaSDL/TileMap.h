@@ -8,11 +8,11 @@
 #include <string>
 #include <sstream>
 using namespace std;
-class Game;
+class PlayState;
 class TileMap
 {
 private: 
-	Game* game;
+	PlayState* game;
 	vector<vector<int>> indices;  // atributo de TileMap
 	Texture* background;
 	const int TILE_MAP=211*32;
@@ -22,7 +22,7 @@ private:
 
 public:
 
-	TileMap(const string& filename, Game* g) ;
+	TileMap(const string& filename, PlayState* g) ;
 
 	// Carga el mapa de teselas desde un archivo CSV y lo guarda en indices (atributo de TileMap) 
  	

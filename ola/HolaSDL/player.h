@@ -7,7 +7,7 @@
 
 // Clase que representa al jugador. Como atributos tiene su posición actual, un puntero a su textura y un puntero al juego. Además , tiene un atributo para las vidas del jugador y para su dirección actual y su aspecto (Mario o super Mario). Tiene un método para renderizarlo, uno para actualizarlo (update), otro para restarle una vida (hit) y uno para los eventos de teclado (handleEvents).
 
-class Game;
+class PlayState;
 class player:public SceneObject
 {
 	Vector2D<float> mapPosition;
@@ -16,7 +16,7 @@ class player:public SceneObject
 
 	Texture* peque;
 	Texture* grandote;
-	Game* game;
+	PlayState* game;
 	int vidas;
 	int direccion;
 	int aspecto;
@@ -28,7 +28,7 @@ class player:public SceneObject
 public:
 	bool hitted = false;
 	SDL_Rect colision;
-	player(Game* g,Point2D pos, int w, int h, bool p);
+	player(PlayState* g,Point2D pos, int w, int h, bool p);
 	//~player();
 	void render() const override;
 	void update()override;

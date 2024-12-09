@@ -1,17 +1,17 @@
 
 #include "player.h"
-#include "Game.h"
+#include "PlayState.h"
 
 
-//constructor de player, recibe un std::istream y un puntero a Game, con el que inicializa el atributo game. 
+//constructor de player, recibe un std::istream y un puntero a PlayState, con el que inicializa el atributo game. 
 // Lee de is la posición del jugador y sus vidas y las almacena en el atributo position y vidas. 
 // Inicializa el atributo texture con la textura del jugador.
-player::player(Game* g, Point2D pos, int w, int h, bool p) : SceneObject(g, pos, w, h, p)
+player::player(PlayState* g, Point2D pos, int w, int h, bool p) : SceneObject(g, pos, w, h, p)
 {
 	game = g;
 	//is >> screenPosition.x >> screenPosition.y >> vidas;
-	peque = game->getTexture(Game::PLAYER);
-	grandote = game->getTexture(Game::GRANDE);
+	peque = game->getTexture(PlayState::PLAYER);
+	grandote = game->getTexture(PlayState::GRANDE);
 	direccion = 0;
 	aspecto = 0;
 	screenPosition.x = pos.x;

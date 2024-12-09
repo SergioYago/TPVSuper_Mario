@@ -2,7 +2,7 @@
 
 // Constructor de la clase Enemy
 
-Enemy::Enemy(Game* g, Point2D pos, int w, int h, bool p, int points)
+Enemy::Enemy(PlayState* g, Point2D pos, int w, int h, bool p, int points)
 	:SceneObject(g, pos, w, h, p)
 {
 	puntos = points;

@@ -16,7 +16,7 @@ protected:
 	GameList<SceneObject>::anchor anchor;
 
 public:
-	SceneObject(Game* g, Point2D pos, int w, int h, bool p);
+	SceneObject(PlayState* g, Point2D pos, int w, int h, bool p);
 	virtual void hit(SDL_Rect ataque, bool jugador) = 0;
 	virtual void render() const = 0;
 	virtual void update() = 0;

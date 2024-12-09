@@ -1,10 +1,11 @@
 #include "goomba.h"
-#include "Game.h"
+#include "PlayState.h"
 #include <sstream>
 
-goomba::goomba(Game* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g, pos, w, h, p, points)
+goomba::goomba(PlayState* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g, pos, w, h, p, points)
 {
-	texture = game->getTexture(Game::TextureName::GOOMBA);
+	game = g;
+	texture = g->getTexture(PlayState::TextureName::GOOMBA);
 	position.x = pos.x * 32;
 	position.y = pos.y * 32;
 	colision = { position.x, position.y-64, w, h };
@@ -12,11 +13,11 @@ goomba::goomba(Game* g, Point2D pos, int w, int h, bool p, int points) : Enemy(g
 
 }
 /*
-goomba::goomba(std::istream& is, Game* g) : Enemy(g)
+goomba::goomba(std::istream& is, PlayState* g) : Enemy(g)
 {
 	std::string filename;
 	is >> filename;
-	texture = game->getTexture(Game:: TextureName:: GOOMBA);
+	texture = PlayState->getTexture(PlayState:: TextureName:: GOOMBA);
 	is >> position.x;
 	is >> position.y;
 	colision.x = position.x;

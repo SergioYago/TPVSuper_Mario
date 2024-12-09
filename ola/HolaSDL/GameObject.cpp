@@ -1,7 +1,7 @@
 #include "GameObject.h"
-#include "Game.h"
+#include "PlayState.h"
 
-GameObject::GameObject(Game* g)
+GameObject::GameObject(PlayState* g)
 {
 	game = g;
 }

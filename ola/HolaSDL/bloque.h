@@ -6,7 +6,7 @@
 //Clase del bloque, tiene como atributos la posición del bloque, el tipo de bloque como enumerado (ladrillo, sorpresa, vacío u oculto), 
 // una acción (potenciador o moneda) tambien como enumerado, un puntero al juego y un puntero a la textura del bloque.
 // Constructor, render, update y hit.
-class Game;
+class PlayState;
 
 class bloque : public SceneObject
 {
@@ -17,7 +17,7 @@ class bloque : public SceneObject
 	tipo tipoBloque;
 	accion accionBloque;
 public:
-	bloque(Game* g, Point2D pos, int w, int h, bool p, string tipoAcc);
+	bloque(PlayState* g, Point2D pos, int w, int h, bool p, string tipoAcc);
 	~bloque();
 	void render() const override;
 	void update() override;

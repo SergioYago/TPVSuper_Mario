@@ -5,14 +5,14 @@
 
 // clase de enemigo goomba que se mueve y detecta colisiones con el mapa y con el jugador
 // contiene su posición actual, su dirección de movimiento, un puntero a su textura y un puntero al juego
-class Game;
+class PlayState;
 class goomba : public Enemy
 {
 	Texture* texture;
 	SDL_Rect colision;
 public:
 	
-	goomba(Game* g, Point2D pos, int w, int h, bool p, int points);
+	goomba(PlayState* g, Point2D pos, int w, int h, bool p, int points);
 	//~goomba();
 	void render() const override;
 	void update() override;

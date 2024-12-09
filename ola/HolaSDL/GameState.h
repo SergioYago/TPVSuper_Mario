@@ -11,7 +11,7 @@
 class GameState
 {
 private:
-	Game* game;
+	PlayState* game;
 	GameList<GameObject> gameObj;
 	list<EventHandler*> eventObj;
 

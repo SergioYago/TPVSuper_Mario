@@ -4,16 +4,16 @@
 
 using namespace std;
 
-class Game;
+class PlayState;
 class GameObject
 
 {
 private:
 	GameList<GameObject>::anchor listAnchor;
 protected:
-	Game* game;
+	PlayState* game;
 public:
-	GameObject(Game* g);
+	GameObject(PlayState* g);
 	// destructora virtual
 	virtual ~GameObject() {};
 	virtual void render() const = 0;

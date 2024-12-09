@@ -8,7 +8,7 @@ protected:
 	int puntos;
 
 public:
-	Enemy(Game* g, Point2D pos, int w, int h, bool p, int points);
+	Enemy(PlayState* g, Point2D pos, int w, int h, bool p, int points);
 
 	void hit(SDL_Rect ataque, bool jugador) override;
 

@@ -1,23 +1,23 @@
-/*#include <string>
+#include "PlayState.h"
+#include <string>
 #include <SDL.h>
 #include <SDL_rect.h>
-#include "Game.h"
 
 using namespace std;
 
-// Formato de la especificaciï¿½n de una textura
+// Formato de la especificaci?n de una textura
 struct TextureSpec
 {
 	const char* name;	// Ruta del archivo
-	uint numColumns;	// Nï¿½mero de frames por fila
-	uint numRows;		// Nï¿½mero de frames por columna
+	uint numColumns;	// N?mero de frames por fila
+	uint numRows;		// N?mero de frames por columna
 };
 
-// Directorio raï¿½z de los archivos de textura
+// Directorio ra?z de los archivos de textura
 const string textureRoot = "../assets/images/";
 
-// Especificaciï¿½n de las texturas del juego
-const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
+// Especificaci?n de las texturas del juego
+const array<TextureSpec, PlayState::NUM_TEXTURES> textureSpec{
 	TextureSpec{"background.png", 9, 7},
 	{"mario.png", 12, 1},
 	{"supermario.png",22,1},
@@ -26,7 +26,7 @@ const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	{"blocks.png", 6, 1},
 };
 
-Game::Game()
+PlayState::PlayState()
 	: seguir(true)
 {
 	// Inicializa la SDL
@@ -82,7 +82,7 @@ Game::Game()
 		if (line[0] == 'M') {
 			Point2D pos;
 			is >> pos.x >> pos.y;
-			mario = new player(this, pos, TILE_SIDE, TILE_SIDE,true);
+			mario = new player(this, pos, TILE_SIDE, TILE_SIDE, true);
 			entities.push_back(mario);
 		}
 		else if (line[0] == 'B') {
@@ -90,7 +90,7 @@ Game::Game()
 			is >> pos.x >> pos.y;
 			string tipo;
 			is >> tipo;
-			entities.push_back(new bloque(this, pos, TILE_SIDE, TILE_SIDE, false,tipo));
+			entities.push_back(new bloque(this, pos, TILE_SIDE, TILE_SIDE, false, tipo));
 		}
 		else if (line[0] == 'G') {
 			Point2D pos;
@@ -115,12 +115,12 @@ Game::Game()
 	{
 		tilemap = new TileMap(mapa2, this);
 	}
-	
+
 
 	cout << "Initialization complete." << endl;
 }
 
-Game::~Game()
+PlayState::~PlayState()
 {
 	cout << "Cleaning up resources..." << endl;
 	// Elimina los objetos del juego
@@ -137,38 +137,38 @@ Game::~Game()
 	cout << "Cleanup complete." << endl;
 }
 
-int Game::getMapOffset() {
+int PlayState::getMapOffset() {
 	return mapOffset;
 }
 
-void Game::run()
+void PlayState::run()
 {
-	cout << "Starting main game loop..." << endl;
+	cout << "Starting main PlayState loop..." << endl;
 	// Bucle principal del juego
 	while (seguir) {
-		// Marca de tiempo del inicio de la iteraciÃ³n
+		// Marca de tiempo del inicio de la iteración
 		uint32_t inicio = SDL_GetTicks();
 		render();
 		update();       // Actualiza el estado de los objetos del juego
-		      // Dibuja los objetos en la venta
+		// Dibuja los objetos en la venta
 		handleEvents(); // Maneja los eventos de la SDL
 
 		// Tiempo que se ha tardado en ejecutar lo anterior
 		uint32_t elapsed = SDL_GetTicks() - inicio;
 
-		// Duerme el resto de la duraciÃ³n del frame
+		// Duerme el resto de la duración del frame
 		if (elapsed < FRAME_RATE)
 			SDL_Delay(FRAME_RATE - elapsed);
 	}
-	cout << "Exiting main game loop..." << endl;
+	cout << "Exiting main PlayState loop..." << endl;
 }
 
 void
-Game::render() const
+PlayState::render() const
 {
 	SDL_RenderClear(renderer);
-	if (mapaActual == 1){
-	SDL_SetRenderDrawColor(renderer,100,100,500,100);
+	if (mapaActual == 1) {
+		SDL_SetRenderDrawColor(renderer, 100, 100, 500, 100);
 	}
 	else
 	{
@@ -194,59 +194,39 @@ Game::render() const
 
 
 Point2D
-Game::checkEntitieColision(SDL_Rect collider)
-{	
+PlayState::checkEntitieColision(SDL_Rect collider)
+{
 	Point2D aux;
 	bool colision = false;
 	SDL_Rect aux2;
-	for(auto entitie:entities)
+	for (auto entitie : entities)
 	{
 		aux2 = entitie->getCollisionRect();
-		colision= SDL_HasIntersection(&aux2,&collider);
+		colision = SDL_HasIntersection(&aux2, &collider);
 		//se hace esto para que no compruebe consigo mismo
-		if(colision&& &collider==&aux2)
+		if (colision && &collider == &aux2)
 		{
-		colision = false;
+			colision = false;
 		}
-		if (colision) 
+		if (colision)
 		{
-		aux.x = entitie->getCollisionRect().x - collider.x;
-		aux.y = entitie->getCollisionRect().y - collider.y;
-		break; 
+			aux.x = entitie->getCollisionRect().x - collider.x;
+			aux.y = entitie->getCollisionRect().y - collider.y;
+			break;
 		}
 	}
 	return aux;
 }
 
 Collision
-Game::CheckColision(SDL_Rect rect, Collision::Target target)
+PlayState::CheckColision(SDL_Rect rect, Collision::Target target)
 {
 	Collision aux;
-	if(target==0)
-	{
-		if(tilemap->checkMapColision(rect,true))
-		{
-			aux.horizontal = aux.vertical = -100;
-		}
-		else 
-		{
-			Point2D direction;
-			 direction =checkEntitieColision(rect);
-			 if (direction.x != 0 || direction.y != 0)
-			 {
-				 
-				 aux.horizontal = direction.x;
-				 aux.vertical = direction.y;
-			 }
-		}
-		
-	}
-	else if (target ==1)
+	if (target == 0)
 	{
 		if (tilemap->checkMapColision(rect, true))
 		{
 			aux.horizontal = aux.vertical = -100;
-			//ns cÃ³mo ponerlos
 		}
 		else
 		{
@@ -254,29 +234,49 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 			direction = checkEntitieColision(rect);
 			if (direction.x != 0 || direction.y != 0)
 			{
-				aux.horizontal = direction.x-32;
+
+				aux.horizontal = direction.x;
 				aux.vertical = direction.y;
-				
 			}
 		}
-		
+
 	}
-	else if(target==2)
+	else if (target == 1)
 	{
 		if (tilemap->checkMapColision(rect, true))
 		{
 			aux.horizontal = aux.vertical = -100;
-			//ns cÃ³mo ponerlos
+			//ns cómo ponerlos
 		}
 		else
 		{
 			Point2D direction;
-				direction = checkEntitieColision(rect);
+			direction = checkEntitieColision(rect);
+			if (direction.x != 0 || direction.y != 0)
+			{
+				aux.horizontal = direction.x - 32;
+				aux.vertical = direction.y;
+
+			}
+		}
+
+	}
+	else if (target == 2)
+	{
+		if (tilemap->checkMapColision(rect, true))
+		{
+			aux.horizontal = aux.vertical = -100;
+			//ns cómo ponerlos
+		}
+		else
+		{
+			Point2D direction;
+			direction = checkEntitieColision(rect);
 			if (direction.x != 0 || direction.y != 0)
 			{
 				aux.horizontal = -30;
 				aux.vertical = direction.y;
-				
+
 			}
 		}
 	}
@@ -288,24 +288,24 @@ Game::CheckColision(SDL_Rect rect, Collision::Target target)
 }
 
 void
-Game::update()
+PlayState::update()
 {
 	//mario->update();
-	for(auto entitie:entities)
+	for (auto entitie : entities)
 	{
 		entitie->update();
-		
+
 	}
- 	if (mario->getScreenPosition().x == WIN_WIDTH / 64)
+	if (mario->getScreenPosition().x == WIN_WIDTH / 64)
 	{
-		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
-		
+		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x) * 32;
+
 	}
-	
+
 }
 
 void
-Game::handleEvents()
+PlayState::handleEvents()
 {
 	// Procesamiento de eventos
 	SDL_Event evento;
@@ -323,21 +323,21 @@ Game::handleEvents()
 		}
 	}
 }
-void Game::loose()
+void PlayState::loose()
 {
 	seguir = false;
 }
-void Game::addEntity(SceneObject* entity)
+void PlayState::addEntity(SceneObject* entity)
 {
 	entities.push_back(entity);
 }
-bool Game::isSupermario() const
+bool PlayState::isSupermario() const
 {
 	if (mario->getAspecto() >= 1) { return true; }
 	else { return false; }
 }
 void
-Game::connect(SDLEventCallback cb)
+PlayState::connect(SDLEventCallback cb)
 {
 	callbacks.push_back(cb);
-}*/
+}

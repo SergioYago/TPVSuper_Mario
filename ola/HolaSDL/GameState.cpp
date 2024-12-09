@@ -1,5 +1,5 @@
 #include "GameState.h"
-#include "Game.h"
+#include "PlayState.h"
 void GameState::update() {
 	for (auto elem : gameObj) {
 		elem->update();

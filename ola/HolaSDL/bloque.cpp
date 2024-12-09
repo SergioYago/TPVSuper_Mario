@@ -1,5 +1,5 @@
 #include "bloque.h"
-#include "Game.h"
+#include "PlayState.h"
 #include <sstream>
 
 // constructor de bloque, recibe un istream y un puntero al juego y guarda la posición del bloque. 
@@ -7,7 +7,7 @@
 // Si el tipo de bloque es B es ladrillo y no contiene nada.
 // Si el tipo de bloque es 0 es vacío y no contiene nada. 
 // Si el tipo de bloque es H es oculto y contiene un potenciador o moneda.
-bloque::bloque(Game* g, Point2D pos, int w, int h, bool p, string tipoAcc) :SceneObject(g, pos, w, h, p), anim(0)
+bloque::bloque(PlayState* g, Point2D pos, int w, int h, bool p, string tipoAcc) :SceneObject(g, pos, w, h, p), anim(0)
 
 {
 	position.x = pos.x*32;
@@ -43,7 +43,7 @@ bloque::bloque(Game* g, Point2D pos, int w, int h, bool p, string tipoAcc) :Scen
 		}
 	}
 
-	texture = game->getTexture(Game::BLOQUE);
+	texture = game->getTexture(PlayState::BLOQUE);
 	anim = 0;
 }
  bloque::~bloque()

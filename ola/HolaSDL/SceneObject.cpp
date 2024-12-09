@@ -1,7 +1,7 @@
 #include "SceneObject.h"
 #include "gameList.h"
 
-SceneObject::SceneObject(Game* g, Point2D pos, int w, int h, bool p)
+SceneObject::SceneObject(PlayState* g, Point2D pos, int w, int h, bool p)
 	:GameObject(g)
 {
 	position = pos;

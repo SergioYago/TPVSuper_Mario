@@ -1,7 +1,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "Game.h"
+#include "PlayState.h"
 #include <vector>
 
 /*
@@ -16,14 +16,14 @@ public:
  * Botón que emite eventos con ButtonListener.
  */
 class Button {
-	Game* game;
+	PlayState* game;
 	SDL_Rect boundingBox;
 	bool hover;
 
 	std::vector<ButtonListener*> clickListeners;  // lista de oyentes
 	void emit() const;  // transmite el evento de click a todos los oyentes
 public:
-	Button(Game* game);
+	Button(PlayState* game);
 
 	void update();
 	void render() const;
