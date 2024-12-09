@@ -70,6 +70,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bloque.cpp" />
+    <ClCompile Include="button.cpp" />
     <ClCompile Include="coin.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -85,6 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bloque.h" />
+    <ClInclude Include="button.h" />
     <ClInclude Include="checkML.h" />
     <ClInclude Include="coin.h" />
     <ClInclude Include="collision.h" />
