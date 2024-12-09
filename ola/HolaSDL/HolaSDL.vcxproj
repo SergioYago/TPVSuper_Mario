@@ -75,6 +75,8 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="goomba.cpp" />
     <ClCompile Include="koopa.cpp" />
     <ClCompile Include="main.cpp" />
@@ -94,6 +96,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="gameList.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="goomba.h" />
     <ClInclude Include="koopa.h" />
     <ClInclude Include="pickable.h" />
