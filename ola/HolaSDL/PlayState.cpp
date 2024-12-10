@@ -315,7 +315,12 @@ PlayState::handleEvents()
 			seguir = false;
 		else if (evento.type == SDL_KEYDOWN) {
 			//perro->handleEvent(evento);
-			mario->handleEvents(evento);
+			if (evento.key.keysym.sym == SDLK_ESCAPE)
+			{
+				
+				PauseState pause=PauseState(this);
+			}
+			else { mario->handleEvents(evento); }
 		}
 		else if (evento.type == SDL_KEYUP) {
 			//perro->handleEvent(evento);

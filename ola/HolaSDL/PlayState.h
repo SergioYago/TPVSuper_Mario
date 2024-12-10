@@ -17,6 +17,8 @@
 #include "bloque.h"
 #include "GameObject.h"
 #include "gameList.h"
+#include "PauseState.h"
+#include "GameState.h"
 
 using uint = unsigned int;
 using SDLEventCallback = std::function<void(const SDL_Event&)>;
@@ -24,7 +26,7 @@ using SDLEventCallback = std::function<void(const SDL_Event&)>;
 //
 // Clase que representa el juego y controla todos sus aspectos
 //
-class PlayState
+class PlayState :public GameState
 {
 public:
 	// Identificadores de las texturas
