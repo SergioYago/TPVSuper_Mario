@@ -82,6 +82,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pickable.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileMap.cpp" />
@@ -102,6 +103,7 @@
     <ClInclude Include="koopa.h" />
     <ClInclude Include="pickable.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileMap.h" />
