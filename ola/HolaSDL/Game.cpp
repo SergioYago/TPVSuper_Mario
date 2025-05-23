@@ -200,8 +200,7 @@ Game::update()
 	// si mario llega a la mitad de la pantalla, incrementa el mapOffset
  	if (mario->getScreenPosition().x >= WIN_WIDTH/2 )
 	{
-		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
-		std::cout << mapOffset << '\n';
+		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x);
 	}
 	for(int i=0;i<14;i++)
 	{/*
@@ -212,11 +211,14 @@ Game::update()
 		}
 		else { goombaa[i]->igualaY(); }*/
 		goombaa[i]->mueveX();
-		if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
+		if (!tilemap->checkMapColision(goombaa[i]->nextposition, false))
 		{
 			goombaa[i]->igualaX();
 		}
-		else { goombaa[i]->VueltaX(); cout << "true"; }
+		else 
+		{
+			goombaa[i]->VueltaX(); cout << "true"; 
+		}
 		
 	}
 }

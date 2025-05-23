@@ -136,16 +136,17 @@ void player::igualaMovimiento()
 	float mapoffset = game->getMapOffset();
 	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH/2)
 	{
-		screenPosition.x= mapPosition.x = nextposition.x ;
+		screenPosition.x += 8;
+		 mapPosition.x = nextposition.x ;
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
-		
-		screenPosition.x= mapPosition.x = nextposition.x ;
+		screenPosition.x -= 8;
+		mapPosition.x = nextposition.x ;
 	}
 
 	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
-	if (screenPosition.x == game->WIN_WIDTH && direccion == 1)
+	if (screenPosition.x >= game->WIN_WIDTH/2 && direccion == 1)
 	{
 		mapPosition.x=nextposition.x;
 	}

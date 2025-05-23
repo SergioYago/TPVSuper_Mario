@@ -91,8 +91,7 @@ void goomba::igualaY()
 }
 void goomba::igualaX()
 {
-	if (direccion == -1) { mapPos.x = nextposition.x;  }
-	else { mapPos.x = nextposition.x;  }
+	mapPos.x = nextposition.x;  
 }
 void goomba::VueltaY()
 {
@@ -101,6 +100,7 @@ void goomba::VueltaY()
 void goomba::VueltaX()
 {
 	nextposition.x = mapPos.x;
+	ChangeDirection();
 }
 void goomba::ChangeDirection()
 {
