@@ -10,8 +10,10 @@ goomba::goomba(std::istream& is, Game* g)
 	is >> mapPos.x >> mapPos.y;
 	direccion = -1;
 	mapPos.x = mapPos.x * 32;
+	mapPos.y = mapPos.y * 29;
 	texture = game->getTexture(Game::TextureName::GOOMBA);
 	screenPos.x = mapPos.x - g->getMapOffset();
+	screenPos.y = mapPos.y;
 	nextposition.x = mapPos.x;
 	nextposition.y = mapPos.y;
 	nextposition.w = nextposition.h = 32;
@@ -47,16 +49,13 @@ void goomba::render()
 		screenPos.x = (mapPos.x - mapoffset);
 		screenPos.y = mapPos.y;
 	}
-	else
-	{
-		screenPos.x = -100;
-	}
+	
 
 
 
 	SDL_Rect destRect;
 	destRect.x = screenPos.x;
-	destRect.y = screenPos.y*30;
+	destRect.y = screenPos.y;
 	destRect.w = 32;
 	destRect.h = 32;
 
@@ -69,8 +68,8 @@ void goomba::update()
 }
 void goomba::mueveY()
 {
-	nextposition.y+=8;
-	if (nextposition.y > game->WIN_HEIGHT) {  nextposition.y -= 8; }
+	nextposition.y+=4;
+	//if (nextposition.y > game->WIN_HEIGHT) {  nextposition.y -= 8; }
 }
 void goomba::mueveX()
 {
@@ -79,10 +78,11 @@ void goomba::mueveX()
 	{
 		ChangeDirection();
 	}
-
-	nextposition.x += 4*direccion;
-	mapPos.x+=4*direccion;
-	screenPos.x+=4*direccion;
+	else {
+		nextposition.x += 4 * direccion;
+		mapPos.x += 4 * direccion;
+		screenPos.x += 4 * direccion;
+	}
 	
 }
 void goomba::igualaY()
@@ -91,11 +91,12 @@ void goomba::igualaY()
 }
 void goomba::igualaX()
 {
-	mapPos.x = nextposition.x;  
+	mapPos.x = nextposition.x; 
+	screenPos.x = mapPos.x - game->getMapOffset();
 }
 void goomba::VueltaY()
 {
-	nextposition.y = mapPos.y*32;
+	nextposition.y = mapPos.y;
 }
 void goomba::VueltaX()
 {

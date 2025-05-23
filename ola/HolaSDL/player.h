@@ -12,7 +12,7 @@ class player
 	Vector2D<float> mapPosition;
 	// posición relativa del jugador respecto al inicio del mapa
 	Vector2D<float> screenPosition;
-
+	Vector2D<float> iniPos;
 	Texture* texture;
 	Game* game;
 	int vidas;
@@ -21,7 +21,7 @@ class player
 	bool isGrounded;
 	int jump;
 	int anim;
-
+	
 	
 public:
 	bool hitted = false;
@@ -38,7 +38,8 @@ public:
 	int getVidas() { return vidas; }
 	int getDireccion() { return direccion; }
 	int getAspecto() { return aspecto; }
-
+	void looseLive();
+	void resetPos() { mapPosition = screenPosition = iniPos; nextposition.x = mapPosition.x; nextposition.y = mapPosition.y; }
 	// setter isGrounded
 	void setIsGrounded(bool b) { isGrounded = b; }
 	

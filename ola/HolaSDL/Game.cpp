@@ -19,7 +19,7 @@ const string textureRoot = "../assets/imgs/";
 const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	TextureSpec{"background.png", 9, 7},
 	{"mario.png", 12, 1},
-	{"goomba.png", 4, 1},
+	{"goomba.png", 3, 1},
 	//{"helicopter.png", 5, 1},
 };
 
@@ -173,13 +173,18 @@ Game::update()
 {
 	mario->update();
 	mario->mueveY();
-	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
+	if(mario->nextposition.y>=WIN_HEIGHT-32)
+	{
+		mario->looseLive();
+		resetMapOffset();
+	}
+	else if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
 		{ 
 		mario->igualaMovimientoy();
 		mario->setIsGrounded(false);
 			
 	}
-	else 
+	else
 		{
 		// subir la misma cantidad que baja
 		// se calcula restando la diferencia de alturas a 32 (32-diferencia de alturas)
@@ -203,21 +208,23 @@ Game::update()
 		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x);
 	}
 	for(int i=0;i<14;i++)
-	{/*
-		//goombaa[i]->mueveY();
-		if (!tilemap->checkMapColision(goombaa[i]->nextposition, true))
-		{
-			goombaa[i]->VueltaY();
-		}
-		else { goombaa[i]->igualaY(); }*/
-		goombaa[i]->mueveX();
-		if (!tilemap->checkMapColision(goombaa[i]->nextposition, false))
-		{
-			goombaa[i]->igualaX();
-		}
-		else 
-		{
-			goombaa[i]->VueltaX(); cout << "true"; 
+	{
+		if (goombaa[i]->getMapPos().x - mapOffset < WIN_WIDTH&& goombaa[i]->getMapPos().x - mapOffset >-40) {
+			goombaa[i]->mueveY();
+			if (!tilemap->checkMapColision(goombaa[i]->nextposition, false))
+			{
+				goombaa[i]->igualaY(); 
+			}
+			else { goombaa[i]->VueltaY(); }
+			goombaa[i]->mueveX();
+			if (!tilemap->checkMapColision(goombaa[i]->nextposition, false))
+			{
+				goombaa[i]->igualaX();
+			}
+			else
+			{
+				goombaa[i]->VueltaX();
+			}
 		}
 		
 	}

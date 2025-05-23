@@ -18,9 +18,10 @@ player::player(std::istream& is, Game* g)
 	mapPosition = screenPosition;
 	nextposition.x = screenPosition.x ;
 	nextposition.y = screenPosition.y ;
+	iniPos = mapPosition;
 	nextposition.w = game->TILE_SIDE;
 	nextposition.h = game->TILE_SIDE;
-
+	vidas = 3;
 	isGrounded = false;
 	jump = 0;
 	anim = 2;
@@ -160,6 +161,11 @@ void player::VueltaPosiciony()
 {
 	nextposition.y= mapPosition.y;
 }
+void player::looseLive()
+{
+	vidas--; resetPos(); if (vidas < 1) { game->loose(); } 
+}
+
 void player::mueveX()
 {
 	//de alguna manera no se mueve lo necesario para que llegue al abujero

@@ -59,7 +59,7 @@ public:
 	void checkColision();
 	void render() const;
 	void handleEvents();
-	
+	void resetMapOffset() { mapOffset = 0; }
 	Texture* getTexture(TextureName name) const;
 
 	// Constante globales
