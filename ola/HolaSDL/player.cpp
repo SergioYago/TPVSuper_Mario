@@ -163,7 +163,8 @@ void player::VueltaPosiciony()
 }
 void player::looseLive()
 {
-	vidas--; resetPos(); if (vidas < 1) { game->loose(); } 
+	vidas--; resetPos();
+	if (vidas < 1) { game->loose(); } 
 }
 
 void player::mueveX()
