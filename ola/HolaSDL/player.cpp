@@ -11,12 +11,13 @@ player::player(std::istream& is, Game* g)
 	game = g;
 	is >> screenPosition.x >> screenPosition.y >> vidas;
 	texture = game->getTexture(Game::PLAYER);
+	screenPosition.x = screenPosition.x * 32;
 	direccion = 0;
 	aspecto = 0;
 	screenPosition.y=6;
 	mapPosition = screenPosition;
-	nextposition.x = screenPosition.x*game->TILE_SIDE ;
-	nextposition.y = screenPosition.y*game->TILE_SIDE ;
+	nextposition.x = screenPosition.x ;
+	nextposition.y = screenPosition.y ;
 	nextposition.w = game->TILE_SIDE;
 	nextposition.h = game->TILE_SIDE;
 
@@ -29,8 +30,8 @@ player::player(std::istream& is, Game* g)
 void player::hit()
 {
 	SDL_Rect aux;
-	aux.x = screenPosition.x * game->TILE_SIDE;
-	aux.y = screenPosition.y * game->TILE_SIDE;
+	aux.x = screenPosition.x;
+	aux.y = screenPosition.y ;
 	aux.w = game->TILE_SIDE;
 	aux.h = game->TILE_SIDE;
 	//SDL_GetRectIntersection();
@@ -67,8 +68,8 @@ void player::render()
 {
 	
 	SDL_Rect destRect;
-	destRect.x = screenPosition.x* game->TILE_SIDE;
-	destRect.y = screenPosition.y* game->TILE_SIDE;
+	destRect.x = screenPosition.x;
+	destRect.y = screenPosition.y;
 	destRect.w = 32;
 	destRect.h = 32;
 	
@@ -133,56 +134,47 @@ void player::handleEvents(SDL_Event event)
 void player::igualaMovimiento()
 {
 	float mapoffset = game->getMapOffset();
-	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH / 64)
+	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH/2)
 	{
-
-		screenPosition.x++; ;
-		mapPosition.x = nextposition.x/32 ;
+		screenPosition.x= mapPosition.x = nextposition.x ;
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
 		
-		screenPosition.x -- ;
-		mapPosition.x = nextposition.x/32 ;
+		screenPosition.x= mapPosition.x = nextposition.x ;
 	}
 
 	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
-	else if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
+	if (screenPosition.x == game->WIN_WIDTH && direccion == 1)
 	{
-		mapPosition.x=nextposition.x/32;
+		mapPosition.x=nextposition.x;
 	}
 	
 }
 void player::VueltaPosicionx()
 {
-	nextposition.x= mapPosition.x*32;
+	nextposition.x= mapPosition.x;
 }
 void player::VueltaPosiciony()
 {
-	nextposition.y= mapPosition.y*32;
+	nextposition.y= mapPosition.y;
 }
 void player::mueveX()
 {
-
 	//de alguna manera no se mueve lo necesario para que llegue al abujero
-	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH / 64)
+	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH )
 	{
-		nextposition.x+=32;
+		nextposition.x+=8;
 
 
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
-		nextposition.x-=32;
+		nextposition.x-=8;
 
 
 	}
-	else if (screenPosition.x == game->WIN_WIDTH / 64 && direccion == 1)
-	{
-		nextposition.x+=32;
 
-
-	}
 }
 	void player::mueveY()
 	{
@@ -208,5 +200,5 @@ void player::mueveX()
 	}
 	void player::igualaMovimientoy()
 	{
-		mapPosition.y = screenPosition.y = nextposition.y/32;
+		mapPosition.y = screenPosition.y = nextposition.y;
 	}

@@ -69,6 +69,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="goomba.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -77,6 +78,7 @@
   <ItemGroup>
     <ClInclude Include="checkML.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="goomba.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileMap.h" />

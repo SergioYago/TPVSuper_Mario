@@ -55,14 +55,17 @@ void goomba::render()
 
 
 	SDL_Rect destRect;
-	destRect.x = screenPos.x * 32;
-	destRect.y = screenPos.y *30;
+	destRect.x = screenPos.x;
+	destRect.y = screenPos.y*30;
 	destRect.w = 32;
 	destRect.h = 32;
 
 
 	texture->renderFrame(destRect,0,0);
 
+}
+void goomba::update()
+{
 }
 void goomba::mueveY()
 {
@@ -71,42 +74,25 @@ void goomba::mueveY()
 }
 void goomba::mueveX()
 {
-	if (direccion==1)
-	{
-		
-			if ((nextposition.x+32)>(200*32))
-			{
-				ChangeDirection();
-			}
-		
-			nextposition.x += 32;
-			mapPos.x++;
-			screenPos.x++;
-		
-	}
-	else
-	{
-		if ((nextposition.x-32)<0)
-		{
-			ChangeDirection();
-		}
-		else {
-			nextposition.x -= 32;
-			mapPos.x--;
-			screenPos.x--;
-		}
-		
 
+	if ((nextposition.x + 32 * direccion) > (200 * 32)|| (nextposition.x + 32 * direccion) <0)
+	{
+		ChangeDirection();
 	}
+
+	nextposition.x += 4*direccion;
+	mapPos.x+=4*direccion;
+	screenPos.x+=4*direccion;
+	
 }
 void goomba::igualaY()
 {
-	mapPos.y = screenPos.y = nextposition.y/32;
+	mapPos.y = screenPos.y = nextposition.y;
 }
 void goomba::igualaX()
 {
-	if (direccion == -1) { mapPos.x = nextposition.x/32;  }
-	else { mapPos.x = nextposition.x / 32;  }
+	if (direccion == -1) { mapPos.x = nextposition.x;  }
+	else { mapPos.x = nextposition.x;  }
 }
 void goomba::VueltaY()
 {
@@ -114,7 +100,7 @@ void goomba::VueltaY()
 }
 void goomba::VueltaX()
 {
-	nextposition.x = mapPos.x*32;
+	nextposition.x = mapPos.x;
 }
 void goomba::ChangeDirection()
 {

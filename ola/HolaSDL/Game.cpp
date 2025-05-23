@@ -13,7 +13,7 @@ struct TextureSpec
 };
 
 // Directorio ra�z de los archivos de textura
-const string textureRoot = "../assets/images/";
+const string textureRoot = "../assets/imgs/";
 
 // Especificaci�n de las texturas del juego
 const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
@@ -188,7 +188,9 @@ Game::update()
 		}
 	mario->mueveX();
 	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
-	{mario->igualaMovimiento();}
+	{
+		mario->igualaMovimiento();
+	}
 	else 
 	{
 		mario->VueltaPosicionx();
@@ -196,10 +198,10 @@ Game::update()
 	// Actualiza los objetos del juego
 	//perro->update();
 	// si mario llega a la mitad de la pantalla, incrementa el mapOffset
- 	if (mario->getScreenPosition().x == WIN_WIDTH / 64)
+ 	if (mario->getScreenPosition().x >= WIN_WIDTH/2 )
 	{
 		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x)*32;
-		
+		std::cout << mapOffset << '\n';
 	}
 	for(int i=0;i<14;i++)
 	{/*
