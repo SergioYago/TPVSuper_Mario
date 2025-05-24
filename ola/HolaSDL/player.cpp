@@ -160,6 +160,7 @@ void player::VueltaPosicionx()
 void player::VueltaPosiciony()
 {
 	nextposition.y= mapPosition.y;
+	jump = 0;
 }
 void player::looseLive()
 {
