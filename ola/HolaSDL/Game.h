@@ -13,7 +13,7 @@
 #include "goomba.h"
 
 using uint = unsigned int;
-
+class Block;
 //
 // Clase que representa el juego y controla todos sus aspectos
 //
@@ -25,6 +25,7 @@ public:
 		BACKGROUND,
 		PLAYER,
 		GOOMBA,
+		BLOCK,
 		NUM_TEXTURES,  // Truco C++: número de texturas definidas
 	};
 
@@ -44,6 +45,7 @@ private:
 	TileMap* tilemap;
 	player* mario;
 	goomba* goombaa[15];
+	Block* blocks[44];
 
 public:
 	static constexpr uint WIN_WIDTH = 576;
@@ -57,6 +59,7 @@ public:
 	void loose();
 	void update();
 	void checkColision();
+	bool checkBlockColision(SDL_Rect rect);
 	void render() const;
 	void handleEvents();
 	void resetMapOffset() { mapOffset = 0; }

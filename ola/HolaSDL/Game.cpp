@@ -1,7 +1,7 @@
 #include <string>
 
 #include "Game.h"
-
+#include "Block.h"
 using namespace std;
 
 // Formato de la especificaci�n de una textura
@@ -20,6 +20,7 @@ const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	TextureSpec{"background.png", 9, 7},
 	{"mario.png", 12, 1},
 	{"goomba.png", 3, 1},
+	{"blocks.png",6,1}
 	//{"helicopter.png", 5, 1},
 };
 
@@ -53,6 +54,7 @@ Game::Game()
 	string line;
 
 	int i = 0;
+	int f = 0;
 	while (getline(file, line))
 	{
 		
@@ -69,7 +71,8 @@ Game::Game()
 			mario = new player(is, this);
 		}
 		else if (line[0] == 'B') {
-
+			blocks[f] = new Block( this, is);
+			f++;
 		}
 		else if (line[0] == 'G') {
 			
@@ -145,7 +148,10 @@ Game::render() const
 	{
 		goombaa[i]->render();
 	}
-
+	for(int i = 0; i < 40;i++)
+	{
+		blocks[i]->render();
+	}
 	SDL_RenderPresent(renderer);
 }
 void
@@ -168,6 +174,23 @@ Game::checkColision()
 //>>>>>>> Stashed changes
 }
 
+bool Game::checkBlockColision(SDL_Rect rect)
+{
+	int i = 0;
+	SDL_Rect rect2;
+	rect2.w = rect2.h = TILE_SIDE;
+	bool collided = false;
+	
+	while (i < 44 && !collided)
+	{
+		rect2.x = blocks[i]->returnPos().x;
+		rect2.y = blocks[i]->returnPos().y;
+		collided = (rect.x < rect2.x + rect2.w &&rect.x + rect.w > rect2.x &&rect.y < rect2.y + rect2.h &&rect.y + rect.h > rect2.y);
+		i++;
+	}
+	return collided;
+}
+
 void
 Game::update()
 {
@@ -178,11 +201,10 @@ Game::update()
 		mario->looseLive();
 		resetMapOffset();
 	}
-	else if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
+	else if (!tilemap->checkMapColision(mario->nextposition,mario->hitted)&&!checkBlockColision(mario->nextposition))
 		{ 
 		mario->igualaMovimientoy();
 		mario->setIsGrounded(false);
-			
 	}
 	else
 		{
@@ -192,7 +214,7 @@ Game::update()
 			mario->setIsGrounded(true);
 		}
 	mario->mueveX();
-	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted))
+	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted) && !checkBlockColision(mario->nextposition))
 	{
 		mario->igualaMovimiento();
 	}
@@ -211,13 +233,13 @@ Game::update()
 	{
 		if (goombaa[i]->getMapPos().x - mapOffset < WIN_WIDTH&& goombaa[i]->getMapPos().x - mapOffset >-40) {
 			goombaa[i]->mueveY();
-			if (!tilemap->checkMapColision(goombaa[i]->nextposition, false))
+			if (!tilemap->checkMapColision(goombaa[i]->nextposition, false)&&!checkBlockColision(goombaa[i]->nextposition))
 			{
 				goombaa[i]->igualaY(); 
 			}
 			else { goombaa[i]->VueltaY(); }
 			goombaa[i]->mueveX();
-			if (!tilemap->checkMapColision(goombaa[i]->nextposition, false))
+			if (!tilemap->checkMapColision(goombaa[i]->nextposition, false) && !checkBlockColision(goombaa[i]->nextposition))
 			{
 				goombaa[i]->igualaX();
 			}
@@ -227,6 +249,10 @@ Game::update()
 			}
 		}
 		
+	}
+	for(int i=0;i<44;i++)
+	{
+		blocks[i]->update();
 	}
 }
 
