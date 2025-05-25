@@ -94,6 +94,19 @@ void Block::update() {
     }
 }
 
+void Block::active()
+{
+    if (action == Action::Moneda) {
+      //  game->playstate->addScore(200); si me da
+    }
+    else if (action == Action::Potenciador) {
+        game->generateMushroom({ position.x,position.y });
+
+    }
+    action == Action::Nada;
+    tipo = Tipo::Vacio;
+}
+
 
 
 

@@ -19,15 +19,17 @@ const string textureRoot = "../assets/imgs/";
 const array<TextureSpec, Game::NUM_TEXTURES> textureSpec{
 	TextureSpec{"background.png", 9, 7},
 	{"mario.png", 12, 1},
+	{"firemario.png", 21, 1},
 	{"goomba.png", 3, 1},
-	{"blocks.png",6,1}
+	{"blocks.png",6,1},
+	{"koopa.png",4,1},
+	{"mushroom.png",1,1},
 	//{"helicopter.png", 5, 1},
 };
 
 Game::Game()
 	: seguir(true)
 {
-	
 	// Inicializa la SDL
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window = SDL_CreateWindow("First test with SDL",
@@ -71,16 +73,14 @@ Game::Game()
 			mario = new player(is, this);
 		}
 		else if (line[0] == 'B') {
-			blocks[f] = new Block( this, is);
-			f++;
+			blocks.push_back(new Block(this, is));
 		}
 		else if (line[0] == 'G') {
+			goombas.push_back(new goomba(is, this));
 			
-			goombaa[i] = new goomba(is, this);
-			i++;
 		}
 		else if (line[0] == 'K') {
-
+			koopas.push_back(new Koopa(is, this));
 		}
 		
 		//entities.push_back(new Entity(this, line));
@@ -133,6 +133,11 @@ Game::run()
 	}
 }
 
+bool Game::checkEnemiesColision()
+{
+	return false;
+}
+
 void
 Game::render() const
 {
@@ -144,13 +149,21 @@ Game::render() const
 	//perro->render();
 	tilemap->renderTileMap();
 	mario->render();
-	for (int i = 0; i < 14; i++)
+	for (int i = 0; i < goombas.size(); i++)
 	{
-		goombaa[i]->render();
+		goombas[i]->render();
 	}
-	for(int i = 0; i < 40;i++)
+	for(int i = 0; i < blocks.size();i++)
 	{
 		blocks[i]->render();
+	}
+	for(int i=0;i<koopas.size();i++)
+	{
+		koopas[i]->render();
+	}
+	for(int i =0;i<mushrooms.size();i++)
+	{
+		mushrooms[i]->render();
 	}
 	SDL_RenderPresent(renderer);
 }
@@ -174,21 +187,52 @@ Game::checkColision()
 //>>>>>>> Stashed changes
 }
 
-bool Game::checkBlockColision(SDL_Rect rect)
+bool Game::checkBlockColision(SDL_Rect rect, bool fromPlayer)
 {
 	int i = 0;
 	SDL_Rect rect2;
 	rect2.w = rect2.h = TILE_SIDE;
 	bool collided = false;
 	
-	while (i < 44 && !collided)
+	while (i < blocks.size() && !collided)
 	{
 		rect2.x = blocks[i]->returnPos().x;
 		rect2.y = blocks[i]->returnPos().y;
 		collided = (rect.x < rect2.x + rect2.w &&rect.x + rect.w > rect2.x &&rect.y < rect2.y + rect2.h &&rect.y + rect.h > rect2.y);
 		i++;
 	}
+	if (collided && fromPlayer) 
+	{
+		i--;
+		if (rect.y>rect2.y+rect2.h/2&&rect.x+rect.w>rect2.x+rect2.w/2) 
+		{
+			blocks[i]->active();
+		}
+	}
 	return collided;
+}
+
+void Game::checkMushColision()
+{
+	SDL_Rect rect = mario->nextposition;
+	SDL_Rect rect2;
+	rect2.w = rect2.h = 32;
+	bool colision = false;
+	int i = 0;
+	while(i<mushrooms.size()&&!colision)
+	{
+		rect2.x = mushrooms[i]->nextposition.x;
+		rect2.y = mushrooms[i]->nextposition.y;
+		colision = (rect.x < rect2.x + rect2.w && rect.x + rect.w > rect2.x && rect.y < rect2.y + rect2.h && rect.y + rect.h > rect2.y);
+		i++;
+	}
+	if(colision)
+	{
+		mario->lvlUp();
+		i--;
+		auto it = find(mushrooms.begin(), mushrooms.end(), mushrooms[i]);
+		mushrooms.erase(it);
+	}
 }
 
 void
@@ -196,12 +240,12 @@ Game::update()
 {
 	mario->update();
 	mario->mueveY();
-	if(mario->nextposition.y>=WIN_HEIGHT-32)
+	if(mario->nextposition.y+mario->nextposition.h>WIN_HEIGHT-26)
 	{
 		mario->looseLive();
-		resetMapOffset();
+		
 	}
-	else if (!tilemap->checkMapColision(mario->nextposition,mario->hitted)&&!checkBlockColision(mario->nextposition))
+	else if (!tilemap->checkMapColision(mario->nextposition,mario->hitted)&&!checkBlockColision(mario->nextposition,true))
 		{ 
 		mario->igualaMovimientoy();
 		mario->setIsGrounded(false);
@@ -213,8 +257,9 @@ Game::update()
 			mario->VueltaPosiciony(); 
 			mario->setIsGrounded(true);
 		}
+	checkMushColision();
 	mario->mueveX();
-	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted) && !checkBlockColision(mario->nextposition))
+	if (!tilemap->checkMapColision(mario->nextposition,mario->hitted) && !checkBlockColision(mario->nextposition,true))
 	{
 		mario->igualaMovimiento();
 	}
@@ -222,6 +267,7 @@ Game::update()
 	{
 		mario->VueltaPosicionx();
 	}
+	checkMushColision();
 	// Actualiza los objetos del juego
 	//perro->update();
 	// si mario llega a la mitad de la pantalla, incrementa el mapOffset
@@ -229,26 +275,68 @@ Game::update()
 	{
 		mapOffset = (mario->getMapPosition().x - mario->getScreenPosition().x);
 	}
-	for(int i=0;i<14;i++)
+	for(int i=0;i<goombas.size();i++)
 	{
-		if (goombaa[i]->getMapPos().x - mapOffset < WIN_WIDTH&& goombaa[i]->getMapPos().x - mapOffset >-40) {
-			goombaa[i]->mueveY();
-			if (!tilemap->checkMapColision(goombaa[i]->nextposition, false)&&!checkBlockColision(goombaa[i]->nextposition))
+		if (goombas[i]->getMapPos().x - mapOffset < WIN_WIDTH&& goombas[i]->getMapPos().x - mapOffset >-40) {
+			goombas[i]->mueveY();
+			if (!tilemap->checkMapColision(goombas[i]->nextposition, false)&&!checkBlockColision(goombas[i]->nextposition,false))
 			{
-				goombaa[i]->igualaY(); 
+				goombas[i]->igualaY(); 
 			}
-			else { goombaa[i]->VueltaY(); }
-			goombaa[i]->mueveX();
-			if (!tilemap->checkMapColision(goombaa[i]->nextposition, false) && !checkBlockColision(goombaa[i]->nextposition))
+			else { goombas[i]->VueltaY(); }
+			goombas[i]->mueveX();
+			if (!tilemap->checkMapColision(goombas[i]->nextposition, false) && !checkBlockColision(goombas[i]->nextposition,false))
 			{
-				goombaa[i]->igualaX();
+				goombas[i]->igualaX();
 			}
 			else
 			{
-				goombaa[i]->VueltaX();
+				goombas[i]->VueltaX();
 			}
 		}
 		
+	}
+	for (int i = 0; i < koopas.size(); i++)
+	{
+		if (koopas[i]->getMapPos().x - mapOffset < WIN_WIDTH && koopas[i]->getMapPos().x - mapOffset >-40) {
+			koopas[i]->mueveY();
+			if (!tilemap->checkMapColision(koopas[i]->nextposition, false) && !checkBlockColision(koopas[i]->nextposition,false))
+			{
+				koopas[i]->igualaY();
+			}
+			else { koopas[i]->VueltaY(); }
+			koopas[i]->mueveX();
+			if (!tilemap->checkMapColision(koopas[i]->nextposition, false) && !checkBlockColision(koopas[i]->nextposition,false))
+			{
+				koopas[i]->igualaX();
+			}
+			else
+			{
+				koopas[i]->VueltaX();
+			}
+		}
+
+	}
+	for (int i = 0; i < mushrooms.size(); i++)
+	{
+		if (mushrooms[i]->getMapPos().x - mapOffset < WIN_WIDTH && mushrooms[i]->getMapPos().x - mapOffset >-40) {
+			mushrooms[i]->mueveY();
+			if (!tilemap->checkMapColision(mushrooms[i]->nextposition, false) && !checkBlockColision(mushrooms[i]->nextposition, false))
+			{
+				mushrooms[i]->igualaY();
+			}
+			else { mushrooms[i]->VueltaY(); }
+			mushrooms[i]->mueveX();
+			if (!tilemap->checkMapColision(mushrooms[i]->nextposition, false) && !checkBlockColision(mushrooms[i]->nextposition, false))
+			{
+				mushrooms[i]->igualaX();
+			}
+			else
+			{
+				mushrooms[i]->VueltaX();
+			}
+		}
+
 	}
 	for(int i=0;i<44;i++)
 	{
@@ -278,4 +366,9 @@ Game::handleEvents()
 void Game::loose()
 {
 	seguir = false;
+}
+void Game::generateMushroom(Point2D pos)
+{
+	pos.y = pos.y - 32;
+	mushrooms.push_back(new Mushroom(pos, this));
 }

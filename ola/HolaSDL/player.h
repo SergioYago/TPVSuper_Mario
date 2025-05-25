@@ -14,6 +14,7 @@ class player
 	Vector2D<float> screenPosition;
 	Vector2D<float> iniPos;
 	Texture* texture;
+	Texture* textureB;
 	Game* game;
 	int vidas;
 	int direccion;
@@ -21,7 +22,7 @@ class player
 	bool isGrounded;
 	int jump;
 	int anim;
-	
+	bool isBig;
 	
 public:
 	bool hitted = false;
@@ -39,6 +40,7 @@ public:
 	int getDireccion() { return direccion; }
 	int getAspecto() { return aspecto; }
 	void looseLive();
+	void lvlUp();
 	void resetPos() { mapPosition = screenPosition = iniPos; nextposition.x = mapPosition.x; nextposition.y = mapPosition.y; }
 	// setter isGrounded
 	void setIsGrounded(bool b) { isGrounded = b; }

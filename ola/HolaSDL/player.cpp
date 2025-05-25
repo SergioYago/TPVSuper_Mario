@@ -11,6 +11,7 @@ player::player(std::istream& is, Game* g)
 	game = g;
 	is >> screenPosition.x >> screenPosition.y >> vidas;
 	texture = game->getTexture(Game::PLAYER);
+	textureB = game->getTexture(Game::PLAYERB);
 	screenPosition.x = screenPosition.x * 32;
 	direccion = 0;
 	aspecto = 0;
@@ -25,25 +26,19 @@ player::player(std::istream& is, Game* g)
 	isGrounded = false;
 	jump = 0;
 	anim = 2;
-	
+	isBig = false;
 }
 
 void player::hit()
 {
-	SDL_Rect aux;
-	aux.x = screenPosition.x;
-	aux.y = screenPosition.y ;
-	aux.w = game->TILE_SIDE;
-	aux.h = game->TILE_SIDE;
+	SDL_Rect aux=nextposition;
+	
+	
 	//SDL_GetRectIntersection();
 	
 	//si por encima, destruye al otro
 	//si por debajo, vida--;
-	vidas--;
-	if (vidas<1)
-	{
-		game->loose();
-	}
+	
 }
 
 // Se encarga de actualizar la posición del jugador en función de las teclas pulsadas, cambiando la dirección del jugador.
@@ -71,19 +66,45 @@ void player::render()
 	SDL_Rect destRect;
 	destRect.x = screenPosition.x;
 	destRect.y = screenPosition.y;
-	destRect.w = 32;
-	destRect.h = 32;
+	destRect.h = nextposition.h;
+	destRect.w = nextposition.w;
+
 	
 	//SDL_RenderCopy(game->getRenderer(), texture->getTexture(), nullptr, &destRect);
+	if (!isBig) 
+	{
+		if (direccion == 0) {
+			texture->renderFrame(destRect, 0, 0);
+		}
+		else if(direccion==1) {
 
-	if (direccion == 0) {
-		texture->renderFrame(destRect, 0, 0);
-	}
+			if (anim < 4) { anim++; }
+			else if (anim == 4) { anim = 2; }
+			texture->renderFrame(destRect, 0, anim);
+		}
 	else {
-		
 		if (anim < 4) { anim++; }
 		else if (anim == 4) { anim = 2; }
-		texture->renderFrame(destRect, 0, anim);
+		texture->renderFrame(destRect, 0, anim, SDL_FLIP_HORIZONTAL);
+
+	}
+	}
+	else {
+		if (direccion == 0) {
+			textureB->renderFrame(destRect, 0, 0);
+		}
+		else if (direccion==1)  {
+
+			if (anim < 4) { anim++; }
+			else if (anim == 4) { anim = 2; }
+			textureB->renderFrame(destRect, 0, anim);
+		}
+		else{
+			if (anim < 4) { anim++; }
+			else if (anim == 4) { anim = 2; }
+			textureB->renderFrame(destRect, 0, anim,SDL_FLIP_HORIZONTAL);
+		
+		}
 	}
 
 }
@@ -164,8 +185,23 @@ void player::VueltaPosiciony()
 }
 void player::looseLive()
 {
-	vidas--; resetPos();
-	if (vidas < 1) { game->loose(); } 
+	if (isBig) 
+	{ isBig = false; 
+	nextposition.y =mapPosition.y=screenPosition.y= nextposition.y + 8;
+	nextposition.h -= 8;
+	}
+	else {
+		vidas--; resetPos();
+		game->resetMapOffset();
+		if (vidas < 1) { game->loose(); }
+	}
+}
+
+void player::lvlUp()
+{
+	isBig = true;
+	nextposition.y = mapPosition.y = screenPosition.y = nextposition.y - 8;
+	nextposition.h += 8;
 }
 
 void player::mueveX()

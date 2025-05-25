@@ -71,7 +71,9 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="goomba.cpp" />
+    <ClCompile Include="koopa.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mushroom.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TileMap.cpp" />
@@ -81,6 +83,8 @@
     <ClInclude Include="checkML.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="goomba.h" />
+    <ClInclude Include="koopa.h" />
+    <ClInclude Include="Mushroom.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TileMap.h" />

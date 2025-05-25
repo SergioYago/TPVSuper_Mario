@@ -2,7 +2,7 @@
 
 // Biblioteca estándar de C++
 #include <array>
-
+#include <vector>
 // Biblioteca SDL
 #include <SDL.h>
 
@@ -11,7 +11,8 @@
 #include "TileMap.h"
 #include "player.h"
 #include "goomba.h"
-
+#include "koopa.h"
+#include "Mushroom.h"
 using uint = unsigned int;
 class Block;
 //
@@ -24,8 +25,11 @@ public:
 	enum TextureName {
 		BACKGROUND,
 		PLAYER,
+		PLAYERB,
 		GOOMBA,
 		BLOCK,
+		KOOPA,
+		MUSHROOM,
 		NUM_TEXTURES,  // Truco C++: número de texturas definidas
 	};
 
@@ -45,8 +49,10 @@ private:
 	TileMap* tilemap;
 	player* mario;
 	goomba* goombaa[15];
-	Block* blocks[44];
-
+	vector<goomba*>goombas;
+	vector<Block*>blocks;
+	vector<Koopa*> koopas;
+	vector<Mushroom*>mushrooms;
 public:
 	static constexpr uint WIN_WIDTH = 576;
 	static constexpr uint WIN_HEIGHT = 512;
@@ -59,10 +65,13 @@ public:
 	void loose();
 	void update();
 	void checkColision();
-	bool checkBlockColision(SDL_Rect rect);
+	bool checkBlockColision(SDL_Rect rect, bool fromPlayer);
+	void checkMushColision();
+	bool checkEnemiesColision();
 	void render() const;
 	void handleEvents();
 	void resetMapOffset() { mapOffset = 0; }
+	void generateMushroom(Point2D pos);
 	Texture* getTexture(TextureName name) const;
 
 	// Constante globales
@@ -70,6 +79,7 @@ public:
 	
 	
 };
+
 
 inline Texture*
 Game::getTexture(TextureName name) const

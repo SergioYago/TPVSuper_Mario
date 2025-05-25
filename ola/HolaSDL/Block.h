@@ -45,7 +45,7 @@ public:
     void render() const;
     void update();
     SDL_Rect getRect() { return rect; }
-    
+    void active();
    // Collision hit(SDL_Rect rect, Collision::ObjetoTipo tipoObj);
     Point2D returnPos() { return position; }
 };
