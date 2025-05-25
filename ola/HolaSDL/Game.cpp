@@ -133,10 +133,7 @@ Game::run()
 	}
 }
 
-bool Game::checkEnemiesColision()
-{
-	return false;
-}
+
 
 void
 Game::render() const
@@ -235,6 +232,59 @@ void Game::checkMushColision()
 	}
 }
 
+void Game::checkEnemyColision()
+{
+	SDL_Rect rect = mario->nextposition;
+	SDL_Rect rect2;
+	rect2.w = rect2.h = 32;
+	bool colision = false;
+	int i = 0;
+	while (i < koopas.size() && !colision)
+	{
+		rect2.x = koopas[i]->nextposition.x;
+		rect2.y = koopas[i]->nextposition.y;
+		colision = (rect.x < rect2.x + rect2.w && rect.x + rect.w > rect2.x && rect.y < rect2.y + rect2.h && rect.y + rect.h > rect2.y);
+		i++;
+	}
+	if (colision)
+	{
+
+		if(rect.y +rect.h/2< rect2.y  && rect.x )
+		{
+			i--;
+			auto it = find(koopas.begin(), koopas.end(), koopas[i]);
+			koopas.erase(it);
+		}
+		else
+		{
+			mario->looseLive();
+		}
+	}
+	colision = false;
+	i = 0;
+	while (i < goombas.size() && !colision)
+	{
+		rect2.x = goombas[i]->nextposition.x;
+		rect2.y = goombas[i]->nextposition.y;
+		colision = (rect.x < rect2.x + rect2.w && rect.x + rect.w > rect2.x && rect.y < rect2.y + rect2.h && rect.y + rect.h > rect2.y);
+		i++;
+	}
+	if (colision)
+	{
+
+		if (rect.y + rect.h / 2 < rect2.y && rect.x)
+		{
+			i--;
+			auto it = find(goombas.begin(), goombas.end(), goombas[i]);
+			goombas.erase(it);
+		}
+		else
+		{
+			mario->looseLive();
+		}
+	}
+}
+
 void
 Game::update()
 {
@@ -268,6 +318,7 @@ Game::update()
 		mario->VueltaPosicionx();
 	}
 	checkMushColision();
+	checkEnemyColision();
 	// Actualiza los objetos del juego
 	//perro->update();
 	// si mario llega a la mitad de la pantalla, incrementa el mapOffset

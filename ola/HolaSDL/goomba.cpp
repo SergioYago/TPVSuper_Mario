@@ -49,7 +49,7 @@ void goomba::render()
 		screenPos.x = (mapPos.x - mapoffset);
 		screenPos.y = mapPos.y;
 	}
-	
+	else { screenPos.x = -nextposition.w; screenPos.y = mapPos.y; }
 
 
 

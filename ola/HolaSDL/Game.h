@@ -67,7 +67,7 @@ public:
 	void checkColision();
 	bool checkBlockColision(SDL_Rect rect, bool fromPlayer);
 	void checkMushColision();
-	bool checkEnemiesColision();
+	void checkEnemyColision();
 	void render() const;
 	void handleEvents();
 	void resetMapOffset() { mapOffset = 0; }

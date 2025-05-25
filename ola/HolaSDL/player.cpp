@@ -15,7 +15,7 @@ player::player(std::istream& is, Game* g)
 	screenPosition.x = screenPosition.x * 32;
 	direccion = 0;
 	aspecto = 0;
-	screenPosition.y=6;
+	screenPosition.y=screenPosition.y*29;
 	mapPosition = screenPosition;
 	nextposition.x = screenPosition.x ;
 	nextposition.y = screenPosition.y ;
@@ -199,9 +199,11 @@ void player::looseLive()
 
 void player::lvlUp()
 {
-	isBig = true;
-	nextposition.y = mapPosition.y = screenPosition.y = nextposition.y - 8;
-	nextposition.h += 8;
+	if (!isBig) {
+		isBig = true;
+		nextposition.y = mapPosition.y = screenPosition.y = nextposition.y - 8;
+		nextposition.h += 8;
+	}
 }
 
 void player::mueveX()
