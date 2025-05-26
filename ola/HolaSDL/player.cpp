@@ -27,6 +27,9 @@ player::player(std::istream& is, Game* g)
 	jump = 0;
 	anim = 2;
 	isBig = false;
+	isInvinible = false;
+	startTime = 0;
+	ticksToWait = 4000;
 }
 
 void player::hit()
@@ -45,18 +48,36 @@ void player::hit()
 // Además, si colisiona con un enemigo, llama a hit(); si colisiona con una moneda, incrementa monedas; si colisiona con una seta, incrementa aspecto.
 void player::update()
 {
-	
 	int mapoffset = game->getMapOffset();
-	//si colisiona con un enemigo, hit();
-	//si colisiona con una moneda, monedas++;
-	//si colisiona con una seta, aspecto++;
-
-	// actualiza la posición del jugador en función de las teclas pulsadas, cambiando la direccion del jugador
-
-
-	// Si el jugador llega a la mitad de la pantalla e intenta avanzar, incrementa el mapOffset porque se incrementa la posición del jugador en el mapa, pero la posición en pantalla no cambia
-	
-
+	mueveY();
+	if (nextposition.y+nextposition.h > game->WIN_HEIGHT - 26) { fell(); }
+	else if(!game->checkMapColision(nextposition, hitted) && !game->checkBlockColision(nextposition, true))
+	{
+		igualaMovimientoy(); isGrounded = true;
+	}
+	else
+	{
+		VueltaPosiciony();
+		isGrounded = false;
+	}
+	game->checkEnemyColision();
+	game->checkMushColision();
+	mueveX();
+	 if (!game->checkMapColision(nextposition, hitted) && !game->checkBlockColision(nextposition, true))
+	{
+		igualaMovimiento(); 
+	}
+	else
+	{
+		VueltaPosicionx();
+	}
+	game->checkMushColision();
+	game->checkEnemyColision();
+	if(isInvinible&& SDL_GetTicks()-startTime>=ticksToWait	)
+	{
+		isInvinible = false;
+	}
+	if (mapPosition.x > 6300) { game->win(); }
 }
 
 //renderiza al jugador en la pantalla
@@ -126,7 +147,7 @@ void player::handleEvents(SDL_Event event)
 		case SDLK_SPACE:
 			if (isGrounded)
 			{
-				jump = 16;
+				jump = 32;
 				isGrounded = false;
 			}
 
@@ -158,12 +179,12 @@ void player::igualaMovimiento()
 	float mapoffset = game->getMapOffset();
 	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH/2)
 	{
-		screenPosition.x += 8;
+		screenPosition.x += speed;
 		 mapPosition.x = nextposition.x ;
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
-		screenPosition.x -= 8;
+		screenPosition.x -= speed;
 		mapPosition.x = nextposition.x ;
 	}
 
@@ -189,12 +210,27 @@ void player::looseLive()
 	{ isBig = false; 
 	nextposition.y =mapPosition.y=screenPosition.y= nextposition.y + 8;
 	nextposition.h -= 8;
+	isInvinible = true;
+	startTime = SDL_GetTicks();
 	}
-	else {
+	else if(!isInvinible) {
 		vidas--; resetPos();
 		game->resetMapOffset();
 		if (vidas < 1) { game->loose(); }
 	}
+}
+
+void player::fell()
+{
+	if (isBig)
+	{
+		isBig = false;
+		nextposition.y = mapPosition.y = screenPosition.y = nextposition.y + 8;
+		nextposition.h -= 8;
+	}
+	vidas--; resetPos();
+	game->resetMapOffset();
+	if (vidas < 1) { game->loose(); }
 }
 
 void player::lvlUp()
@@ -211,13 +247,13 @@ void player::mueveX()
 	//de alguna manera no se mueve lo necesario para que llegue al abujero
 	if (direccion == 1 && screenPosition.x < game->WIN_WIDTH )
 	{
-		nextposition.x+=8;
+		nextposition.x+=speed;
 
 
 	}
 	else if (direccion == -1 && screenPosition.x > 0)
 	{
-		nextposition.x-=8;
+		nextposition.x-=speed;
 
 
 	}
@@ -228,19 +264,19 @@ void player::mueveX()
 		// si no está en el suelo y ya ha llegado a la altura maxima del salto, empieza a caer
 		if (!isGrounded && jump == 0)
 		{
-			nextposition.y += 8;
+			nextposition.y += 4;
 		}
 		// si está en el suelo y se pulsa la tecla de salto, salta
 		else if (isGrounded && jump >= 1)
 		{
-			nextposition.y -= 8;
+			nextposition.y -= 4;
 			isGrounded = false;
 			jump--;
 		}
 		// si no está en el suelo y no ha llegado a la altura maxima del salto, sigue subiendo
 		else if (!isGrounded && jump > 0)
 		{
-			nextposition.y -= 8;
+			nextposition.y -= 4;
 			jump--;
 		}
 		

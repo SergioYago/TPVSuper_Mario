@@ -63,11 +63,17 @@ public:
 	int getMapOffset();
 	void run();
 	void loose();
+	void win();
 	void update();
 	void checkColision();
 	bool checkBlockColision(SDL_Rect rect, bool fromPlayer);
 	void checkMushColision();
 	void checkEnemyColision();
+	void destroyMush(Mushroom* m);
+	void destroyGoomba(goomba* g);
+	void destroyKoopa(Koopa* k);
+	void destroyBlock(Block* b);
+	bool checkMapColision(SDL_Rect rect, bool fromPlayer);
 	void render() const;
 	void handleEvents();
 	void resetMapOffset() { mapOffset = 0; }

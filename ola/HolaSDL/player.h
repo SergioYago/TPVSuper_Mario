@@ -22,8 +22,11 @@ class player
 	bool isGrounded;
 	int jump;
 	int anim;
+	const int speed=4;
+	int startTime;
+	int ticksToWait;
 	bool isBig;
-	
+	bool isInvinible;
 public:
 	bool hitted = false;
 	SDL_Rect nextposition;
@@ -40,6 +43,7 @@ public:
 	int getDireccion() { return direccion; }
 	int getAspecto() { return aspecto; }
 	void looseLive();
+	void fell();
 	void lvlUp();
 	void resetPos() { mapPosition = screenPosition = iniPos; nextposition.x = mapPosition.x; nextposition.y = mapPosition.y; }
 	// setter isGrounded

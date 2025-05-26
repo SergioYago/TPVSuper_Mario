@@ -12,7 +12,7 @@ class Koopa
 	int direccion;
 	Texture* texture;
 	Game* game;
-	
+	int anim;
 public:
 	SDL_Rect nextposition;
 	Koopa(std::istream& is, Game* g);

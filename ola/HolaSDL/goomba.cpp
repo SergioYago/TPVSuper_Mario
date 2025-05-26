@@ -17,6 +17,7 @@ goomba::goomba(std::istream& is, Game* g)
 	nextposition.x = mapPos.x;
 	nextposition.y = mapPos.y;
 	nextposition.w = nextposition.h = 32;
+	anim = 0;
 }
 
 void goomba::hit()
@@ -59,12 +60,43 @@ void goomba::render()
 	destRect.w = 32;
 	destRect.h = 32;
 
-
-	texture->renderFrame(destRect,0,0);
-
+	if (anim == 0) { anim = 1; }
+	else { anim = 0; }
+	if (direccion == -1) {
+		texture->renderFrame(destRect, 0, anim);
+	}
+	else
+	{
+		texture->renderFrame(destRect, 0, anim, SDL_FLIP_HORIZONTAL);
+	}
 }
 void goomba::update()
 {
+	mueveY();
+	if (nextposition.y+nextposition.h > game->WIN_HEIGHT - 26)
+	{
+		game->destroyGoomba(this);
+	}
+	else if (!game->checkMapColision(nextposition, false) && !game->checkBlockColision(nextposition, false))
+	{
+		igualaY();
+	}
+	else
+	{
+		VueltaY();
+
+	}
+	mueveX();
+	if (!game->checkMapColision(nextposition, false) && !game->checkBlockColision(nextposition, false))
+	{
+		igualaX();
+	}
+	else
+	{
+		VueltaX();
+
+	}
+
 }
 void goomba::mueveY()
 {

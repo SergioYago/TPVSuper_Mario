@@ -12,7 +12,7 @@ class goomba
 	int direccion;
 	Texture* texture;
 	Game* game;
-	
+	int anim;
 public:
 	SDL_Rect nextposition;
 	goomba(std::istream& is, Game* g);

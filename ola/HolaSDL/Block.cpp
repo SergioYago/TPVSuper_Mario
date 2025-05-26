@@ -96,15 +96,21 @@ void Block::update() {
 
 void Block::active()
 {
-    if (action == Action::Moneda) {
-      //  game->playstate->addScore(200); si me da
+    if(tipo==Tipo::Ladrillo)
+    {
+        game->destroyBlock(this);
     }
-    else if (action == Action::Potenciador) {
-        game->generateMushroom({ position.x,position.y });
+    else {
+        if (action == Action::Moneda) {
+            //  game->playstate->addScore(200); si me da
+        }
+        else if (action == Action::Potenciador) {
+            game->generateMushroom({ position.x,position.y });
 
+        }
+        action == Action::Nada;
+        tipo = Tipo::Vacio;
     }
-    action == Action::Nada;
-    tipo = Tipo::Vacio;
 }
 
 

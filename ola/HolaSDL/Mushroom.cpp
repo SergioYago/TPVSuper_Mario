@@ -16,6 +16,13 @@ Mushroom::Mushroom(Point2D pos, Game* g)
 	nextposition.x = mapPos.x;
 	nextposition.y = mapPos.y;
 	nextposition.w = nextposition.h = 32;
+
+}
+
+Mushroom::~Mushroom()
+{
+	game = nullptr;
+	texture = nullptr;
 }
 
 void Mushroom::hit()
@@ -64,6 +71,31 @@ void Mushroom::render()
 }
 void Mushroom::update()
 {
+	mueveY();
+	if (nextposition.y+nextposition.h > game->WIN_HEIGHT - 26)
+	{
+		game->destroyMush(this);
+	}
+	else if (!game->checkMapColision(nextposition, false) && !game->checkBlockColision(nextposition, false))
+	{
+		igualaY();
+	}
+	else
+	{
+		VueltaY();
+
+	}
+	mueveX();
+	if (!game->checkMapColision(nextposition, false) && !game->checkBlockColision(nextposition, false))
+	{
+		igualaX();
+	}
+	else
+	{
+		VueltaX();
+
+	}
+
 }
 void Mushroom::mueveY()
 {
